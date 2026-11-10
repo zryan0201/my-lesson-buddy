@@ -1,0 +1,273 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Visible object counts</title><style>body{font:16px/1.6 system-ui;max-width:1000px;margin:40px auto;padding:20px;color:#192d49;background:#f5f7fa}details{margin:16px 0;background:white;padding:16px;border-radius:10px}img{width:100%;max-height:500px;object-fit:contain}pre{white-space:pre-wrap;word-break:break-word}</style><h1>可见物品计数：小样本基线</h1><p>工程格式归一化复算：单个物品组改为列表，无新推理</p><p>8张复用题面、9个标注物品组；类别与数量准确匹配 7 / 9。固定通用计数提示词；本地模型；0次付费API。</p><p>只检验已标注类别的可见数量，不是整道题的答案正确率。橙子题测量21个可见橙子，未要求模型解出隐藏数量。分类词匹配与人工计数尚需独立教师审核。原始错误和缺失均保留。</p><details><summary>teddy bears · gold 3 / model 3 · 通过</summary><img src="../../../benchmarks/worksheet_v1/images/w_8b07465cf2aa5f.png"><pre>{
+  &quot;id&quot;: &quot;w_8b07465cf2aa5f&quot;,
+  &quot;target&quot;: &quot;teddy bears&quot;,
+  &quot;expected_visible_count&quot;: 3,
+  &quot;predicted_count&quot;: 3,
+  &quot;ambiguous_matching_groups&quot;: false,
+  &quot;correct&quot;: true,
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;prediction&quot;: {
+    &quot;id&quot;: &quot;w_8b07465cf2aa5f&quot;,
+    &quot;image_sha256&quot;: &quot;7e4af8c074b0d06a88d7c507dfc4bacdd1e176099de3abc062206986b9cd95b0&quot;,
+    &quot;run_fingerprint&quot;: &quot;aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95&quot;,
+    &quot;seconds&quot;: 2.446,
+    &quot;status&quot;: &quot;accepted&quot;,
+    &quot;raw_response&quot;: &quot;{\n  \&quot;objects\&quot;: {\n    \&quot;label\&quot;: \&quot;teddy bear\&quot;,\n    \&quot;count\&quot;: 3\n  },\n  \&quot;uncertain\&quot;: false\n}&quot;,
+    &quot;original_status&quot;: &quot;invalid_output&quot;,
+    &quot;original_error&quot;: &quot;Invalid count response schema.&quot;,
+    &quot;reading&quot;: {
+      &quot;objects&quot;: [
+        {
+          &quot;label&quot;: &quot;teddy bear&quot;,
+          &quot;count&quot;: 3
+        }
+      ],
+      &quot;uncertain&quot;: false
+    },
+    &quot;normalizations&quot;: [
+      &quot;singleton_object_to_list&quot;
+    ],
+    &quot;original_run_fingerprint&quot;: &quot;72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b&quot;
+  }
+}</pre></details><details><summary>pencils · gold 3 / model 3 · 通过</summary><img src="../../../benchmarks/worksheet_v1/images/w_477b3f73d5a05c.png"><pre>{
+  &quot;id&quot;: &quot;w_477b3f73d5a05c&quot;,
+  &quot;target&quot;: &quot;pencils&quot;,
+  &quot;expected_visible_count&quot;: 3,
+  &quot;predicted_count&quot;: 3,
+  &quot;ambiguous_matching_groups&quot;: false,
+  &quot;correct&quot;: true,
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;prediction&quot;: {
+    &quot;id&quot;: &quot;w_477b3f73d5a05c&quot;,
+    &quot;image_sha256&quot;: &quot;eca10c8b9d6a519c107962e19946938c090c9976273ad920841501a47b15293a&quot;,
+    &quot;run_fingerprint&quot;: &quot;aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95&quot;,
+    &quot;seconds&quot;: 2.923,
+    &quot;status&quot;: &quot;accepted&quot;,
+    &quot;raw_response&quot;: &quot;{\n  \&quot;objects\&quot;: {\n    \&quot;label\&quot;: \&quot;pencil\&quot;,\n    \&quot;count\&quot;: 3\n  },\n  \&quot;uncertain\&quot;: false\n}&quot;,
+    &quot;original_status&quot;: &quot;invalid_output&quot;,
+    &quot;original_error&quot;: &quot;Invalid count response schema.&quot;,
+    &quot;reading&quot;: {
+      &quot;objects&quot;: [
+        {
+          &quot;label&quot;: &quot;pencil&quot;,
+          &quot;count&quot;: 3
+        }
+      ],
+      &quot;uncertain&quot;: false
+    },
+    &quot;normalizations&quot;: [
+      &quot;singleton_object_to_list&quot;
+    ],
+    &quot;original_run_fingerprint&quot;: &quot;72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b&quot;
+  }
+}</pre></details><details><summary>toy cars · gold 10 / model 10 · 通过</summary><img src="../../../benchmarks/worksheet_v1/images/w_6fb2200d62e359.png"><pre>{
+  &quot;id&quot;: &quot;w_6fb2200d62e359&quot;,
+  &quot;target&quot;: &quot;toy cars&quot;,
+  &quot;expected_visible_count&quot;: 10,
+  &quot;predicted_count&quot;: 10,
+  &quot;ambiguous_matching_groups&quot;: false,
+  &quot;correct&quot;: true,
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;prediction&quot;: {
+    &quot;id&quot;: &quot;w_6fb2200d62e359&quot;,
+    &quot;image_sha256&quot;: &quot;ad49cfa8187018f1382733163cdf26b8da83411d2e5b6aeabd0b49e63db1882c&quot;,
+    &quot;run_fingerprint&quot;: &quot;aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95&quot;,
+    &quot;seconds&quot;: 2.901,
+    &quot;status&quot;: &quot;accepted&quot;,
+    &quot;raw_response&quot;: &quot;{\n  \&quot;objects\&quot;: {\n    \&quot;label\&quot;: \&quot;toy car\&quot;,\n    \&quot;count\&quot;: 10\n  },\n  \&quot;uncertain\&quot;: false\n}&quot;,
+    &quot;original_status&quot;: &quot;invalid_output&quot;,
+    &quot;original_error&quot;: &quot;Invalid count response schema.&quot;,
+    &quot;reading&quot;: {
+      &quot;objects&quot;: [
+        {
+          &quot;label&quot;: &quot;toy car&quot;,
+          &quot;count&quot;: 10
+        }
+      ],
+      &quot;uncertain&quot;: false
+    },
+    &quot;normalizations&quot;: [
+      &quot;singleton_object_to_list&quot;
+    ],
+    &quot;original_run_fingerprint&quot;: &quot;72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b&quot;
+  }
+}</pre></details><details><summary>visible oranges · gold 21 / model 16 · 待复核</summary><img src="../../../benchmarks/worksheet_v1/images/w_382fc4b64b305d.png"><pre>{
+  &quot;id&quot;: &quot;w_382fc4b64b305d&quot;,
+  &quot;target&quot;: &quot;visible oranges&quot;,
+  &quot;expected_visible_count&quot;: 21,
+  &quot;predicted_count&quot;: 16,
+  &quot;ambiguous_matching_groups&quot;: false,
+  &quot;correct&quot;: false,
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;prediction&quot;: {
+    &quot;id&quot;: &quot;w_382fc4b64b305d&quot;,
+    &quot;image_sha256&quot;: &quot;ddd8989647d0b4fc578ddd61a2f81e2c9efb15edc085bc27c8cc4e7407361143&quot;,
+    &quot;run_fingerprint&quot;: &quot;aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95&quot;,
+    &quot;seconds&quot;: 2.512,
+    &quot;status&quot;: &quot;accepted&quot;,
+    &quot;reading&quot;: {
+      &quot;objects&quot;: [
+        {
+          &quot;label&quot;: &quot;orange&quot;,
+          &quot;count&quot;: 16
+        }
+      ],
+      &quot;uncertain&quot;: false
+    },
+    &quot;raw_response&quot;: &quot;{\n  \&quot;objects\&quot;: [\n    {\n      \&quot;label\&quot;: \&quot;orange\&quot;,\n      \&quot;count\&quot;: 16\n    }\n  ],\n  \&quot;uncertain\&quot;: false\n}&quot;,
+    &quot;original_run_fingerprint&quot;: &quot;72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b&quot;
+  }
+}</pre></details><details><summary>cat stickers · gold 12 / model 12 · 通过</summary><img src="../../../benchmarks/worksheet_v1/images/w_b44e4f376f765b.png"><pre>{
+  &quot;id&quot;: &quot;w_b44e4f376f765b&quot;,
+  &quot;target&quot;: &quot;cat stickers&quot;,
+  &quot;expected_visible_count&quot;: 12,
+  &quot;predicted_count&quot;: 12,
+  &quot;ambiguous_matching_groups&quot;: false,
+  &quot;correct&quot;: true,
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;prediction&quot;: {
+    &quot;id&quot;: &quot;w_b44e4f376f765b&quot;,
+    &quot;image_sha256&quot;: &quot;b0007d7355d464337600e6dad534e17cff5b99d196b256c28caf6fd51a99de49&quot;,
+    &quot;run_fingerprint&quot;: &quot;aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95&quot;,
+    &quot;seconds&quot;: 2.103,
+    &quot;status&quot;: &quot;accepted&quot;,
+    &quot;reading&quot;: {
+      &quot;objects&quot;: [
+        {
+          &quot;label&quot;: &quot;cat sticker&quot;,
+          &quot;count&quot;: 12
+        }
+      ],
+      &quot;uncertain&quot;: false
+    },
+    &quot;raw_response&quot;: &quot;{\n  \&quot;objects\&quot;: [\n    {\n      \&quot;label\&quot;: \&quot;cat sticker\&quot;,\n      \&quot;count\&quot;: 12\n    }\n  ],\n  \&quot;uncertain\&quot;: false\n}&quot;,
+    &quot;original_run_fingerprint&quot;: &quot;72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b&quot;
+  }
+}</pre></details><details><summary>smiley stickers · gold 3 / model 3 · 通过</summary><img src="../../../benchmarks/worksheet_v1/images/w_52bb8e2d851357.png"><pre>{
+  &quot;id&quot;: &quot;w_52bb8e2d851357&quot;,
+  &quot;target&quot;: &quot;smiley stickers&quot;,
+  &quot;expected_visible_count&quot;: 3,
+  &quot;predicted_count&quot;: 3,
+  &quot;ambiguous_matching_groups&quot;: false,
+  &quot;correct&quot;: true,
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;prediction&quot;: {
+    &quot;id&quot;: &quot;w_52bb8e2d851357&quot;,
+    &quot;image_sha256&quot;: &quot;d390a0c9101eee4a937581eeb864427b41138c72d5962ee1b1cba14b4d9f2b3e&quot;,
+    &quot;run_fingerprint&quot;: &quot;aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95&quot;,
+    &quot;seconds&quot;: 1.988,
+    &quot;status&quot;: &quot;accepted&quot;,
+    &quot;raw_response&quot;: &quot;{\n  \&quot;objects\&quot;: {\n    \&quot;label\&quot;: \&quot;smiley face\&quot;,\n    \&quot;count\&quot;: 3\n  },\n  \&quot;uncertain\&quot;: false\n}&quot;,
+    &quot;original_status&quot;: &quot;invalid_output&quot;,
+    &quot;original_error&quot;: &quot;Invalid count response schema.&quot;,
+    &quot;reading&quot;: {
+      &quot;objects&quot;: [
+        {
+          &quot;label&quot;: &quot;smiley face&quot;,
+          &quot;count&quot;: 3
+        }
+      ],
+      &quot;uncertain&quot;: false
+    },
+    &quot;normalizations&quot;: [
+      &quot;singleton_object_to_list&quot;
+    ],
+    &quot;original_run_fingerprint&quot;: &quot;72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b&quot;
+  }
+}</pre></details><details><summary>star stickers · gold 1 / model None · 待复核</summary><img src="../../../benchmarks/worksheet_v1/images/w_52bb8e2d851357.png"><pre>{
+  &quot;id&quot;: &quot;w_52bb8e2d851357&quot;,
+  &quot;target&quot;: &quot;star stickers&quot;,
+  &quot;expected_visible_count&quot;: 1,
+  &quot;predicted_count&quot;: null,
+  &quot;ambiguous_matching_groups&quot;: false,
+  &quot;correct&quot;: false,
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;prediction&quot;: {
+    &quot;id&quot;: &quot;w_52bb8e2d851357&quot;,
+    &quot;image_sha256&quot;: &quot;d390a0c9101eee4a937581eeb864427b41138c72d5962ee1b1cba14b4d9f2b3e&quot;,
+    &quot;run_fingerprint&quot;: &quot;aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95&quot;,
+    &quot;seconds&quot;: 1.988,
+    &quot;status&quot;: &quot;accepted&quot;,
+    &quot;raw_response&quot;: &quot;{\n  \&quot;objects\&quot;: {\n    \&quot;label\&quot;: \&quot;smiley face\&quot;,\n    \&quot;count\&quot;: 3\n  },\n  \&quot;uncertain\&quot;: false\n}&quot;,
+    &quot;original_status&quot;: &quot;invalid_output&quot;,
+    &quot;original_error&quot;: &quot;Invalid count response schema.&quot;,
+    &quot;reading&quot;: {
+      &quot;objects&quot;: [
+        {
+          &quot;label&quot;: &quot;smiley face&quot;,
+          &quot;count&quot;: 3
+        }
+      ],
+      &quot;uncertain&quot;: false
+    },
+    &quot;normalizations&quot;: [
+      &quot;singleton_object_to_list&quot;
+    ],
+    &quot;original_run_fingerprint&quot;: &quot;72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b&quot;
+  }
+}</pre></details><details><summary>purses · gold 4 / model 4 · 通过</summary><img src="../../../benchmarks/worksheet_v1/images/w_1e6eac3661ac59.png"><pre>{
+  &quot;id&quot;: &quot;w_1e6eac3661ac59&quot;,
+  &quot;target&quot;: &quot;purses&quot;,
+  &quot;expected_visible_count&quot;: 4,
+  &quot;predicted_count&quot;: 4,
+  &quot;ambiguous_matching_groups&quot;: false,
+  &quot;correct&quot;: true,
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;prediction&quot;: {
+    &quot;id&quot;: &quot;w_1e6eac3661ac59&quot;,
+    &quot;image_sha256&quot;: &quot;da315fc1b863101ab822b83b7cc12ed530c8d4a33f28674f44a7769a49a900fd&quot;,
+    &quot;run_fingerprint&quot;: &quot;aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95&quot;,
+    &quot;seconds&quot;: 4.301,
+    &quot;status&quot;: &quot;accepted&quot;,
+    &quot;reading&quot;: {
+      &quot;objects&quot;: [
+        {
+          &quot;label&quot;: &quot;banana&quot;,
+          &quot;count&quot;: 1
+        },
+        {
+          &quot;label&quot;: &quot;coin&quot;,
+          &quot;count&quot;: 10
+        },
+        {
+          &quot;label&quot;: &quot;purse&quot;,
+          &quot;count&quot;: 4
+        }
+      ],
+      &quot;uncertain&quot;: false
+    },
+    &quot;raw_response&quot;: &quot;{\n  \&quot;objects\&quot;: [\n    {\n      \&quot;label\&quot;: \&quot;banana\&quot;,\n      \&quot;count\&quot;: 1\n    },\n    {\n      \&quot;label\&quot;: \&quot;coin\&quot;,\n      \&quot;count\&quot;: 10\n    },\n    {\n      \&quot;label\&quot;: \&quot;purse\&quot;,\n      \&quot;count\&quot;: 4\n    }\n  ],\n  \&quot;uncertain\&quot;: false\n}&quot;,
+    &quot;original_run_fingerprint&quot;: &quot;72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b&quot;
+  }
+}</pre></details><details><summary>clock faces · gold 4 / model 4 · 通过</summary><img src="../../../benchmarks/worksheet_v1/images/w_d33145e2e1625d.png"><pre>{
+  &quot;id&quot;: &quot;w_d33145e2e1625d&quot;,
+  &quot;target&quot;: &quot;clock faces&quot;,
+  &quot;expected_visible_count&quot;: 4,
+  &quot;predicted_count&quot;: 4,
+  &quot;ambiguous_matching_groups&quot;: false,
+  &quot;correct&quot;: true,
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;prediction&quot;: {
+    &quot;id&quot;: &quot;w_d33145e2e1625d&quot;,
+    &quot;image_sha256&quot;: &quot;1e1775e8f2367b8127b46858034828188ea27fc6e25dd64f0abbe570ae514f4c&quot;,
+    &quot;run_fingerprint&quot;: &quot;aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95&quot;,
+    &quot;seconds&quot;: 3.257,
+    &quot;status&quot;: &quot;accepted&quot;,
+    &quot;raw_response&quot;: &quot;{\n  \&quot;objects\&quot;: {\n    \&quot;label\&quot;: \&quot;clock\&quot;,\n    \&quot;count\&quot;: 4\n  },\n  \&quot;uncertain\&quot;: false\n}&quot;,
+    &quot;original_status&quot;: &quot;invalid_output&quot;,
+    &quot;original_error&quot;: &quot;Invalid count response schema.&quot;,
+    &quot;reading&quot;: {
+      &quot;objects&quot;: [
+        {
+          &quot;label&quot;: &quot;clock&quot;,
+          &quot;count&quot;: 4
+        }
+      ],
+      &quot;uncertain&quot;: false
+    },
+    &quot;normalizations&quot;: [
+      &quot;singleton_object_to_list&quot;
+    ],
+    &quot;original_run_fingerprint&quot;: &quot;72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b&quot;
+  }
+}</pre></details></html>

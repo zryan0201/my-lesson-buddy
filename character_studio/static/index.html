@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24756b">
+  <title>Character Studio · My Lesson Buddy</title>
+  <link rel="stylesheet" href="/static/studio.css">
+  <script src="/static/studio.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#studio">Skip to the character tools</a>
+  <header class="topbar page-width">
+    <a class="brand" href="/" aria-label="Character Studio home"><span class="brand-mark" aria-hidden="true">✦</span><span>My Lesson Buddy<small>CHARACTER STUDIO</small></span></a>
+    <a class="back-link" href="http://127.0.0.1:8501">Back to Lesson Buddy <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main class="page-width">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <span class="eyebrow"><span aria-hidden="true">✦</span> IMAGINATION STARTS HERE</span>
+        <h1 id="page-title">A little you.<br>A lot of <span>possibility.</span></h1>
+        <p>Draw a new friend or mix your favorite parts.<br>Then invite your character into a learning adventure.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="star star-one">✦</span><span class="star star-two">✧</span><span class="hero-pencil">✎</span><span class="hero-spark">✦</span><span class="hero-label">Made by YOU</span></div>
+    </section>
+
+    <div id="global-status" class="global-status" role="status" aria-live="polite"></div>
+
+    <section id="studio" class="studio-shell" aria-label="Create your character">
+      <div class="studio-topline">
+        <div class="mode-tabs" role="tablist" aria-label="How would you like to create?">
+          <button id="tab-draw" class="mode-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-draw"><span aria-hidden="true">✎</span> Draw it</button>
+          <button id="tab-build" class="mode-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-build" tabindex="-1"><span aria-hidden="true">◈</span> Build it</button>
+        </div>
+        <span id="draft-status" class="draft-status"><span class="status-dot" aria-hidden="true"></span> Your draft stays on this device</span>
+      </div>
+
+      <div class="studio-grid">
+        <div class="work-area">
+          <section id="panel-draw" role="tabpanel" aria-labelledby="tab-draw">
+            <div class="panel-intro"><div><span class="step-kicker">YOUR IDEAS, YOUR LINES</span><h2>Let your imagination draw.</h2></div><label class="button button-small button-outline upload-label" for="drawing-upload"><span aria-hidden="true">↑</span> Bring a drawing<input id="drawing-upload" type="file" accept="image/png,image/jpeg" class="visually-hidden"></label></div>
+            <div class="drawing-toolbar" aria-label="Drawing tools">
+              <div class="tool-pair" role="group" aria-label="Drawing tools">
+                <button id="tool-pen" class="tool-button is-active" type="button" aria-pressed="true" title="Draw with a brush"><span aria-hidden="true">✎</span><span>Brush</span></button>
+                <button id="tool-eraser" class="tool-button" type="button" aria-pressed="false" title="Erase with white"><span aria-hidden="true">▱</span><span>Eraser</span></button>
+                <button id="tool-line" class="tool-button" type="button" aria-pressed="false" title="Drag to draw a straight line"><span aria-hidden="true">╱</span><span>Line</span></button>
+                <button id="tool-rectangle" class="tool-button" type="button" aria-pressed="false" title="Drag to draw a rectangle"><span aria-hidden="true">□</span><span>Rectangle</span></button>
+                <button id="tool-circle" class="tool-button" type="button" aria-pressed="false" title="Drag to draw a circle or oval"><span aria-hidden="true">○</span><span>Circle</span></button>
+                <button id="tool-fill" class="tool-button" type="button" aria-pressed="false" title="Fill a closed area with your color"><span aria-hidden="true">◩</span><span>Fill</span></button>
+              </div>
+              <button id="mirror-drawing" class="tool-button mirror-button" type="button" aria-pressed="false" title="Draw both sides together"><span aria-hidden="true">◐</span><span>Mirror</span></button>
+              <div id="ink-palette" class="ink-palette" role="group" aria-label="Drawing colors"></div>
+              <label class="custom-color" title="Choose another drawing color"><input id="ink-color" type="color" value="#363249" aria-label="Custom drawing color"><span aria-hidden="true">+</span></label>
+              <label class="brush-size">Size<input id="brush-size" type="range" min="2" max="42" value="10" aria-label="Brush size"><output id="brush-size-value" for="brush-size">10</output></label>
+            </div>
+            <div class="canvas-wrap"><canvas id="drawing-canvas" width="720" height="840" tabindex="0" aria-label="Your drawing canvas. Use a mouse, pen, or touch to draw a character.">Your browser does not support the drawing canvas. You can still use Build it to make a character.</canvas><div id="mirror-guide" class="mirror-guide" aria-hidden="true" hidden></div><div id="canvas-hint" class="canvas-hint" aria-hidden="true"><span>✦</span><strong>Every character starts with a mark.</strong><p>Draw a face, a creature, a superhero… anything you imagine.</p></div></div>
+            <div class="canvas-footer"><p id="drawing-tool-help" aria-live="polite">Draw with your finger, mouse, or stylus.</p><div class="history-tools"><button id="undo-drawing" type="button" class="text-button" disabled aria-label="Undo last drawing change">↶ Undo</button><button id="redo-drawing" type="button" class="text-button" disabled aria-label="Redo drawing change">↷ Redo</button><button id="clear-drawing" type="button" class="text-button danger-text">Clear</button></div></div>
+
+            <section class="polish-section" aria-labelledby="polish-title"><div class="polish-icon" aria-hidden="true">✧</div><div class="polish-copy"><h3 id="polish-title">A little extra polish</h3><p>Brighten the paper and gently clean the lines. Your original stays safe.</p><span class="feature-tag">Local cleanup · no AI</span></div><button id="polish-drawing" class="button button-outline button-small" type="button" disabled>Preview polish <span aria-hidden="true">✦</span></button></section>
+            <section id="polish-comparison" class="polish-comparison" hidden aria-labelledby="comparison-title"><h3 id="comparison-title">Which version feels like you?</h3><div class="comparison-grid"><figure><img id="original-preview" alt="Your original drawing"><figcaption>Your drawing</figcaption></figure><figure><img id="polished-preview" alt="Drawing after local cleanup"><figcaption id="polished-caption">Gently polished</figcaption></figure></div><div class="comparison-actions"><button id="keep-original" class="button button-outline button-small" type="button">Keep my drawing</button><button id="use-polished" class="button button-primary button-small" type="button">Use polished version</button></div><a id="download-original" class="subtle-link" download="my-original-drawing.png">Download my original</a></section>
+            <div id="drawing-backup" class="drawing-backup" hidden><span aria-hidden="true">♡</span> Your original is safe. <a id="download-drawing-backup" class="subtle-link" download="my-original-drawing.png">Download it here ↓</a></div>
+            <details class="ai-details"><summary><span aria-hidden="true">✦</span> AI beautify with Gemini <span id="ai-feature-tag" class="soon-tag">Optional · adult setup</span></summary><p id="ai-status-message">Gemini can redraw your sketch. An adult must configure API access; student app subscriptions do not guarantee free API images.</p><div class="manual-ai-route"><h3>Already use the Gemini app?</h3><p>A grown-up can try this route with their existing app access. Nothing is sent automatically.</p><ol><li><a id="manual-download-drawing" class="subtle-link" download="my-character-drawing.png" aria-disabled="true">Download this drawing PNG ↓</a></li><li>Open <a href="https://gemini.google.com/app" target="_blank" rel="noopener noreferrer">Gemini ↗</a>, attach the drawing, and paste this request.</li><li>Download the result, then choose <strong>Bring a drawing</strong> above to add it here.</li></ol><label for="makeover-prompt">A request you can copy</label><textarea id="makeover-prompt" rows="4" readonly>Turn this child's drawing into one friendly, full-body cartoon character for a K–2 learning video. Preserve the child's silhouette, main colors, unusual details, and personality. Gently polish the lines and coloring. Keep the entire character visible on a plain white background, with no text, scene, or extra characters.</textarea><button id="copy-makeover-prompt" class="button button-outline button-small" type="button">Copy makeover request</button><span id="copy-prompt-status" role="status" aria-live="polite"></span></div><div id="ai-enabled-controls" hidden><label class="ai-style-label" for="ai-style">Illustration style<select id="ai-style"><option value="storybook">Storybook friend</option><option value="comic">Colorful comic</option><option value="soft3d">Soft 3D character</option></select></label><label class="adult-consent"><input id="ai-consent" type="checkbox"><span>Grown-up: send this drawing to Google Gemini; image API usage may cost money.</span></label><button id="beautify-drawing" class="button button-outline button-small" type="button" disabled>Ask Gemini for a makeover ✦</button><p class="ai-consent-note">Only this drawing is sent when you press the button. You choose whether to keep the result.</p></div><button id="ai-unavailable" class="button button-outline button-small" type="button" disabled>Direct API beautify is not configured</button></details>
+          </section>
+
+          <section id="panel-build" role="tabpanel" aria-labelledby="tab-build" hidden>
+            <div class="panel-intro"><div><span class="step-kicker">SMALL PARTS, BIG PERSONALITY</span><h2>Mix. Match. Make it yours.</h2></div></div>
+            <p class="builder-description">A robot with wings? A masked friend with moon boots? Every combination is a new idea.</p>
+            <div class="section-label"><h3>Start with a spark</h3><span>Then change anything.</span></div>
+            <div id="preset-grid" class="preset-grid" aria-label="Starter characters"></div>
+            <div class="section-label parts-heading"><h3>Choose your parts</h3><span>Try something unexpected.</span></div>
+            <div id="part-controls" class="part-controls"></div>
+            <div class="section-label colors-heading"><h3>Pick your colors</h3></div>
+            <div id="builder-colors" class="builder-colors"></div>
+            <div class="builder-note"><span aria-hidden="true">✦</span><p>Make your own hero with masks, armor, capes, and more. These are original mix-and-match parts.</p></div>
+          </section>
+        </div>
+
+        <aside class="preview-sidebar" aria-labelledby="preview-title">
+          <div class="preview-heading"><span class="step-kicker">MEET YOUR NEW BUDDY</span><h2 id="preview-title">Hello, <span id="preview-name">my friend</span>!</h2></div>
+          <div id="character-stage" class="character-stage"><span class="stage-star stage-star-one" aria-hidden="true">✧</span><span class="stage-star stage-star-two" aria-hidden="true">✦</span><img id="character-preview" alt="Your character preview" hidden><div id="preview-empty" class="preview-empty"><span aria-hidden="true">☺</span><p>Your new friend<br>will appear here.</p></div><span id="preview-loading" class="preview-loading" hidden>Getting your preview…</span></div>
+          <div class="name-field"><label for="character-name">What’s your character’s name?</label><input id="character-name" type="text" maxlength="32" placeholder="e.g. Captain Curious" autocomplete="off"><div class="input-caption"><span>Give your imagination a name.</span><span id="name-counter">0 / 32</span></div></div>
+          <button id="save-character" class="button button-primary save-button" type="button" disabled><span aria-hidden="true">✦</span> Save my character</button>
+          <p id="save-help" class="save-help">Add a name and create your character to save it.</p>
+          <div id="saved-result" class="saved-result" hidden><span class="saved-check" aria-hidden="true">✓</span><strong id="saved-result-title">Your character is ready!</strong><div class="download-links"><a id="download-image" class="subtle-link" download>Download PNG ↓</a><a id="download-package" class="subtle-link" download>Character package ↓</a></div><a id="saved-use-lesson" class="button button-primary button-small" href="http://127.0.0.1:8501">Use in my lesson ↗</a></div>
+          <div class="lesson-note"><span class="lesson-note-icon" aria-hidden="true">▶</span><div><strong>Next stop: a learning adventure</strong><p>Saved characters appear in Lesson Buddy’s Character Studio library.</p><a href="http://127.0.0.1:8501">Make a lesson video <span aria-hidden="true">↗</span></a></div></div>
+          <p class="privacy-note"><span aria-hidden="true">⌂</span> Created and saved on this computer.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="library-section" aria-labelledby="library-title">
+      <div class="library-heading"><div><span class="step-kicker">A WHOLE CAST OF POSSIBILITIES</span><h2 id="library-title">Your character collection</h2><p>Every saved character is ready for its next story.</p></div><div class="library-actions"><label class="button button-small button-outline upload-label" for="package-upload">↑ Import a character<input id="package-upload" type="file" accept=".character.zip,.zip,application/zip" class="visually-hidden"></label><button id="refresh-library" class="text-button" type="button">↻ Refresh</button></div></div>
+      <div class="library-search-row"><label for="library-search">Find a buddy</label><input id="library-search" type="search" placeholder="Search by character name" autocomplete="off"><span id="library-count" role="status" aria-live="polite"></span></div>
+      <div id="character-library" class="character-library"><div class="library-empty"><span aria-hidden="true">✦</span><h3>Your story starts here.</h3><p>Save your first character and build a cast that’s all your own.</p></div></div>
+    </section>
+    <footer class="page-footer"><span>Made with imagination. Powered by curiosity.</span><span>My Lesson Buddy · Local prototype</span></footer>
+  </main>
+  <dialog id="saved-character-dialog" class="character-dialog" aria-labelledby="dialog-character-name">
+    <button id="close-character-dialog" class="dialog-close" type="button" aria-label="Close character preview">×</button><span class="step-kicker">READY FOR A NEW ADVENTURE</span><h2 id="dialog-character-name"></h2><img id="dialog-character-image" alt=""><p id="dialog-character-description"></p>
+    <div class="motion-controls"><label for="character-motion">Try a move</label><select id="character-motion"><option value="idle">Gentle bounce</option><option value="wave">Wave hello</option><option value="talk">Explain something</option><option value="celebrate">Celebrate!</option></select><button id="preview-motion" class="button button-small button-outline" type="button">See me move ▶</button></div><p id="motion-status" class="motion-status" role="status" aria-live="polite"></p>
+    <div class="dialog-links"><button id="edit-character-copy" class="button button-outline button-small" type="button">✎ Edit a copy</button><button id="duplicate-character" class="button button-outline button-small" type="button">＋ Make a twin</button><a id="dialog-download-image" class="button button-outline button-small" download>Download PNG ↓</a><a id="dialog-download-package" class="button button-outline button-small" download>Character package ↓</a></div>
+    <a id="dialog-use-lesson" class="button button-primary" href="http://127.0.0.1:8501">Use in my lesson <span aria-hidden="true">↗</span></a><p class="dialog-note">Edit a copy to try a new idea. Your saved character always stays safe.</p>
+  </dialog>
+  <dialog id="confirm-action-dialog" class="confirm-dialog" aria-labelledby="confirm-action-title" aria-describedby="confirm-action-message">
+    <span class="step-kicker">YOUR IDEAS STAY YOURS</span><h2 id="confirm-action-title">Ready to try something new?</h2><p id="confirm-action-message"></p>
+    <div class="confirm-actions"><button id="confirm-action-cancel" class="button button-outline" type="button" autofocus>Cancel</button><button id="confirm-action-continue" class="button button-primary" type="button">Continue</button></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

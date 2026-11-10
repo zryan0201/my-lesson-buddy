@@ -1,0 +1,36 @@
+{
+  "clips_total": 284,
+  "paid_api_calls": 0,
+  "representative_new_story_clips": {
+    "story-intro": {
+      "decode": "passed",
+      "duration": 4.458125,
+      "sample_rate": "24000",
+      "peak_dbfs": -6.35
+    },
+    "story-first-5": {
+      "decode": "passed",
+      "duration": 2.583542,
+      "sample_rate": "24000",
+      "peak_dbfs": -6.07
+    },
+    "story-collect-2": {
+      "decode": "passed",
+      "duration": 4.499208,
+      "sample_rate": "24000",
+      "peak_dbfs": -6.605
+    },
+    "story-give-3": {
+      "decode": "passed",
+      "duration": 4.8475,
+      "sample_rate": "24000",
+      "peak_dbfs": -6.783
+    },
+    "story-turn-name": {
+      "decode": "passed",
+      "duration": 3.629875,
+      "sample_rate": "24000",
+      "peak_dbfs": -7.67
+    }
+  }
+}

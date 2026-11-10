@@ -1,0 +1,9 @@
+mode,condition,correct_expression,images,independent_questions
+strict,original_same_10_bases,6,10,10
+strict,simulated_handwriting_font,9,10,10
+strict,synthetic_perspective,7,10,10
+strict,synthetic_shadow_blur,9,10,10
+engineering_normalized,original_same_10_bases,7,10,10
+engineering_normalized,simulated_handwriting_font,10,10,10
+engineering_normalized,synthetic_perspective,9,10,10
+engineering_normalized,synthetic_shadow_blur,10,10,10

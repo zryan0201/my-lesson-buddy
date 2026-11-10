@@ -1,0 +1,319 @@
+{
+  "source_images": 8,
+  "target_groups": 9,
+  "exact_visible_count_targets_correct": 7,
+  "labels_sha256": "6b4817fc2c897e8d9c6ce4e214fe1ccc33298d1a00032a736c7a66aad6629e38",
+  "runtime_errors": 0,
+  "invalid_outputs": 0,
+  "notes": [
+    "Eight reused source images / nine target groups, not eight new questions.",
+    "Visible oranges = 21; the source asks about hidden oranges. This audit deliberately measures visible counting, not that answer.",
+    "Curator counts and label synonyms require independent teacher review; extra unlabelled categories are not scored as false positives."
+  ],
+  "label_scope": "partial target category exact-match, not overall worksheet reasoning/recognition accuracy",
+  "cases": [
+    {
+      "id": "w_8b07465cf2aa5f",
+      "target": "teddy bears",
+      "expected_visible_count": 3,
+      "predicted_count": 3,
+      "ambiguous_matching_groups": false,
+      "correct": true,
+      "status": "accepted",
+      "prediction": {
+        "id": "w_8b07465cf2aa5f",
+        "image_sha256": "7e4af8c074b0d06a88d7c507dfc4bacdd1e176099de3abc062206986b9cd95b0",
+        "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+        "seconds": 2.446,
+        "status": "accepted",
+        "raw_response": "{\n  \"objects\": {\n    \"label\": \"teddy bear\",\n    \"count\": 3\n  },\n  \"uncertain\": false\n}",
+        "original_status": "invalid_output",
+        "original_error": "Invalid count response schema.",
+        "reading": {
+          "objects": [
+            {
+              "label": "teddy bear",
+              "count": 3
+            }
+          ],
+          "uncertain": false
+        },
+        "normalizations": [
+          "singleton_object_to_list"
+        ],
+        "original_run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b"
+      }
+    },
+    {
+      "id": "w_477b3f73d5a05c",
+      "target": "pencils",
+      "expected_visible_count": 3,
+      "predicted_count": 3,
+      "ambiguous_matching_groups": false,
+      "correct": true,
+      "status": "accepted",
+      "prediction": {
+        "id": "w_477b3f73d5a05c",
+        "image_sha256": "eca10c8b9d6a519c107962e19946938c090c9976273ad920841501a47b15293a",
+        "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+        "seconds": 2.923,
+        "status": "accepted",
+        "raw_response": "{\n  \"objects\": {\n    \"label\": \"pencil\",\n    \"count\": 3\n  },\n  \"uncertain\": false\n}",
+        "original_status": "invalid_output",
+        "original_error": "Invalid count response schema.",
+        "reading": {
+          "objects": [
+            {
+              "label": "pencil",
+              "count": 3
+            }
+          ],
+          "uncertain": false
+        },
+        "normalizations": [
+          "singleton_object_to_list"
+        ],
+        "original_run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b"
+      }
+    },
+    {
+      "id": "w_6fb2200d62e359",
+      "target": "toy cars",
+      "expected_visible_count": 10,
+      "predicted_count": 10,
+      "ambiguous_matching_groups": false,
+      "correct": true,
+      "status": "accepted",
+      "prediction": {
+        "id": "w_6fb2200d62e359",
+        "image_sha256": "ad49cfa8187018f1382733163cdf26b8da83411d2e5b6aeabd0b49e63db1882c",
+        "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+        "seconds": 2.901,
+        "status": "accepted",
+        "raw_response": "{\n  \"objects\": {\n    \"label\": \"toy car\",\n    \"count\": 10\n  },\n  \"uncertain\": false\n}",
+        "original_status": "invalid_output",
+        "original_error": "Invalid count response schema.",
+        "reading": {
+          "objects": [
+            {
+              "label": "toy car",
+              "count": 10
+            }
+          ],
+          "uncertain": false
+        },
+        "normalizations": [
+          "singleton_object_to_list"
+        ],
+        "original_run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b"
+      }
+    },
+    {
+      "id": "w_382fc4b64b305d",
+      "target": "visible oranges",
+      "expected_visible_count": 21,
+      "predicted_count": 16,
+      "ambiguous_matching_groups": false,
+      "correct": false,
+      "status": "accepted",
+      "prediction": {
+        "id": "w_382fc4b64b305d",
+        "image_sha256": "ddd8989647d0b4fc578ddd61a2f81e2c9efb15edc085bc27c8cc4e7407361143",
+        "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+        "seconds": 2.512,
+        "status": "accepted",
+        "reading": {
+          "objects": [
+            {
+              "label": "orange",
+              "count": 16
+            }
+          ],
+          "uncertain": false
+        },
+        "raw_response": "{\n  \"objects\": [\n    {\n      \"label\": \"orange\",\n      \"count\": 16\n    }\n  ],\n  \"uncertain\": false\n}",
+        "original_run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b"
+      }
+    },
+    {
+      "id": "w_b44e4f376f765b",
+      "target": "cat stickers",
+      "expected_visible_count": 12,
+      "predicted_count": 12,
+      "ambiguous_matching_groups": false,
+      "correct": true,
+      "status": "accepted",
+      "prediction": {
+        "id": "w_b44e4f376f765b",
+        "image_sha256": "b0007d7355d464337600e6dad534e17cff5b99d196b256c28caf6fd51a99de49",
+        "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+        "seconds": 2.103,
+        "status": "accepted",
+        "reading": {
+          "objects": [
+            {
+              "label": "cat sticker",
+              "count": 12
+            }
+          ],
+          "uncertain": false
+        },
+        "raw_response": "{\n  \"objects\": [\n    {\n      \"label\": \"cat sticker\",\n      \"count\": 12\n    }\n  ],\n  \"uncertain\": false\n}",
+        "original_run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b"
+      }
+    },
+    {
+      "id": "w_52bb8e2d851357",
+      "target": "smiley stickers",
+      "expected_visible_count": 3,
+      "predicted_count": 3,
+      "ambiguous_matching_groups": false,
+      "correct": true,
+      "status": "accepted",
+      "prediction": {
+        "id": "w_52bb8e2d851357",
+        "image_sha256": "d390a0c9101eee4a937581eeb864427b41138c72d5962ee1b1cba14b4d9f2b3e",
+        "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+        "seconds": 1.988,
+        "status": "accepted",
+        "raw_response": "{\n  \"objects\": {\n    \"label\": \"smiley face\",\n    \"count\": 3\n  },\n  \"uncertain\": false\n}",
+        "original_status": "invalid_output",
+        "original_error": "Invalid count response schema.",
+        "reading": {
+          "objects": [
+            {
+              "label": "smiley face",
+              "count": 3
+            }
+          ],
+          "uncertain": false
+        },
+        "normalizations": [
+          "singleton_object_to_list"
+        ],
+        "original_run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b"
+      }
+    },
+    {
+      "id": "w_52bb8e2d851357",
+      "target": "star stickers",
+      "expected_visible_count": 1,
+      "predicted_count": null,
+      "ambiguous_matching_groups": false,
+      "correct": false,
+      "status": "accepted",
+      "prediction": {
+        "id": "w_52bb8e2d851357",
+        "image_sha256": "d390a0c9101eee4a937581eeb864427b41138c72d5962ee1b1cba14b4d9f2b3e",
+        "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+        "seconds": 1.988,
+        "status": "accepted",
+        "raw_response": "{\n  \"objects\": {\n    \"label\": \"smiley face\",\n    \"count\": 3\n  },\n  \"uncertain\": false\n}",
+        "original_status": "invalid_output",
+        "original_error": "Invalid count response schema.",
+        "reading": {
+          "objects": [
+            {
+              "label": "smiley face",
+              "count": 3
+            }
+          ],
+          "uncertain": false
+        },
+        "normalizations": [
+          "singleton_object_to_list"
+        ],
+        "original_run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b"
+      }
+    },
+    {
+      "id": "w_1e6eac3661ac59",
+      "target": "purses",
+      "expected_visible_count": 4,
+      "predicted_count": 4,
+      "ambiguous_matching_groups": false,
+      "correct": true,
+      "status": "accepted",
+      "prediction": {
+        "id": "w_1e6eac3661ac59",
+        "image_sha256": "da315fc1b863101ab822b83b7cc12ed530c8d4a33f28674f44a7769a49a900fd",
+        "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+        "seconds": 4.301,
+        "status": "accepted",
+        "reading": {
+          "objects": [
+            {
+              "label": "banana",
+              "count": 1
+            },
+            {
+              "label": "coin",
+              "count": 10
+            },
+            {
+              "label": "purse",
+              "count": 4
+            }
+          ],
+          "uncertain": false
+        },
+        "raw_response": "{\n  \"objects\": [\n    {\n      \"label\": \"banana\",\n      \"count\": 1\n    },\n    {\n      \"label\": \"coin\",\n      \"count\": 10\n    },\n    {\n      \"label\": \"purse\",\n      \"count\": 4\n    }\n  ],\n  \"uncertain\": false\n}",
+        "original_run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b"
+      }
+    },
+    {
+      "id": "w_d33145e2e1625d",
+      "target": "clock faces",
+      "expected_visible_count": 4,
+      "predicted_count": 4,
+      "ambiguous_matching_groups": false,
+      "correct": true,
+      "status": "accepted",
+      "prediction": {
+        "id": "w_d33145e2e1625d",
+        "image_sha256": "1e1775e8f2367b8127b46858034828188ea27fc6e25dd64f0abbe570ae514f4c",
+        "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+        "seconds": 3.257,
+        "status": "accepted",
+        "raw_response": "{\n  \"objects\": {\n    \"label\": \"clock\",\n    \"count\": 4\n  },\n  \"uncertain\": false\n}",
+        "original_status": "invalid_output",
+        "original_error": "Invalid count response schema.",
+        "reading": {
+          "objects": [
+            {
+              "label": "clock",
+              "count": 4
+            }
+          ],
+          "uncertain": false
+        },
+        "normalizations": [
+          "singleton_object_to_list"
+        ],
+        "original_run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b"
+      }
+    }
+  ],
+  "run_metadata": {
+    "engine": "experimental_visible_object_count_probe",
+    "model": "mlx-community/Qwen3-VL-4B-Instruct-4bit",
+    "model_revision": "2fd8dacbdb8f1e54b8c005f081ec5bf79c56376b",
+    "prompt_sha256": "cb6ea3ed9affc5f9b91930d53edbd894d09f1c0cb68f2d1eb287947e3fddc71e",
+    "max_tokens": 512,
+    "temperature": 0,
+    "paid_api_requests": 0,
+    "labels_in_prompt": false,
+    "production_reader_changed": false,
+    "dataset_id": "worksheet-visible-counts-v1",
+    "inputs_sha256": "b4ef63d76d13b2cef0aa6a8b5909aad98df352b643d0e02cb5e0a4f03fcc45ca",
+    "run_fingerprint": "aff0f9eb2a6720905239df8fe944f1dbd31f7682ffa670f863f8aa5d51d94c95",
+    "started_at_utc": "2026-11-09T23:38:10.850266+00:00",
+    "expected_cases": 8,
+    "mode": "posthoc_engineering_normalization",
+    "normalizer": "singleton-object-to-list-v1",
+    "original_predictions_sha256": "b299068a3e6907ebecda57369e020af62e33f0f92d2af2a642e7be71c1413217",
+    "new_model_inferences": 0,
+    "recovered_format_outputs": 5,
+    "labels_used_for_normalization": false
+  }
+}

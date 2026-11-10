@@ -1,0 +1,180 @@
+{
+  "dataset_id": "worksheet-visible-counts-v1",
+  "cases": [
+    {
+      "id": "w_8b07465cf2aa5f",
+      "image_sha256": "7e4af8c074b0d06a88d7c507dfc4bacdd1e176099de3abc062206986b9cd95b0",
+      "scope": "whole image, visible instances only; partial category targets, not an exhaustive image inventory",
+      "independent_teacher_review": false,
+      "annotation_method": "curator visual count checked against rendered source image",
+      "targets": [
+        {
+          "label": "teddy bears",
+          "count": 3,
+          "aliases": [
+            "teddy bear",
+            "teddy bears",
+            "bear",
+            "bears",
+            "toy bears"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_477b3f73d5a05c",
+      "image_sha256": "eca10c8b9d6a519c107962e19946938c090c9976273ad920841501a47b15293a",
+      "scope": "whole image, visible instances only; partial category targets, not an exhaustive image inventory",
+      "independent_teacher_review": false,
+      "annotation_method": "curator visual count checked against rendered source image",
+      "targets": [
+        {
+          "label": "pencils",
+          "count": 3,
+          "aliases": [
+            "pencil",
+            "pencils"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_6fb2200d62e359",
+      "image_sha256": "ad49cfa8187018f1382733163cdf26b8da83411d2e5b6aeabd0b49e63db1882c",
+      "scope": "whole image, visible instances only; partial category targets, not an exhaustive image inventory",
+      "independent_teacher_review": false,
+      "annotation_method": "curator visual count checked against rendered source image",
+      "targets": [
+        {
+          "label": "toy cars",
+          "count": 10,
+          "aliases": [
+            "car",
+            "cars",
+            "toy car",
+            "toy cars",
+            "vehicle",
+            "vehicles"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_382fc4b64b305d",
+      "image_sha256": "ddd8989647d0b4fc578ddd61a2f81e2c9efb15edc085bc27c8cc4e7407361143",
+      "scope": "whole image, visible instances only; partial category targets, not an exhaustive image inventory",
+      "independent_teacher_review": false,
+      "annotation_method": "curator visual count checked against rendered source image",
+      "targets": [
+        {
+          "label": "visible oranges",
+          "count": 21,
+          "aliases": [
+            "orange",
+            "oranges",
+            "visible oranges"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_b44e4f376f765b",
+      "image_sha256": "b0007d7355d464337600e6dad534e17cff5b99d196b256c28caf6fd51a99de49",
+      "scope": "whole image, visible instances only; partial category targets, not an exhaustive image inventory",
+      "independent_teacher_review": false,
+      "annotation_method": "curator visual count checked against rendered source image",
+      "targets": [
+        {
+          "label": "cat stickers",
+          "count": 12,
+          "aliases": [
+            "cat",
+            "cats",
+            "cat sticker",
+            "cat stickers",
+            "stickers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_52bb8e2d851357",
+      "image_sha256": "d390a0c9101eee4a937581eeb864427b41138c72d5962ee1b1cba14b4d9f2b3e",
+      "scope": "whole image, visible instances only; partial category targets, not an exhaustive image inventory",
+      "independent_teacher_review": false,
+      "annotation_method": "curator visual count checked against rendered source image",
+      "targets": [
+        {
+          "label": "smiley stickers",
+          "count": 3,
+          "aliases": [
+            "smiley",
+            "smileys",
+            "smileys stickers",
+            "smiley stickers",
+            "smiley faces",
+            "smiling faces",
+            "smiley face",
+            "face stickers"
+          ]
+        },
+        {
+          "label": "star stickers",
+          "count": 1,
+          "aliases": [
+            "star",
+            "stars",
+            "star sticker",
+            "star stickers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_1e6eac3661ac59",
+      "image_sha256": "da315fc1b863101ab822b83b7cc12ed530c8d4a33f28674f44a7769a49a900fd",
+      "scope": "whole image, visible instances only; partial category targets, not an exhaustive image inventory",
+      "independent_teacher_review": false,
+      "annotation_method": "curator visual count checked against rendered source image",
+      "targets": [
+        {
+          "label": "purses",
+          "count": 4,
+          "aliases": [
+            "purse",
+            "purses",
+            "coin purse",
+            "coin purses",
+            "money bags",
+            "bags"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "w_d33145e2e1625d",
+      "image_sha256": "1e1775e8f2367b8127b46858034828188ea27fc6e25dd64f0abbe570ae514f4c",
+      "scope": "whole image, visible instances only; partial category targets, not an exhaustive image inventory",
+      "independent_teacher_review": false,
+      "annotation_method": "curator visual count checked against rendered source image",
+      "targets": [
+        {
+          "label": "clock faces",
+          "count": 4,
+          "aliases": [
+            "clock",
+            "clocks",
+            "clock face",
+            "clock faces",
+            "analog clocks"
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Eight reused source images / nine target groups, not eight new questions.",
+    "Visible oranges = 21; the source asks about hidden oranges. This audit deliberately measures visible counting, not that answer.",
+    "Curator counts and label synonyms require independent teacher review; extra unlabelled categories are not scored as false positives."
+  ]
+}

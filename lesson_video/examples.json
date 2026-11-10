@@ -1,0 +1,8 @@
+[
+  {"id": "01_addition_original", "question": "What is 3 + 2?", "expected_type": "addition", "expected_answer": 5},
+  {"id": "02_addition_new", "question": "What is 4 + 3?", "expected_type": "addition", "expected_answer": 7},
+  {"id": "03_subtraction_story", "question": "Mia has 5 apples and gives away 2. How many are left?", "expected_type": "subtraction", "expected_answer": 3},
+  {"id": "04_counting", "question": "Count 6 dots.", "expected_type": "counting", "expected_answer": 6},
+  {"id": "05_comparison", "question": "Which is greater, 3 or 5?", "expected_type": "comparison", "expected_answer": 5},
+  {"id": "06_triangle", "question": "How many sides does a triangle have?", "expected_type": "shape", "expected_answer": 3}
+]

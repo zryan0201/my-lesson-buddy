@@ -1,0 +1,16 @@
+{
+  "engine": "experimental_visible_object_count_probe",
+  "model": "mlx-community/Qwen3-VL-4B-Instruct-4bit",
+  "model_revision": "2fd8dacbdb8f1e54b8c005f081ec5bf79c56376b",
+  "prompt_sha256": "cb6ea3ed9affc5f9b91930d53edbd894d09f1c0cb68f2d1eb287947e3fddc71e",
+  "max_tokens": 512,
+  "temperature": 0,
+  "paid_api_requests": 0,
+  "labels_in_prompt": false,
+  "production_reader_changed": false,
+  "dataset_id": "worksheet-visible-counts-v1",
+  "inputs_sha256": "b4ef63d76d13b2cef0aa6a8b5909aad98df352b643d0e02cb5e0a4f03fcc45ca",
+  "run_fingerprint": "72c8f5657f141010a7cb97f969e95586f675415f6c14d019a8b6fbab26a29e5b",
+  "started_at_utc": "2026-11-09T23:38:10.850266+00:00",
+  "expected_cases": 8
+}

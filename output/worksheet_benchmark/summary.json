@@ -1,0 +1,100 @@
+{
+  "original_images": 100,
+  "stress_images": 30,
+  "stress_base_questions": 10,
+  "topics": 22,
+  "real_phone_photos": 0,
+  "baseline_cases_completed": 100,
+  "stress_cases_completed": 30,
+  "count_probe_cases_completed": 8,
+  "count_probe_target_groups": 9,
+  "paid_api_requests": 0,
+  "production_app_changed": false,
+  "independent_teacher_review": false,
+  "training_or_fine_tuning_performed": false,
+  "summary_rows": [
+    [
+      "主主题标签匹配（100原题）",
+      "59 / 100",
+      "67 / 100"
+    ],
+    [
+      "算式完整转录（26题）",
+      "16 / 26",
+      "18 / 26"
+    ],
+    [
+      "格式无效的输出（100原题）",
+      "23",
+      "14"
+    ],
+    [
+      "可见物品类别 + 数量匹配（8图 / 9组）",
+      "2 / 9",
+      "7 / 9"
+    ],
+    [
+      "识别出缺少口头题干（1个控制样本）",
+      "0 / 1",
+      "0 / 1"
+    ]
+  ],
+  "paired_robustness": [
+    {
+      "mode": "strict",
+      "condition": "original_same_10_bases",
+      "correct_expression": 6,
+      "images": 10,
+      "independent_questions": 10
+    },
+    {
+      "mode": "strict",
+      "condition": "simulated_handwriting_font",
+      "correct_expression": 9,
+      "images": 10,
+      "independent_questions": 10
+    },
+    {
+      "mode": "strict",
+      "condition": "synthetic_perspective",
+      "correct_expression": 7,
+      "images": 10,
+      "independent_questions": 10
+    },
+    {
+      "mode": "strict",
+      "condition": "synthetic_shadow_blur",
+      "correct_expression": 9,
+      "images": 10,
+      "independent_questions": 10
+    },
+    {
+      "mode": "engineering_normalized",
+      "condition": "original_same_10_bases",
+      "correct_expression": 7,
+      "images": 10,
+      "independent_questions": 10
+    },
+    {
+      "mode": "engineering_normalized",
+      "condition": "simulated_handwriting_font",
+      "correct_expression": 10,
+      "images": 10,
+      "independent_questions": 10
+    },
+    {
+      "mode": "engineering_normalized",
+      "condition": "synthetic_perspective",
+      "correct_expression": 9,
+      "images": 10,
+      "independent_questions": 10
+    },
+    {
+      "mode": "engineering_normalized",
+      "condition": "synthetic_shadow_blur",
+      "correct_expression": 10,
+      "images": 10,
+      "independent_questions": 10
+    }
+  ]
+}

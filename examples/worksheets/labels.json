@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "fixture_set": "bounded_worksheet_reader_synthetic_v1",
+  "synthetic": true,
+  "generator": "tests/worksheet_fixtures.py",
+  "limitations": [
+    "Hand-labeled synthetic clean images, not a representative real-worksheet or real-photo benchmark.",
+    "Accept/reject labels describe a deliberately conservative single-question, result-unknown reader contract.",
+    "The decorative-dot case is a conservative scoping-policy check, not a uniquely determined mathematical answer.",
+    "Rendering is deterministic for the selected installed font; image bytes can differ on hosts using a different font."
+  ],
+  "expected_schema": {
+    "accept": [
+      "status",
+      "lesson_type",
+      "canonical_question",
+      "a",
+      "b",
+      "unknown",
+      "answer"
+    ],
+    "accept_shape_extra": [
+      "shape",
+      "shape_task"
+    ],
+    "reject": [
+      "status",
+      "reason_code",
+      "reason"
+    ],
+    "image_path": "Resolve each case.image relative to this labels.json file."
+  },
+  "cases": [
+    {
+      "id": "01_numeric_addition",
+      "image": "01_numeric_addition.png",
+      "description": "One printed addition equation, unknown result.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "9531a287c90c5d555a8ce6cbae00f160cfdef4427df3ddb0fa3561387099ce45",
+      "expected": {
+        "status": "accept",
+        "lesson_type": "addition",
+        "canonical_question": "What is 4 + 3?",
+        "a": 4,
+        "b": 3,
+        "unknown": "result",
+        "answer": 7
+      }
+    },
+    {
+      "id": "02_numeric_subtraction",
+      "image": "02_numeric_subtraction.png",
+      "description": "One subtraction equation with a centered minus sign.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "c3920be5292498e285ecf7b3092c39a515e5197114d6abeed0f975b5b231f18a",
+      "expected": {
+        "status": "accept",
+        "lesson_type": "subtraction",
+        "canonical_question": "What is 8 - 3?",
+        "a": 8,
+        "b": 3,
+        "unknown": "result",
+        "answer": 5
+      }
+    },
+    {
+      "id": "03_yellow_dot_addition",
+      "image": "03_yellow_dot_addition.png",
+      "description": "Three filled yellow circles in a triangle, plus two horizontally arranged circles.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "7db98935e0048014b59a8c13d19fa760e77c3721ee1d7ad7a59449afc57da778",
+      "expected": {
+        "status": "accept",
+        "lesson_type": "addition",
+        "canonical_question": "What is 3 + 2?",
+        "a": 3,
+        "b": 2,
+        "unknown": "result",
+        "answer": 5
+      },
+      "observations": {
+        "left_objects": 3,
+        "right_objects": 2,
+        "object_style": "filled_yellow_circles"
+      }
+    },
+    {
+      "id": "04_outlined_dot_addition",
+      "image": "04_outlined_dot_addition.png",
+      "description": "Two vertically arranged blue outlines plus four blue outlines in a square layout.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "3ddb57d8be9c54824fe73ee9471965afbef47b8fc4f087662be96f5c4811c177",
+      "expected": {
+        "status": "accept",
+        "lesson_type": "addition",
+        "canonical_question": "What is 2 + 4?",
+        "a": 2,
+        "b": 4,
+        "unknown": "result",
+        "answer": 6
+      },
+      "observations": {
+        "left_objects": 2,
+        "right_objects": 4,
+        "object_style": "outlined_blue_circles"
+      }
+    },
+    {
+      "id": "05_count_red_circles",
+      "image": "05_count_red_circles.png",
+      "description": "Six red circles in two rows with an explicit counting instruction.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "7a46eab7e831cf1d47106517b1d55a575f69d97e6f40f8ff5a012e55b10b8946",
+      "expected": {
+        "status": "accept",
+        "lesson_type": "counting",
+        "canonical_question": "Count 6 dots.",
+        "a": 6,
+        "b": null,
+        "unknown": "count",
+        "answer": 6
+      }
+    },
+    {
+      "id": "06_triangle_sides",
+      "image": "06_triangle_sides.png",
+      "description": "A single triangle and an explicit straight-side-count question.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "ce6e780659d79b830f745a1dab3cc6eab68e941a7b67b5eb4a72cfb60c288f82",
+      "expected": {
+        "status": "accept",
+        "lesson_type": "shape",
+        "canonical_question": "How many straight sides does a triangle have?",
+        "a": null,
+        "b": null,
+        "unknown": "side_count",
+        "answer": 3,
+        "shape": "triangle",
+        "shape_task": "sides"
+      }
+    },
+    {
+      "id": "07_outlined_square_name",
+      "image": "07_outlined_square_name.png",
+      "description": "One outlined blue square and a shape-name question.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "a1a875d7101646cf4c55fefcc98d4601c8aa1327f7caf90bc7cae55e745027cf",
+      "expected": {
+        "status": "accept",
+        "lesson_type": "shape",
+        "canonical_question": "Identify a square.",
+        "a": null,
+        "b": null,
+        "unknown": "shape_name",
+        "answer": "square",
+        "shape": "square",
+        "shape_task": "name"
+      }
+    },
+    {
+      "id": "08_filled_rectangle_name",
+      "image": "08_filled_rectangle_name.png",
+      "description": "One filled cyan non-square rectangle and a shape-name question.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "304eca530d05f8df256d5efb8f88de4c9e2652b3037b38310272535141d3ac35",
+      "expected": {
+        "status": "accept",
+        "lesson_type": "shape",
+        "canonical_question": "Identify a rectangle.",
+        "a": null,
+        "b": null,
+        "unknown": "shape_name",
+        "answer": "rectangle",
+        "shape": "rectangle",
+        "shape_task": "name"
+      }
+    },
+    {
+      "id": "09_multiple_questions",
+      "image": "09_multiple_questions.png",
+      "description": "Two distinct arithmetic questions in one uncropped worksheet.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "b3dccb6c97b4a01434b309d67adcf9a096bc0cdeb95cf4c6ecc3beeee460cad3",
+      "expected": {
+        "status": "reject",
+        "reason_code": "multiple_questions",
+        "reason": "Require the user to crop or select one question; do not silently choose one."
+      }
+    },
+    {
+      "id": "10_unreadable_near_blank",
+      "image": "10_unreadable_near_blank.png",
+      "description": "Very faint, heavily blurred marks; no confidently readable problem.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "cdf295a17badd13595dd3a0d6a199f18f3841cf14e16c46470a330d3c3a52631",
+      "expected": {
+        "status": "reject",
+        "reason_code": "unreadable",
+        "reason": "No reliable question is visible. Do not infer digits from noise or supply a default problem."
+      }
+    },
+    {
+      "id": "11_unscoped_decorative_dots",
+      "image": "11_unscoped_decorative_dots.png",
+      "description": "Six large red counters and four small yellow decorative dots without a target-size/color scope.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "c1d0d0be495c0c816b3c84dcb34c17a7659ce105e26d72120692badc01b9ea27",
+      "expected": {
+        "status": "reject",
+        "reason_code": "ambiguous_count_target",
+        "reason": "This bounded reader must not decide which dots are decoration. Require a tighter crop or an explicit color/size target."
+      },
+      "observations": {
+        "large_red_objects": 6,
+        "small_yellow_objects": 4,
+        "note": "Conservative reader-policy rejection; this is not a claim that counting every visible dot is mathematically invalid."
+      }
+    },
+    {
+      "id": "12_crossouts_without_instruction",
+      "image": "12_crossouts_without_instruction.png",
+      "description": "Five circles, two crossed out, and an unspecific question; no subtraction caption or equation.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "784b7d7eb69588b298ad5a1c6e8d85bb495fe4211e986ae891d6d7599a5ad6f5",
+      "expected": {
+        "status": "reject",
+        "reason_code": "ambiguous_crossouts",
+        "reason": "Crosses alone do not establish whether to count originals, remaining objects, or marked objects."
+      },
+      "observations": {
+        "original_objects": 5,
+        "crossed_out_objects": 2
+      }
+    },
+    {
+      "id": "13_zero_operand_blank_result",
+      "image": "13_zero_operand_blank_result.png",
+      "description": "A supported zero operand with a low result blank; the blank is not a minus sign.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "93778839a43d3d7ef60507e19d868bc42c11f8f120e8ed3f5a8f4e00c369460f",
+      "expected": {
+        "status": "accept",
+        "lesson_type": "addition",
+        "canonical_question": "What is 0 + 4?",
+        "a": 0,
+        "b": 4,
+        "unknown": "result",
+        "answer": 4
+      }
+    },
+    {
+      "id": "14_total_above_supported_limit",
+      "image": "14_total_above_supported_limit.png",
+      "description": "Readable operands individually in range, but total exceeds ten.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "18e84f0ecc71889ae1cec0048424828fc630e44934a4d82173566ff71f623ebb",
+      "expected": {
+        "status": "reject",
+        "reason_code": "out_of_range_total",
+        "reason": "Eight plus five is thirteen, outside the supported total of at most ten."
+      },
+      "observations": {
+        "a": 8,
+        "b": 5,
+        "mathematical_answer": 13
+      }
+    },
+    {
+      "id": "15_missing_addend",
+      "image": "15_missing_addend.png",
+      "description": "The second addend is unknown; seven is the given total.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "d552a7257ab29207d7f38b38af5d174294aad9f88479c48958e16672f888ccac",
+      "expected": {
+        "status": "reject",
+        "reason_code": "unsupported_unknown_location",
+        "reason": "Do not rewrite 4 + blank = 7 as 4 + 7 = ?. Missing-addend lessons are outside the result-unknown contract."
+      },
+      "observations": {
+        "given_first_addend": 4,
+        "given_total": 7,
+        "mathematical_missing_addend": 3
+      }
+    },
+    {
+      "id": "16_inconsistent_printed_answer",
+      "image": "16_inconsistent_printed_answer.png",
+      "description": "A completed equation whose printed answer disagrees with its operands.",
+      "size": [
+        1200,
+        680
+      ],
+      "sha256": "1581f8c89461090968538daec970223144291778ac9b599baefa473cd2eb8e1f",
+      "expected": {
+        "status": "reject",
+        "reason_code": "inconsistent_printed_answer",
+        "reason": "Do not ignore, overwrite, or read eight as another operand. This requires a correction/explain-the-error workflow."
+      },
+      "observations": {
+        "a": 4,
+        "b": 3,
+        "printed_answer": 8,
+        "mathematical_answer": 7
+      }
+    }
+  ]
+}

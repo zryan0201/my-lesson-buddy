@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "dataset_id": "worksheet-visible-counts-v1",
+  "cases": [
+    {
+      "id": "w_1e6eac3661ac59",
+      "image": "images/w_1e6eac3661ac59.png",
+      "sha256": "da315fc1b863101ab822b83b7cc12ed530c8d4a33f28674f44a7769a49a900fd"
+    },
+    {
+      "id": "w_382fc4b64b305d",
+      "image": "images/w_382fc4b64b305d.png",
+      "sha256": "ddd8989647d0b4fc578ddd61a2f81e2c9efb15edc085bc27c8cc4e7407361143"
+    },
+    {
+      "id": "w_477b3f73d5a05c",
+      "image": "images/w_477b3f73d5a05c.png",
+      "sha256": "eca10c8b9d6a519c107962e19946938c090c9976273ad920841501a47b15293a"
+    },
+    {
+      "id": "w_52bb8e2d851357",
+      "image": "images/w_52bb8e2d851357.png",
+      "sha256": "d390a0c9101eee4a937581eeb864427b41138c72d5962ee1b1cba14b4d9f2b3e"
+    },
+    {
+      "id": "w_6fb2200d62e359",
+      "image": "images/w_6fb2200d62e359.png",
+      "sha256": "ad49cfa8187018f1382733163cdf26b8da83411d2e5b6aeabd0b49e63db1882c"
+    },
+    {
+      "id": "w_8b07465cf2aa5f",
+      "image": "images/w_8b07465cf2aa5f.png",
+      "sha256": "7e4af8c074b0d06a88d7c507dfc4bacdd1e176099de3abc062206986b9cd95b0"
+    },
+    {
+      "id": "w_b44e4f376f765b",
+      "image": "images/w_b44e4f376f765b.png",
+      "sha256": "b0007d7355d464337600e6dad534e17cff5b99d196b256c28caf6fd51a99de49"
+    },
+    {
+      "id": "w_d33145e2e1625d",
+      "image": "images/w_d33145e2e1625d.png",
+      "sha256": "1e1775e8f2367b8127b46858034828188ea27fc6e25dd64f0abbe570ae514f4c"
+    }
+  ]
+}

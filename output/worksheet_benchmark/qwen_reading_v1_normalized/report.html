@@ -1,0 +1,1783 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Worksheet reading · baseline report</title><style>
+body{font:16px/1.6 -apple-system,BlinkMacSystemFont,sans-serif;max-width:1100px;margin:40px auto;padding:0 24px;color:#192d49;background:#f5f7fa}h1{font-size:32px}.note,details{background:white;border:1px solid #d9e1eb;border-radius:10px;padding:17px;margin:14px 0}table{border-collapse:collapse;width:100%;background:white}th,td{text-align:left;padding:8px 12px;border-bottom:1px solid #d9e1eb}pre{white-space:pre-wrap;word-break:break-word;font-size:13px;background:#edf2f8;padding:15px}img{width:100%;max-height:500px;object-fit:contain;background:white}summary{cursor:pointer}a{color:#234c78}
+</style><h1>陌生 worksheet：第一轮本地识读基线</h1><p>工程格式归一化复算（沿用原始输出，没有重新推理） · 100 / 100 已完成 · 固定提示词 · 本地 Qwen3-VL 4B · 0 次付费 API 调用</p>
+<div class="note">这是独立的广题型读题探针，不是线上浏览器模型的成绩，也未改变现有视频支持范围。主题标签匹配不能证明题意完全读懂。语料范围：80 official England KS1 test items and 20 US K/1/2 Illustrative Mathematics tasks; convenience sample from two publishers.。不包含真实手机拍照；来源公开，可能已出现在预训练中。数字召回只检查部分文字层数字，不代表物品计数准确率。标注尚未经过独立教师复核。</div>
+<h2>可自动核对的部分</h2><p>主主题标签匹配：<strong>67 / 100</strong>。原式完整转录：<strong>18 / 26</strong>。运行错误 0；格式无效 14；缺失 0。</p>
+<table><thead><tr><th>主题</th><th>主题匹配 / 样本</th><th>原式正确 / 可核对题</th><th>运行/格式错误</th></tr></thead><tbody><tr><td>addition</td><td>6 / 6</td><td>5 / 6</td><td>0</td></tr><tr><td>addition_subtraction</td><td>1 / 3</td><td>0 / 0</td><td>1</td></tr><tr><td>arrays</td><td>1 / 1</td><td>0 / 0</td><td>0</td></tr><tr><td>comparison</td><td>3 / 4</td><td>0 / 0</td><td>0</td></tr><tr><td>context_needed</td><td>0 / 1</td><td>0 / 0</td><td>0</td></tr><tr><td>counting</td><td>0 / 1</td><td>0 / 0</td><td>0</td></tr><tr><td>data</td><td>4 / 5</td><td>0 / 0</td><td>0</td></tr><tr><td>equal_sharing</td><td>1 / 1</td><td>0 / 0</td><td>0</td></tr><tr><td>fractions</td><td>3 / 6</td><td>0 / 2</td><td>3</td></tr><tr><td>geometry</td><td>7 / 8</td><td>0 / 0</td><td>0</td></tr><tr><td>measurement</td><td>4 / 7</td><td>0 / 0</td><td>1</td></tr><tr><td>missing_number</td><td>5 / 13</td><td>4 / 6</td><td>3</td></tr><tr><td>money</td><td>6 / 8</td><td>0 / 0</td><td>2</td></tr><tr><td>multiplication_division</td><td>9 / 11</td><td>5 / 5</td><td>2</td></tr><tr><td>number_line</td><td>1 / 1</td><td>0 / 0</td><td>0</td></tr><tr><td>odd_even</td><td>1 / 2</td><td>0 / 0</td><td>1</td></tr><tr><td>patterns</td><td>0 / 2</td><td>0 / 0</td><td>1</td></tr><tr><td>place_value</td><td>4 / 5</td><td>0 / 0</td><td>0</td></tr><tr><td>sorting</td><td>1 / 1</td><td>0 / 0</td><td>0</td></tr><tr><td>subtraction</td><td>7 / 7</td><td>4 / 7</td><td>0</td></tr><tr><td>time</td><td>3 / 3</td><td>0 / 0</td><td>0</td></tr><tr><td>word_problem</td><td>0 / 4</td><td>0 / 0</td><td>0</td></tr></tbody></table>
+<h2>逐题核对</h2><p>优先列出标签不匹配的题；它们需要检查模型和人工标注两侧。开放题的解题理解仍需人工评分。</p><details><summary>w_01b6b0d0c97359 · missing_number · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_01b6b0d0c97359.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;7&quot;,
+      &quot;15&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;? + 7 + ? = 15&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Complete the addition sentence by filling two boxes with digits to make the sum equal 15, given one known addend (7) and the total (15).&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_04e87209a18157 · missing_number · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_04e87209a18157.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;The local model did not return valid worksheet JSON. Please review the picture.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_153c06d885c157 · measurement · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_153c06d885c157.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;measurement&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Draw line B on a grid to be double the length of line A, using grid units for measurement. The task involves spatial reasoning and proportional scaling on a coordinate grid.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_310dfce8828a5c · money · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_310dfce8828a5c.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;money&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;Invalid operator symbols.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_3d787c7558ef50 · measurement · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_3d787c7558ef50.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;measurement&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;comparison&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;8&quot;,
+      &quot;12&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;&gt;&quot;,
+      &quot;&lt;&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students compare lengths of long, skinny objects by lining them up at the ends. They record findings by tracing or using a blackline master to identify which object is longer or shorter.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_K.zip">原始资料</a></details><details><summary>w_41f8074a4a645d · multiplication_division · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_41f8074a4a645d.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;The local model did not return valid worksheet JSON. Please review the picture.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_426faf699b2856 · word_problem · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_426faf699b2856.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;word_problem&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition_subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;6&quot;,
+      &quot;5&quot;,
+      &quot;16&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Calculate remaining crayons after Ajay takes some from total available, given 6 boxes with 5 crayons each and 16 taken.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_478880d9087552 · addition_subtraction · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_478880d9087552.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition_subtraction&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;comparison&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Compare the number of circles in two boxes for each part (a-f). If equal, write a number sentence; if not, write &#x27;not equal.&#x27;&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_1.zip">原始资料</a></details><details><summary>w_4f66913a41e258 · patterns · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_4f66913a41e258.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;patterns&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;Truncated model output.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_5268d9dd683957 · missing_number · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_5268d9dd683957.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition_subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;10&quot;,
+      &quot;5&quot;,
+      &quot;5&quot;,
+      &quot;12&quot;,
+      &quot;9&quot;,
+      &quot;8&quot;,
+      &quot;5&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;-&quot;,
+      &quot;+&quot;,
+      &quot;-&quot;,
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Two diagrams show addition of numbers to form a total. Students must fill missing numbers in similar diagrams, using the top number as the sum and bottom numbers as addends or subtrahends.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_52bb8e2d851357 · data · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_52bb8e2d851357.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;data&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Calculate Ajay&#x27;s total points by adding the values of smiley face and star stickers, given their point values. Complete the table to show the total points.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_5ad80c0de0fe5a · addition_subtraction · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_5ad80c0de0fe5a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition_subtraction&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;The local model did not return valid worksheet JSON. Please review the picture.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_656fa27211d653 · place_value · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_656fa27211d653.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;place_value&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;counting&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;30&quot;,
+      &quot;13&quot;,
+      &quot;3&quot;,
+      &quot;31&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task asks the student to identify and circle the card displaying the number thirteen, as stated by a character in the image. The focus is on recognizing and selecting the correct numerical representation.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_67be229ae74b59 · missing_number · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_67be229ae74b59.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;?-4=9&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;The reading does not match the benchmark response schema.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_6c78d02801015f · word_problem · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_6c78d02801015f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;word_problem&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;24&quot;,
+      &quot;6&quot;,
+      &quot;12&quot;,
+      &quot;15&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Sam bakes cakes from three tins totaling 24, 6, and 12. His family eats 15. The task asks how many cakes remain, requiring addition of the totals and subtraction of eaten cakes.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_73d39dde0c6e5f · missing_number · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_73d39dde0c6e5f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition_subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;11&quot;,
+      &quot;9&quot;,
+      &quot;15&quot;,
+      &quot;4&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;&gt;&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Complete number pairs that sum to 20 by filling in missing numbers. The first pair (11 and 9) is given as an example. Two other pairs are incomplete.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_77a3e72c68ad57 · money · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_77a3e72c68ad57.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;money&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;The reading does not match the benchmark response schema.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_7b793837db7154 · fractions · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_7b793837db7154.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;fractions&quot;,
+  &quot;gold_expression&quot;: &quot;1/4 of 100=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;Invalid operator symbols.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_8b07465cf2aa5f · comparison · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_8b07465cf2aa5f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;comparison&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;place_value&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;76&quot;,
+      &quot;94&quot;,
+      &quot;67&quot;,
+      &quot;49&quot;,
+      &quot;83&quot;,
+      &quot;96&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students must identify the missing number between 76 and 94, given that the numbers are ordered from smallest to largest. Four options are provided for the middle number.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_9375e83d09ce51 · fractions · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_9375e83d09ce51.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;fractions&quot;,
+  &quot;gold_expression&quot;: &quot;1/2 of 14=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;Invalid operator symbols.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_9a0a130e2cdd54 · geometry · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_9a0a130e2cdd54.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;geometry&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;sorting&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Sort shapes by number of vertices. Identify the shape incorrectly placed in the &#x27;4 vertices or fewer&#x27; column, as it should be in the &#x27;5 vertices or more&#x27; column.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_9aad1a9f2c415a · missing_number · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_9aad1a9f2c415a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;7&quot;,
+      &quot;1&quot;,
+      &quot;2&quot;,
+      &quot;3&quot;,
+      &quot;4&quot;,
+      &quot;5&quot;,
+      &quot;6&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Christina has 7 candies total. Students are to calculate how many lemon candies she has if the rest of the candies (after subtracting chocolate ones) are lemon. The task involves basic addition and subtraction within 7.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_K.zip">原始资料</a></details><details><summary>w_b1e84b6d4ded5e · word_problem · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_b1e84b6d4ded5e.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;word_problem&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;40&quot;,
+      &quot;6&quot;,
+      &quot;19&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Calculate remaining puzzle pieces after Ben and Amy place their pieces. Total pieces are 40; Ben places 6, Amy places 19. Find how many pieces are left to finish the puzzle.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_bc55233913595b · context_needed · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_bc55233913595b.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;context_needed&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: true,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Four ladders of varying heights are shown with checkboxes below. The task likely involves comparing or classifying the ladders by height or structure, a geometry-based visual comparison task.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_c572964ec33b52 · patterns · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_c572964ec33b52.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;patterns&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Identify the row or column containing a specific sequence of geometric shapes. The task involves pattern recognition and spatial reasoning within a grid of shapes.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_K.zip">原始资料</a></details><details><summary>w_c5d278876a6759 · counting · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_c5d278876a6759.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;counting&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;sorting&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;5&quot;,
+      &quot;7&quot;,
+      &quot;4&quot;,
+      &quot;4&quot;,
+      &quot;7&quot;,
+      &quot;5&quot;,
+      &quot;7&quot;,
+      &quot;4&quot;,
+      &quot;7&quot;,
+      &quot;4&quot;,
+      &quot;5&quot;,
+      &quot;7&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students sort groups of objects by quantity into three separate groups within a timed race, categorizing items like stickers, beans, and pencils based on their count.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_K.zip">原始资料</a></details><details><summary>w_cfdf540d7cdf58 · measurement · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_cfdf540d7cdf58.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;measurement&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;Printed number tokens must be bounded strings.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_d07168a8fe4a5c · odd_even · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_d07168a8fe4a5c.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;odd_even&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;Truncated model output.&quot;
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_2.zip">原始资料</a></details><details><summary>w_d4fcfafd31e15f · word_problem · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_d4fcfafd31e15f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;word_problem&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;20&quot;,
+      &quot;8&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;20-8&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Kemi starts with 20 seeds and has 8 left after giving some to Ben. The task is to find how many seeds she gave away, using subtraction.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_d8efb9110c0b59 · missing_number · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_d8efb9110c0b59.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;18-?=6&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;The reading does not match the benchmark response schema.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_f76f1f8c41c256 · missing_number · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_f76f1f8c41c256.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;100&quot;,
+      &quot;50&quot;,
+      &quot;40&quot;,
+      &quot;80&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The diagram shows different ways to make the total 100 using segmented bars. Students must complete the missing values by adding parts to reach 100, indicating a focus on addition and part-whole relationships.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_fc4671387e965f · multiplication_division · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_fc4671387e965f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;Printed number tokens must be bounded strings.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_fd27258c1a5d55 · fractions · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_fd27258c1a5d55.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;fractions&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;The local model did not return valid worksheet JSON. Please review the picture.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_02242712e83055 · geometry · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_02242712e83055.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;geometry&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Count the number of rectangles in a geometric diagram composed of intersecting and overlapping rectangles. The task involves visual counting and spatial reasoning.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_1.zip">原始资料</a></details><details><summary>w_0405f1fa1a0c5f · addition_subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_0405f1fa1a0c5f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition_subtraction&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition_subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;12&quot;,
+      &quot;5&quot;,
+      &quot;7&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Complete number sentences using two symbols from a set. Create one valid equation, then create a different valid equation using the same numbers and symbols.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_14f1bb6488825e · measurement · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_14f1bb6488825e.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;measurement&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;measurement&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;3&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;&gt;&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Compare units of measurement across different categories: centimeters vs meters, kilograms vs grams, milliliters vs liters, pence vs pounds. Only one correct inequality is to be selected.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_15f27f768b0e5f · comparison · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_15f27f768b0e5f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;comparison&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;comparison&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;6&quot;,
+      &quot;9&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;&gt;&quot;,
+      &quot;&lt;&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students compare two groups of objects (ice creams and suns) with corresponding numbers. They determine which number is greater or less and explain their reasoning to a partner.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_K.zip">原始资料</a></details><details><summary>w_16749156531b5a · place_value · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_16749156531b5a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;place_value&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;place_value&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Count sticks grouped in bundles of ten and individual sticks. The task involves recognizing place value units (bundles = tens, single sticks = ones) to determine total quantity.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_1e6eac3661ac59 · money · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_1e6eac3661ac59.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;money&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;money&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;23&quot;,
+      &quot;50&quot;,
+      &quot;20&quot;,
+      &quot;10&quot;,
+      &quot;1&quot;,
+      &quot;2&quot;,
+      &quot;5&quot;,
+      &quot;20&quot;,
+      &quot;10&quot;,
+      &quot;2&quot;,
+      &quot;5&quot;,
+      &quot;5&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;&gt;&quot;,
+      &quot;&lt;&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Kemi pays 50p for a banana costing 23p. The task is to identify the correct set of coins representing the change she receives.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_1f7cccfb1b6a51 · fractions · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_1f7cccfb1b6a51.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;fractions&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;fractions&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Identify which shapes are shaded exactly half. Compare shaded portions in different shapes to determine if they are more or less than half. Focus on visual fraction representation and comparison.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_2.zip">原始资料</a></details><details><summary>w_22f3fa3f23bd5c · sorting · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_22f3fa3f23bd5c.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;sorting&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;sorting&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students sort objects by attributes like color, shape, or size, then count each group. They repeat the process with a different attribute to practice categorization and counting skills.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_K.zip">原始资料</a></details><details><summary>w_2ed55169a0eb55 · odd_even · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_2ed55169a0eb55.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;odd_even&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;odd_even&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;11&quot;,
+      &quot;48&quot;,
+      &quot;72&quot;,
+      &quot;63&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Classify each given number as odd or even by ticking the appropriate box. Example 11 is marked odd.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_327e7a93e2b158 · fractions · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_327e7a93e2b158.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;fractions&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;fractions&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students explore equal sharing of shapes and cake portions, focusing on dividing into halves, fourths, and quarters. They use physical models to understand fractions and discuss terminology for equal parts.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_1.zip">原始资料</a></details><details><summary>w_382fc4b64b305d · arrays · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_382fc4b64b305d.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;arrays&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;arrays&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;An array of oranges with some hidden in a square. Students must count the hidden oranges by observing the grid pattern. The task involves counting within a structured array layout.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_40fa63d3bfba53 · money · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_40fa63d3bfba53.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;money&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;money&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;75&quot;,
+      &quot;5&quot;,
+      &quot;3&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: &quot;75+3*5&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Amy starts with 75p and receives three 5p coins. The task is to calculate her new total amount in pence.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_477b3f73d5a05c · measurement · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_477b3f73d5a05c.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;measurement&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;measurement&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [
+      &quot;&lt;&quot;,
+      &quot;&gt;&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Compare lengths of three pencils using comparison symbols. Students must select the correct inequality sign (&gt; , &lt; , =) to show which pencil is longer or shorter than another.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_4f4b74f3946554 · data · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_4f4b74f3946554.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;data&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;data&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students measure hand span in centimeters, record data on a line plot, and analyze patterns including range, shape, and distribution of measurements.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_2.zip">原始资料</a></details><details><summary>w_52e53316e00a5c · subtraction · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_52e53316e00a5c.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;76-54=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;76&quot;,
+      &quot;54&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;76-54&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented on a worksheet, asking for the result of 76 minus 54. The task involves basic arithmetic subtraction with two-digit numbers.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_562bbb1f21a85e · geometry · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_562bbb1f21a85e.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;geometry&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task asks how much a big wheel has turned when a person on it reaches the top, given the wheel turns clockwise. The options are in terms of turns (quarter, half, three-quarter, full).&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_5b770c4b006f5d · comparison · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_5b770c4b006f5d.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;comparison&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;comparison&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;38&quot;,
+      &quot;51&quot;,
+      &quot;27&quot;,
+      &quot;17&quot;,
+      &quot;23&quot;,
+      &quot;13&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;&gt;&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task asks how many more points Team B has than Team A, given their scores. Students must select the correct difference from provided options.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_65802a0ce3f955 · place_value · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_65802a0ce3f955.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;place_value&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;place_value&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;16&quot;,
+      &quot;26&quot;,
+      &quot;61&quot;,
+      &quot;56&quot;,
+      &quot;66&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Identify numbers containing exactly six tens by examining their tens digit. The task involves recognizing place value in two-digit numbers.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_665cced925e75d · fractions · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_665cced925e75d.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;fractions&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;fractions&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students must determine the fraction of each shaded shape. One example is provided: a bowtie shape with half shaded. Two other shapes require fraction completion.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_68075e7254df59 · geometry · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_68075e7254df59.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;geometry&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Identify and classify polygons by shape and side equality, then color them according to their type and circle those with equal sides.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_2.zip">原始资料</a></details><details><summary>w_6fb2200d62e359 · equal_sharing · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_6fb2200d62e359.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;equal_sharing&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;equal_sharing&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;7&quot;,
+      &quot;3&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;&gt;&quot;,
+      &quot;&lt;&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Kemi and Sam start with different numbers of toy cars. After Kemi gives some to Sam, they have equal amounts. The task is to find how many cars Kemi gave to Sam.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_73dc971176d95a · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_73dc971176d95a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;2&quot;,
+      &quot;5&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;*&quot;,
+      &quot;/&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Use the numbers 2, 5, and 10 to form two different calculations, one multiplication and one division, filling in the blanks with the given numbers.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_777ca6f8a6a358 · data · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_777ca6f8a6a358.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;data&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;data&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;3&quot;,
+      &quot;4&quot;,
+      &quot;8&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: &quot;3+8&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task asks for the total number of sunny and rainy days combined, based on tally marks shown in a weather chart. The student must add the values for sunny and rainy days.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_7c88f12d1b1c59 · money · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_7c88f12d1b1c59.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;money&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;money&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;27&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task requires writing four coin denominations that sum to 27 pence. Four blank boxes with &#x27;p&#x27; labels indicate the space for coin values, suggesting a money addition problem.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_84b05801d18a53 · geometry · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_84b05801d18a53.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;geometry&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Count the number of squares in a 3x3 grid. The task involves recognizing and counting individual unit squares and larger composite squares formed by combining smaller ones.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_1.zip">原始资料</a></details><details><summary>w_84d33ed5857d5e · measurement · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_84d33ed5857d5e.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;measurement&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;measurement&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;100&quot;,
+      &quot;70&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Calculate remaining pasta weight after 70g is used from a 100g bag. The task involves subtracting used weight from initial weight to find leftover amount in grams.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_90a66964058051 · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_90a66964058051.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;8&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;*&quot;
+    ],
+    &quot;expression&quot;: &quot;8*10&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Calculate the total number of strawberries by multiplying the number of trays by the number per tray. The task involves multiplication of two whole numbers.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_93037e122a685d · subtraction · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_93037e122a685d.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;6-2=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;6&quot;,
+      &quot;2&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;6-2=&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem with two-digit numbers presented visually, requiring the student to compute the difference and fill in the blank box. The task involves basic arithmetic subtraction.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_983d91bafb0b5b · money · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_983d91bafb0b5b.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;money&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;money&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;2&quot;,
+      &quot;50&quot;,
+      &quot;75&quot;,
+      &quot;1&quot;,
+      &quot;25&quot;,
+      &quot;45&quot;,
+      &quot;4&quot;,
+      &quot;25&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Arianna has $4.25 to spend on school supplies. The task involves selecting combinations of items, calculating total costs, and determining remaining money or quantity of items she can buy within her budget.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_2.zip">原始资料</a></details><details><summary>w_985e8f67864754 · place_value · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_985e8f67864754.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;place_value&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;place_value&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;8&quot;,
+      &quot;7&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task asks the student to write a number based on its place value components: 8 tens and 7 ones. No calculation or operator is required; it is a direct place value construction task.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_9e9db2986a1656 · data · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_9e9db2986a1656.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;data&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;data&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;20&quot;,
+      &quot;8&quot;,
+      &quot;6&quot;,
+      &quot;4&quot;,
+      &quot;2&quot;,
+      &quot;0&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task involves completing a block diagram to show the number of netballs among 20 sports balls, given counts for football, basketball, and tennis balls. The student must deduce the missing value for netballs.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_a10917be4dce52 · geometry · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_a10917be4dce52.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;geometry&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Identify which of four shapes has an incorrectly drawn line of symmetry by marking a cross on that shape.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_a3c87053cad757 · money · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_a3c87053cad757.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;money&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;money&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;30p&quot;,
+      &quot;35p&quot;,
+      &quot;40p&quot;,
+      &quot;45p&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Sam has two identical coins. The student must select the total amount (in pence) that matches the sum of two equal coins from given options.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_a45fde5f8e2d5a · money · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_a45fde5f8e2d5a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;money&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;money&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;20&quot;,
+      &quot;13&quot;,
+      &quot;51&quot;,
+      &quot;15&quot;,
+      &quot;30&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task asks which amounts can be formed using only 5p coins. Students must determine if each given amount is divisible by 5, as 5p coins can only form multiples of 5p.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_acdd110af4bd59 · subtraction · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_acdd110af4bd59.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;98-69=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;98&quot;,
+      &quot;69&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;98 - 69 =&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented visually with a blank box for the answer. The task involves computing the difference between 98 and 69.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_b44e4f376f765b · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_b44e4f376f765b.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;3&quot;,
+      &quot;4&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;*&quot;
+    ],
+    &quot;expression&quot;: &quot;3*4&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Sam has 3 sheets, each with 4 cat stickers. The task is to find the total number of stickers by multiplying the number of sheets by stickers per sheet.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_b4ac9900772259 · number_line · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_b4ac9900772259.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;number_line&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;number_line&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;0&quot;,
+      &quot;30&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A number line from 0 to 30 divided into equal steps of 3. An arrow points to a position on the line. The task is to identify the number the arrow is pointing to.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_b8ea886859a959 · time · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_b8ea886859a959.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;time&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;time&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;1&quot;,
+      &quot;7&quot;,
+      &quot;10&quot;,
+      &quot;30&quot;,
+      &quot;60&quot;,
+      &quot;20&quot;,
+      &quot;24&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Match time units to their equivalent durations. One connection is pre-made. Students must draw two additional lines to correctly pair units like &#x27;1 hour&#x27; with &#x27;60 minutes&#x27; and &#x27;1 day&#x27; with &#x27;24 hours&#x27;.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_bb7603e6c6665e · geometry · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_bb7603e6c6665e.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;geometry&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Identify two shapes among cylinder, cuboid, cube, and square-based pyramid that have the same number of faces.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_bd828f05238450 · place_value · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_bd828f05238450.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;place_value&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;place_value&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;13&quot;,
+      &quot;10&quot;,
+      &quot;3&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;=&quot;,
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: &quot;13 = 10 + 3&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students decompose teen numbers using 10-frames and number equations, representing each number as a sum of ten and some additional units.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_K.zip">原始资料</a></details><details><summary>w_c869fc41eac454 · addition · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_c869fc41eac454.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;65+5+5=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;65&quot;,
+      &quot;5&quot;,
+      &quot;5&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;65 + 5 + 5 =&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to compute the sum of 65, 5, and 5. The problem involves basic addition of three numbers, with the result to be filled in the blank box.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_d33145e2e1625d · time · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_d33145e2e1625d.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;time&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;time&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;1&quot;,
+      &quot;2&quot;,
+      &quot;3&quot;,
+      &quot;4&quot;,
+      &quot;5&quot;,
+      &quot;6&quot;,
+      &quot;7&quot;,
+      &quot;8&quot;,
+      &quot;9&quot;,
+      &quot;10&quot;,
+      &quot;11&quot;,
+      &quot;12&quot;
+    ],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Order four classes by the time they go to lunch based on analog clock times, starting from first to last, with one class already placed.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6835861f3dd61280f46c03aa/2025_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_d89eee2bd00952 · data · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_d89eee2bd00952.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;data&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;data&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students collect and interpret data by voting on ice cream flavors, then analyze results using a bar graph and interpretation questions on popsicle sticks.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_1.zip">原始资料</a></details><details><summary>w_e3a7d408b60f52 · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_e3a7d408b60f52.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;9&quot;,
+      &quot;3&quot;,
+      &quot;8&quot;,
+      &quot;15&quot;,
+      &quot;16&quot;,
+      &quot;5&quot;,
+      &quot;7&quot;,
+      &quot;2&quot;,
+      &quot;13&quot;,
+      &quot;7&quot;,
+      &quot;6&quot;,
+      &quot;14&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;+&quot;,
+      &quot;-&quot;,
+      &quot;-&quot;,
+      &quot;+&quot;,
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Six subtraction and addition equations with missing numbers. Students must find the missing addend or subtrahend to complete each equation.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_1.zip">原始资料</a></details><details><summary>w_e7b11ee3229f51 · time · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_e7b11ee3229f51.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;time&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;time&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;6&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;&gt;&quot;,
+      &quot;&lt;&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Order four time intervals—6 weeks, 6 years, 6 months, 6 days—from shortest to longest on a number line.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_eb1d7231be665b · comparison · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_eb1d7231be665b.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;comparison&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;comparison&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;99&quot;,
+      &quot;100&quot;,
+      &quot;154&quot;,
+      &quot;231&quot;,
+      &quot;453&quot;,
+      &quot;428&quot;,
+      &quot;351&quot;,
+      &quot;354&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;&gt;&quot;,
+      &quot;&lt;&quot;,
+      &quot;&lt;&quot;,
+      &quot;&lt;&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Compare pairs of three-digit numbers using &lt;, =, or &gt; symbols and describe comparisons in words, with visual explanation requested for each pair.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_2.zip">原始资料</a></details><details><summary>w_f175b0fd72f75a · geometry · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_f175b0fd72f75a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;geometry&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;geometry&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task asks for the number of faces on a triangular prism, as shown in a diagram. The student must count the faces of the 3D shape, which is a fundamental geometry question.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_f34ed93dac055c · measurement · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_f34ed93dac055c.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;measurement&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;measurement&quot;,
+    &quot;printed_numbers&quot;: [],
+    &quot;operator_symbols&quot;: [],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Students compare weights of objects against a chosen block, categorizing them as &#x27;Heavier&#x27; or &#x27;Lighter&#x27; on a pre-folded sheet to understand relative mass differences.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://s3.amazonaws.com/illustrativemathematics/attachments/zipped_files/grade_K.zip">原始资料</a></details><details><summary>w_fa72e17eeb0155 · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_fa72e17eeb0155.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: null,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;5&quot;,
+      &quot;45&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;/&quot;
+    ],
+    &quot;expression&quot;: null,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Sita builds towers with 5 cubes each from 45 cubes. The task is to find how many towers she can construct, requiring division of total cubes by cubes per tower.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1576120a1a96d9418d284f/2026_KS1_mathematics_Paper2_reasoning.pdf">原始资料</a></details><details><summary>w_04f55fa70fda54 · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_04f55fa70fda54.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;20+?=74&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;20&quot;,
+      &quot;74&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;20 + ? = 74&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A missing number problem where 20 plus an unknown value equals 74. The task is to identify the missing addend in the addition equation.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_0f981da465d252 · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_0f981da465d252.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;80/10=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;80&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;/&quot;
+    ],
+    &quot;expression&quot;: &quot;80 ÷ 10 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to compute the quotient of 80 divided by 10. The result should be filled into the blank box. This is a basic division problem involving whole numbers.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_330eb76b7e9c58 · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_330eb76b7e9c58.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;?=90-80&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;90&quot;,
+      &quot;80&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;? = 90 - 80&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem where the result of 90 minus 80 is to be filled into an empty box. The task involves finding the missing number in a subtraction equation.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_46494cbd95be5d · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_46494cbd95be5d.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;32+50=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;32&quot;,
+      &quot;50&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;32 + 50 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The student is to compute the sum of 32 and 50. The task involves basic addition of two two-digit numbers.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_575355fd84615c · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_575355fd84615c.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;15+6=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;15&quot;,
+      &quot;6&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;15 + 6 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to compute the sum of 15 and 6. The result should be filled into the blank box. No additional context or diagram is provided.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_582fd371cae652 · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_582fd371cae652.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;2*8=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;2&quot;,
+      &quot;8&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;*&quot;
+    ],
+    &quot;expression&quot;: &quot;2 * 8 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to compute the product of 2 and 8. The problem is presented as a multiplication equation with an empty answer box, indicating a missing result to be filled.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_759e51c50dc45e · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_759e51c50dc45e.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;13+?=58&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;13&quot;,
+      &quot;58&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;13 + ? = 58&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A missing number problem where 13 plus an unknown value equals 58. The task requires finding the missing addend in an addition equation.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_781f14ddecc85b · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_781f14ddecc85b.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;26-4=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;26&quot;,
+      &quot;4&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;26 - 4 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented visually with a blank box for the answer. The task involves calculating the difference between 26 and 4.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_7a93aca0fff55a · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_7a93aca0fff55a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;?=37+51&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;37&quot;,
+      &quot;51&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: &quot;? = 37 + 51&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to find the sum of 37 and 51, indicated by an empty box on the left side of the equals sign.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_96f04fec8e6755 · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_96f04fec8e6755.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;11+?=18&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;11&quot;,
+      &quot;18&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;11 + ? = 18&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;Find the missing number that, when added to 11, equals 18. The task involves basic addition with a missing addend.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_b4dc645c4f3e56 · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_b4dc645c4f3e56.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;?-15=33&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;24&quot;,
+      &quot;15&quot;,
+      &quot;33&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;? - 15 = 33&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem with a missing minuend. The equation is presented with a blank box for the unknown number, and the result is given as 33. The number 24 appears in a blue sidebar, possibly indicating a problem number or section.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_d37c1f9628d058 · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_d37c1f9628d058.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;37+28=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;37&quot;,
+      &quot;28&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: &quot;37 + 28 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The student is to compute the sum of 37 and 28. The worksheet includes a blank box for the answer and a grid below, likely for showing work or using manipulatives.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_d70d8ee2e7935d · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_d70d8ee2e7935d.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;9+7=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;9&quot;,
+      &quot;7&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;9+7=?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A basic addition problem presented with a blank box for the answer. The task is to compute the sum of 9 and 7.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_d7586145633e5a · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_d7586145633e5a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;30/5=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;30&quot;,
+      &quot;5&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;/&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;30 ÷ 5 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to compute the quotient of 30 divided by 5. The result should be filled into the blank box. No additional context is required for this basic division problem.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_d7b7e683aeda51 · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_d7b7e683aeda51.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;9*10=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;9&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;*&quot;
+    ],
+    &quot;expression&quot;: &quot;9 * 10 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to compute the product of 9 and 10. The problem is presented as a multiplication equation with an empty answer box to be filled.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_e2106a7d6c2455 · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_e2106a7d6c2455.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;99-44=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;99&quot;,
+      &quot;44&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;99 - 44 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented with a blank box for the answer. The task involves computing the difference between 99 and 44.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_e999bcf345bd58 · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_e999bcf345bd58.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;5*11=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;5&quot;,
+      &quot;11&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;*&quot;
+    ],
+    &quot;expression&quot;: &quot;5 * 11 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to compute the product of 5 and 11. The problem is presented as a multiplication equation with an empty answer box.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>w_ee70e682aa8550 · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/images/w_ee70e682aa8550.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;45-10=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;45&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;45 - 10 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented visually with a blank box for the answer. The task involves calculating the difference between 45 and 10.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details>
+<h2>完整统计口径</h2><pre>{
+  &quot;expected_cases&quot;: 100,
+  &quot;completed_cases&quot;: 100,
+  &quot;status_counts&quot;: {
+    &quot;accepted&quot;: 86,
+    &quot;invalid_output&quot;: 14
+  },
+  &quot;topic_accuracy&quot;: {
+    &quot;correct&quot;: 67,
+    &quot;total&quot;: 100
+  },
+  &quot;printed_number_recall&quot;: {
+    &quot;matched_tokens&quot;: 206,
+    &quot;labelled_tokens&quot;: 372,
+    &quot;scope&quot;: &quot;Text-layer targets on non-equations are partial. Extra predicted diagram numbers are not penalized. This is not an operand/object-count accuracy.&quot;
+  },
+  &quot;source_expression_accuracy&quot;: {
+    &quot;correct&quot;: 18,
+    &quot;total&quot;: 26
+  },
+  &quot;operator_set_accuracy&quot;: {
+    &quot;correct&quot;: 10,
+    &quot;total&quot;: 26
+  },
+  &quot;exact_equation_reading&quot;: {
+    &quot;correct&quot;: 18,
+    &quot;total&quot;: 26
+  },
+  &quot;runtime_errors&quot;: 0,
+  &quot;invalid_outputs&quot;: 14,
+  &quot;missing_predictions&quot;: 0,
+  &quot;required_context_detection&quot;: {
+    &quot;correct&quot;: 0,
+    &quot;total&quot;: 1
+  },
+  &quot;full_task_understanding_accuracy&quot;: null,
+  &quot;full_task_understanding_note&quot;: &quot;Not established by topic or numeric recall. Open tasks retain source text/answer references for human review; current-app support is a separate label.&quot;
+}</pre><p><a href="metrics.json">完整结果 JSON</a> · <a href="case_results.csv">逐题 CSV</a> · <a href="predictions.jsonl">模型原始输出</a></p></html>

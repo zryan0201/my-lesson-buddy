@@ -1,0 +1,27 @@
+.venv/
+.venv-speech/
+.venv-benchmark/
+.cache/
+__pycache__/
+*.pyc
+.env
+.env.local
+
+# Local secrets, operating-system files and developer environments
+.env.*
+!.env.example
+.DS_Store
+.venv*/
+node_modules/
+.openai/
+.sites/
+*.log
+*.pem
+*.key
+
+# Generated videos, presentations, character libraries and local job storage.
+# The worksheet benchmark reports are public research outputs only.
+/output/*
+!/output/worksheet_benchmark/
+/output/worksheet_benchmark/*.zip
+/lesson_video/audio_samples/*.wav

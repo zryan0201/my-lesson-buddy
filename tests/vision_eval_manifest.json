@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "purpose": "Small development evaluation for a local vision-language worksheet reader. Images are input; this manifest is evaluation-only ground truth and must never be appended to model prompts.",
+  "limitations": "Six hand-drawn synthetic examples and one exact user-uploaded crop. This is a smoke-test set, not a representative real-world accuracy benchmark. No model has been evaluated by creating these files.",
+  "input_contract": "Pass the case image and generic worksheet-reading instructions only. Keep expected fields and case tags outside model context.",
+  "cases": [
+    {
+      "id": "vision_01",
+      "image": "examples/vision_eval/case_01.png",
+      "sha256": "1c4955331a7bc9f52dba11a39a4cb42c644e6c008541d2e1f9b6105c4c085d41",
+      "width": 520,
+      "height": 98,
+      "expected": {
+        "decision": "accept",
+        "question": "What is 5 + 2?",
+        "type": "addition",
+        "a": 5,
+        "b": 2,
+        "answer": 7
+      },
+      "tags": [
+        "actual_user_upload",
+        "repeated_multicolor_art",
+        "partial_neighbor_fragments"
+      ]
+    },
+    {
+      "id": "vision_02",
+      "image": "examples/vision_eval/case_02.png",
+      "sha256": "2b724092a2b158b02d46330654009af49ceaad4a536323debfe7eaa0fe71b6a4",
+      "width": 1080,
+      "height": 310,
+      "expected": {
+        "decision": "accept",
+        "question": "What is 3 + 2?",
+        "type": "addition",
+        "a": 3,
+        "b": 2,
+        "answer": 5
+      },
+      "tags": [
+        "synthetic",
+        "different_shape",
+        "mixed_colors",
+        "rotation_variation"
+      ]
+    },
+    {
+      "id": "vision_03",
+      "image": "examples/vision_eval/case_03.png",
+      "sha256": "e1862ea8e4ad8b69f5dcd50ea26d1b5b771de43ad353f2cbfbd47d4e24ca96b0",
+      "width": 1080,
+      "height": 310,
+      "expected": {
+        "decision": "accept",
+        "question": "Count 6 objects.",
+        "type": "counting",
+        "count": 6,
+        "answer": 6
+      },
+      "tags": [
+        "synthetic",
+        "semantic_object_count",
+        "all_colors_count",
+        "slight_size_variation"
+      ]
+    },
+    {
+      "id": "vision_04",
+      "image": "examples/vision_eval/case_04.png",
+      "sha256": "e5b5fed743c32818af97ef0964085e661a30d15b0ac23e76fd840b544c2fb036",
+      "width": 1080,
+      "height": 310,
+      "expected": {
+        "decision": "accept",
+        "question": "What is 2 + 4?",
+        "type": "addition",
+        "a": 2,
+        "b": 4,
+        "answer": 6
+      },
+      "tags": [
+        "synthetic",
+        "semantic_object_count",
+        "disconnected_wheels",
+        "mixed_colors"
+      ]
+    },
+    {
+      "id": "vision_05",
+      "image": "examples/vision_eval/case_05.png",
+      "sha256": "cf9b856b56e83db9080993f1817f6245a5159a9bede93d7f0ab16db4d21fbc09",
+      "width": 1240,
+      "height": 310,
+      "expected": {
+        "decision": "accept",
+        "question": "What is 6 - 2?",
+        "type": "subtraction",
+        "a": 6,
+        "b": 2,
+        "answer": 4
+      },
+      "tags": [
+        "synthetic",
+        "illustrated_subtraction",
+        "multicolor_objects",
+        "thin_strings"
+      ]
+    },
+    {
+      "id": "vision_06",
+      "image": "examples/vision_eval/case_06.png",
+      "sha256": "0297693b07c82446f09967407856f27975de3a7abeefa03ac589722b7c60064b",
+      "width": 1080,
+      "height": 510,
+      "expected": {
+        "decision": "reject",
+        "reason_code": "multiple_questions",
+        "reason": "Two complete exercises appear in this image; one lesson cannot choose between them."
+      },
+      "tags": [
+        "synthetic",
+        "multiple_questions"
+      ]
+    },
+    {
+      "id": "vision_07",
+      "image": "examples/vision_eval/case_07.png",
+      "sha256": "eb1fa60351603ba7f69d12cc52da903aab8a3a61cc235f3de40103e1a9ae0f52",
+      "width": 1080,
+      "height": 310,
+      "expected": {
+        "decision": "reject",
+        "reason_code": "missing_operand",
+        "reason": "The unknown is an addend; the current lesson format expects an unknown total or remainder."
+      },
+      "tags": [
+        "synthetic",
+        "missing_operand"
+      ]
+    }
+  ]
+}

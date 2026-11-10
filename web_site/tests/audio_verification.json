@@ -1,0 +1,37 @@
+{
+  "real_recorded_assets": 227,
+  "representative_mp3_decode_and_audible_level_checks": [
+    {
+      "asset": "hello.mp3",
+      "decode": "passed",
+      "mean_dbfs": -20.9,
+      "peak_dbfs": -7.9
+    },
+    {
+      "asset": "answer-add-5-2.mp3",
+      "decode": "passed",
+      "mean_dbfs": -20.8,
+      "peak_dbfs": -7.3
+    },
+    {
+      "asset": "number-7.mp3",
+      "decode": "passed",
+      "mean_dbfs": -20.8,
+      "peak_dbfs": -6.7
+    },
+    {
+      "asset": "shape-circle.mp3",
+      "decode": "passed",
+      "mean_dbfs": -21.0,
+      "peak_dbfs": -6.7
+    },
+    {
+      "asset": "answer-name-square.mp3",
+      "decode": "passed",
+      "mean_dbfs": -20.8,
+      "peak_dbfs": -7.0
+    }
+  ],
+  "api_requests": 0,
+  "full_video_export_browser_check": "Owned by root; MediaRecorder must be checked on actual browser."
+}

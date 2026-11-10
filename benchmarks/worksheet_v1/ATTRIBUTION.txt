@@ -1,0 +1,11 @@
+Worksheet web corpus: local academic capstone evaluation only. Do not deploy this mixed-license corpus into the commercial child-facing product.
+
+80 items: Contains material developed by the Standards and Testing Agency for 2025 and 2026 national curriculum assessments and licensed under Open Government Licence v3.0.
+
+https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+
+20 tasks: Illustrative Mathematics, CC BY-NC-SA 4.0. Adaptations: student-only cropping, page stitching and rasterization; logos, commentary and solutions excluded from model inputs.
+
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Source title, URL/archive member, source SHA256 and original PDF page/crop are retained per case.

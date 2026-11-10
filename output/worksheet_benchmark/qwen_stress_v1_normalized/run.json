@@ -1,0 +1,23 @@
+{
+  "engine": "experimental_broad_reading_probe",
+  "model": "mlx-community/Qwen3-VL-4B-Instruct-4bit",
+  "model_revision": "2fd8dacbdb8f1e54b8c005f081ec5bf79c56376b",
+  "prompt_sha256": "7c4c017b88cf5c12a47362fac948438a65276a60eb2e1e086ad369633ee8c1a3",
+  "max_tokens": 512,
+  "temperature": 0,
+  "paid_api_requests": 0,
+  "labels_in_prompt": false,
+  "production_reader_changed": false,
+  "dataset_id": "worksheet-stress-v1",
+  "inputs_sha256": "b49fcf9b41328fb94108b66f43cc1dd3f32b5143aee9feca5efe7ee8e9e8c6ac",
+  "run_fingerprint": "0a771326a302e115a3c0b9d91876d5cc6883262597b3d86bed1121bc0bb5dec1",
+  "started_at_utc": "2026-11-09T23:35:17.119500+00:00",
+  "expected_cases": 30,
+  "mode": "posthoc_engineering_normalization",
+  "normalizer": "lossless-number-string-and-operator-glyph-v1",
+  "original_predictions_sha256": "48808ea05133b863356e8e9a15f2d265c4533281feac76fd5653edebf52c4342",
+  "original_run": "/Users/ryanzhang/Documents/ChatGPT/Capstone_Video Generation/output/worksheet_benchmark/qwen_stress_v1",
+  "new_model_inferences": 0,
+  "recovered_format_outputs": 4,
+  "labels_used_for_normalization": false
+}

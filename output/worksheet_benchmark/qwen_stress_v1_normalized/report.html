@@ -1,0 +1,625 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Worksheet reading · baseline report</title><style>
+body{font:16px/1.6 -apple-system,BlinkMacSystemFont,sans-serif;max-width:1100px;margin:40px auto;padding:0 24px;color:#192d49;background:#f5f7fa}h1{font-size:32px}.note,details{background:white;border:1px solid #d9e1eb;border-radius:10px;padding:17px;margin:14px 0}table{border-collapse:collapse;width:100%;background:white}th,td{text-align:left;padding:8px 12px;border-bottom:1px solid #d9e1eb}pre{white-space:pre-wrap;word-break:break-word;font-size:13px;background:#edf2f8;padding:15px}img{width:100%;max-height:500px;object-fit:contain;background:white}summary{cursor:pointer}a{color:#234c78}
+</style><h1>陌生 worksheet：第一轮本地识读基线</h1><p>工程格式归一化复算（沿用原始输出，没有重新推理） · 30 / 30 已完成 · 固定提示词 · 本地 Qwen3-VL 4B · 0 次付费 API 调用</p>
+<div class="note">这是独立的广题型读题探针，不是线上浏览器模型的成绩，也未改变现有视频支持范围。主题标签匹配不能证明题意完全读懂。语料范围：30 synthetic conditions derived from 10 development arithmetic items; no new independent questions.。不包含真实手机拍照；来源公开，可能已出现在预训练中。数字召回只检查部分文字层数字，不代表物品计数准确率。标注尚未经过独立教师复核。</div>
+<h2>可自动核对的部分</h2><p>主主题标签匹配：<strong>29 / 30</strong>。原式完整转录：<strong>29 / 30</strong>。运行错误 0；格式无效 1；缺失 0。</p>
+<table><thead><tr><th>主题</th><th>主题匹配 / 样本</th><th>原式正确 / 可核对题</th><th>运行/格式错误</th></tr></thead><tbody><tr><td>addition</td><td>6 / 6</td><td>6 / 6</td><td>0</td></tr><tr><td>missing_number</td><td>8 / 9</td><td>8 / 9</td><td>1</td></tr><tr><td>multiplication_division</td><td>6 / 6</td><td>6 / 6</td><td>0</td></tr><tr><td>subtraction</td><td>9 / 9</td><td>9 / 9</td><td>0</td></tr></tbody></table>
+<h2>逐题核对</h2><p>优先列出标签不匹配的题；它们需要检查模型和人工标注两侧。开放题的解题理解仍需人工评分。</p><details><summary>v_d053d2bbf52f5e · missing_number · 需复核</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_d053d2bbf52f5e.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;?-4=9&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: null,
+  &quot;status&quot;: &quot;invalid_output&quot;,
+  &quot;error&quot;: &quot;The reading does not match the benchmark response schema.&quot;
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_005a6177fcde5b · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_005a6177fcde5b.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;?-4=9&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;4&quot;,
+      &quot;9&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;? - 4 = 9&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A missing number problem where a blank box minus 4 equals 9. The task is to find the unknown number that satisfies the equation.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_0af537bae67d58 · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_0af537bae67d58.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;26-4=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;2&quot;,
+      &quot;4&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;26 - 4 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem is presented with a blank box for the answer. The task involves calculating the difference between 26 and 4. A blue rectangle labeled &#x27;2&#x27; is on the left, and a light blue rectangle is on the right.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_0efa1216a4a550 · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_0efa1216a4a550.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;26-4=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;26&quot;,
+      &quot;4&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;26 - 4 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented visually with a blank box for the answer. The task involves computing the difference between 26 and 4.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_24d28b3b1bcb5c · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_24d28b3b1bcb5c.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;9*10=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;9&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;*&quot;
+    ],
+    &quot;expression&quot;: &quot;9 * 10 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to compute the product of 9 and 10. The problem is presented as a multiplication equation with an empty answer box, indicating a missing result to be filled.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_38040ee00d095a · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_38040ee00d095a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;80/10=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;80&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;/&quot;
+    ],
+    &quot;expression&quot;: &quot;80 / 10 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to divide 80 by 10 and fill in the blank. The operation is division, and the result is unknown, requiring a numerical answer.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_38453272f96656 · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_38453272f96656.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;9*10=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;4&quot;,
+      &quot;9&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;*&quot;
+    ],
+    &quot;expression&quot;: &quot;9 × 10 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A multiplication problem 9 × 10 with an empty box for the answer. A blue rectangle labeled &#x27;4&#x27; is on the left, and a light blue rectangle is on the right, possibly indicating a visual aid or placeholder.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_3ff17ae3de0e5f · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_3ff17ae3de0e5f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;26-4=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;26&quot;,
+      &quot;4&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;26 - 4 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented visually with a blank box for the answer. The task involves computing the difference between 26 and 4.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_44f6ac10a1225f · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_44f6ac10a1225f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;9+7=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;9&quot;,
+      &quot;7&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: &quot;9 + 7 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A basic addition problem with a missing number. The task is to find the sum of 9 and 7, indicated by an empty box. Visual elements include a blue rectangle with &#x27;1&#x27; and a light blue rectangle on the right.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_4bc6bf9737cc57 · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_4bc6bf9737cc57.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;80/10=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;14&quot;,
+      &quot;80&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;/&quot;
+    ],
+    &quot;expression&quot;: &quot;80 ÷ 10 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A division problem presented visually with a blank box for the answer. A blue rectangle labeled &#x27;14&#x27; is on the left, and a light blue rectangle is on the right, possibly indicating a visual aid or context.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_5a28e2d9c0cb5f · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_5a28e2d9c0cb5f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;?-15=33&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;15&quot;,
+      &quot;33&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;? - 15 = 33&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A missing number problem where a number minus 15 equals 33. The task is to find the unknown number represented by the blank box.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_6472abb0f59459 · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_6472abb0f59459.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;6-2=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;6&quot;,
+      &quot;2&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;6-2=?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem with a missing number. The task is to compute 6 minus 2 and fill in the blank box. Visual elements include a blue rectangle and a light blue parallelogram, possibly for visual aid or categorization.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_734b2c0793785f · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_734b2c0793785f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;?-15=33&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;24&quot;,
+      &quot;15&quot;,
+      &quot;33&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;? - 15 = 33&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem with a missing minuend, shown visually with a blank box and a number line. The equation is presented with known subtrahend (15) and difference (33), requiring the identification of the unknown starting number.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_752fb0332ff35a · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_752fb0332ff35a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;6-2=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;6&quot;,
+      &quot;2&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;6-2= ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented visually with a blank box for the answer. The task is to compute the difference between 6 and 2.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_75f342589a7d56 · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_75f342589a7d56.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;11+?=18&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;11&quot;,
+      &quot;18&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;11+? = 18&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A missing number problem where 11 plus an unknown value equals 18. The task involves finding the missing addend in an addition equation.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_9112c441c10a56 · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_9112c441c10a56.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;9+7=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;9&quot;,
+      &quot;7&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;9+7=?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A basic addition problem with two single-digit numbers, asking for the sum. The answer is to be filled in the blank box.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_a0ee6dd5c78d52 · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_a0ee6dd5c78d52.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;37+28=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;37&quot;,
+      &quot;28&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: &quot;37 + 28 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A basic addition problem with two two-digit numbers. The task is to compute the sum and fill in the blank box. No additional context or diagram is provided.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_a513c2fb05455f · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_a513c2fb05455f.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;?-4=9&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;4&quot;,
+      &quot;9&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;? - 4 = 9&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A missing number problem where a blank box minus 4 equals 9. The task is to identify the unknown number that satisfies the equation.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_a874978992905e · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_a874978992905e.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;80/10=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;80&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;/&quot;
+    ],
+    &quot;expression&quot;: &quot;80 ÷ 10 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The task is to compute the quotient of 80 divided by 10. The result should be filled into the blank box. No additional context is required for this basic division problem.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_b353b04b50d454 · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_b353b04b50d454.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;?-15=33&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;24&quot;,
+      &quot;15&quot;,
+      &quot;33&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;? - 15 = 33&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem with a missing minuend. The equation is presented with a blank box for the unknown number, followed by minus 15 equals 33.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_c3c34bb4dea05c · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_c3c34bb4dea05c.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;37+28=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;37&quot;,
+      &quot;28&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: &quot;37 + 28 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;The student is to compute the sum of 37 and 28. The task involves basic addition of two two-digit numbers, likely using place value or standard addition methods.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_c6c806dff64e53 · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_c6c806dff64e53.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;98-69=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;98&quot;,
+      &quot;69&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;98 - 69 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented on a worksheet with a blank answer box. The task is to compute the difference between 98 and 69.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_cd12b447ecc15a · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_cd12b447ecc15a.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;98-69=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;98&quot;,
+      &quot;69&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;98 - 69 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented visually with a blank box for the answer. The task is to compute the difference between 98 and 69.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_d9ccafa9581552 · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_d9ccafa9581552.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;6-2=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;6&quot;,
+      &quot;2&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;6-2=?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem with a missing number. The task is to find the result of 6 minus 2, indicated by an empty box after the equals sign.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_e0952c7bc35f5d · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_e0952c7bc35f5d.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;11+?=18&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;11&quot;,
+      &quot;18&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;11 + ? = 18&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A missing number problem where 11 plus an unknown value equals 18. The task is to identify the missing addend in a basic addition equation.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_eb7900ce2f0151 · multiplication_division · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_eb7900ce2f0151.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;multiplication_division&quot;,
+  &quot;gold_expression&quot;: &quot;9*10=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;multiplication_division&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;9&quot;,
+      &quot;10&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;*&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;9×10=?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A multiplication problem asks for the product of 9 and 10, with an empty box for the answer. The task involves basic multiplication of two whole numbers.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_faac195bfe4854 · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_faac195bfe4854.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;37+28=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;21&quot;,
+      &quot;37&quot;,
+      &quot;28&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;37 + 28 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A student is to compute the sum of 37 and 28, with a blank box for the answer. The image includes a number line and colored bars, suggesting a visual aid for addition.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_fc627d68177c5b · addition · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_fc627d68177c5b.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;addition&quot;,
+  &quot;gold_expression&quot;: &quot;9+7=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;addition&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;9&quot;,
+      &quot;7&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;
+    ],
+    &quot;expression&quot;: &quot;9 + 7 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A basic addition problem presented with an empty box for the answer. The task is to compute the sum of 9 and 7.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_ff04f488a7fe55 · subtraction · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_ff04f488a7fe55.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;subtraction&quot;,
+  &quot;gold_expression&quot;: &quot;98-69=?&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;subtraction&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;23&quot;,
+      &quot;98&quot;,
+      &quot;69&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;-&quot;
+    ],
+    &quot;expression&quot;: &quot;98 - 69 = ?&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A subtraction problem presented with a blank answer box. The task involves calculating the difference between 98 and 69, likely using a number line or visual aid indicated by the grid.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details><details><summary>v_ffcda33ddefe5b · missing_number · 标签检查通过</summary><img loading="lazy" src="../../../benchmarks/worksheet_v1/stress/images/v_ffcda33ddefe5b.png" alt="题面"><pre>{
+  &quot;gold_topic&quot;: &quot;missing_number&quot;,
+  &quot;gold_expression&quot;: &quot;11+?=18&quot;,
+  &quot;gold_context_required&quot;: false,
+  &quot;model&quot;: {
+    &quot;topic&quot;: &quot;missing_number&quot;,
+    &quot;printed_numbers&quot;: [
+      &quot;6&quot;,
+      &quot;11&quot;,
+      &quot;18&quot;
+    ],
+    &quot;operator_symbols&quot;: [
+      &quot;+&quot;,
+      &quot;=&quot;
+    ],
+    &quot;expression&quot;: &quot;11 + ? = 18&quot;,
+    &quot;needs_more_context&quot;: false,
+    &quot;task_summary&quot;: &quot;A missing number problem presented visually with a blue rectangle representing the unknown addend in the equation 11 + ? = 18, with a blue tile labeled &#x27;6&#x27; on the left and a blank tile on the right.&quot;
+  },
+  &quot;status&quot;: &quot;accepted&quot;,
+  &quot;error&quot;: null
+}</pre><a href="https://assets.publishing.service.gov.uk/media/6a1575b40026f30a6d421cfd/2026_KS1_mathematics_Paper1_arithmetic.pdf">原始资料</a></details>
+<h2>完整统计口径</h2><pre>{
+  &quot;expected_cases&quot;: 30,
+  &quot;completed_cases&quot;: 30,
+  &quot;status_counts&quot;: {
+    &quot;accepted&quot;: 29,
+    &quot;invalid_output&quot;: 1
+  },
+  &quot;topic_accuracy&quot;: {
+    &quot;correct&quot;: 29,
+    &quot;total&quot;: 30
+  },
+  &quot;printed_number_recall&quot;: {
+    &quot;matched_tokens&quot;: 57,
+    &quot;labelled_tokens&quot;: 60,
+    &quot;scope&quot;: &quot;Text-layer targets on non-equations are partial. Extra predicted diagram numbers are not penalized. This is not an operand/object-count accuracy.&quot;
+  },
+  &quot;source_expression_accuracy&quot;: {
+    &quot;correct&quot;: 29,
+    &quot;total&quot;: 30
+  },
+  &quot;operator_set_accuracy&quot;: {
+    &quot;correct&quot;: 15,
+    &quot;total&quot;: 30
+  },
+  &quot;exact_equation_reading&quot;: {
+    &quot;correct&quot;: 29,
+    &quot;total&quot;: 30
+  },
+  &quot;runtime_errors&quot;: 0,
+  &quot;invalid_outputs&quot;: 1,
+  &quot;missing_predictions&quot;: 0,
+  &quot;required_context_detection&quot;: {
+    &quot;correct&quot;: 0,
+    &quot;total&quot;: 0
+  },
+  &quot;full_task_understanding_accuracy&quot;: null,
+  &quot;full_task_understanding_note&quot;: &quot;Not established by topic or numeric recall. Open tasks retain source text/answer references for human review; current-app support is a separate label.&quot;
+}</pre><p><a href="metrics.json">完整结果 JSON</a> · <a href="case_results.csv">逐题 CSV</a> · <a href="predictions.jsonl">模型原始输出</a></p></html>
