@@ -6,6 +6,10 @@ The combined browser app provides **character creation → question entry → ad
 
 **[Open the live studio](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site)** · **[Explore four narrated adventures](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site/adventures.html)**
 
+![Actual browser lesson showing a character carrying a popsicle from the original worksheet.](../docs/images/lesson-playback.jpg)
+
+*An authored 5+2 example, captured in the live app. See the [visual tour](../docs/SHOWCASE.md) for character creation, review, photo preparation, and all four worlds.*
+
 ## Run a development copy
 
 From the repository root, with Node/npm and Python installed:

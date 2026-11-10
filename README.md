@@ -4,7 +4,26 @@
 
 My Lesson Buddy is a supervised K–2 learning prototype. Children draw or build a buddy, bring a worksheet or number question, and watch their character collect, carry, share, or count objects to explain the math. A grown-up checks the lesson before playback.
 
-[Try the live demo](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site) · [Run locally](docs/SETUP.md) · [Technical architecture](docs/ARCHITECTURE.md) · [Evaluation results](docs/EVALUATION.md)
+[Try the live demo](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site) · [Visual tour](docs/SHOWCASE.md) · [Run locally](docs/SETUP.md) · [Technical architecture](docs/ARCHITECTURE.md) · [Evaluation results](docs/EVALUATION.md)
+
+## See it in action
+
+![A customized demo character carries the original worksheet popsicles into the wagon to explain five plus two.](docs/images/popsicle-lesson.gif)
+
+*An eight-second silent excerpt from a recorded lesson: the character moves the worksheet's original popsicles. The live app provides narration. This authored example demonstrates the teaching flow, not automatic-reading accuracy.*
+
+<table>
+  <tr>
+    <td width="50%"><strong>1. Build a buddy</strong><br><a href="docs/images/character-builder.jpg"><img src="docs/images/character-builder.jpg" width="420" alt="Live character builder with original modular parts and a customized buddy preview."></a><br><sub>Choose parts, colors, clothes, and accessories.</sub></td>
+    <td width="50%"><strong>2. Draw or import one</strong><br><a href="docs/images/character-drawing.jpg"><img src="docs/images/character-drawing.jpg" width="420" alt="Drawing canvas and preview containing the repository's robot demo drawing."></a><br><sub>The canvas shown here uses the project's demo robot drawing.</sub></td>
+  </tr>
+  <tr>
+    <td><strong>3. Bring a question</strong><br><a href="docs/images/worksheet-entry.jpg"><img src="docs/images/worksheet-entry.jpg" width="420" alt="The included five-plus-two popsicle worksheet and editable operation and quantity controls."></a><br><sub>Use a picture, an included example, or manual numbers.</sub></td>
+    <td><strong>4. Check before teaching</strong><br><a href="docs/images/worksheet-review.jpg"><img src="docs/images/worksheet-review.jpg" width="420" alt="Adult review showing the source question, computed answer, seven original cutouts, and an unchecked confirmation box."></a><br><sub>Review the question, answer, and exact objects the buddy will move.</sub></td>
+  </tr>
+</table>
+
+[Explore the full visual tour](docs/SHOWCASE.md) for lesson playback, four story worlds, photo preparation, local Python apps, and the worksheet research corpus.
 
 ## The learning experience
 

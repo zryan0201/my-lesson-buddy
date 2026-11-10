@@ -4,6 +4,10 @@
 
 Read one supported worksheet question or text prompt, prepare an explanation, and render a narrated MP4. The Python app is the local Mac implementation; the [combined browser website](../web_site/README.md) uses a separate runtime.
 
+![Local Streamlit lesson interface with character controls and the included popsicle example.](../docs/images/python-lesson-app.png)
+
+*Development capture of the local Python interface using project demo content. The [visual tour](../docs/SHOWCASE.md) also shows the separate hosted browser flow.*
+
 ## Choose an entry point
 
 | Goal | Command from the repository root |

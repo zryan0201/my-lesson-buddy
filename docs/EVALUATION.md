@@ -52,6 +52,15 @@ Normalization reuses the same raw responses. It only converts supported number/o
 
 **Concrete failure cases:** the counting probe returned 16 for 21 visible oranges; it omitted a star sticker target. The reading probe guessed a geometry task for a ladder illustration whose spoken question was absent. These are useful targets for improvement, not evidence that every mismatched label is a model error.
 
+<details>
+<summary><strong>Inspect a real counting failure</strong></summary>
+
+<img src="../benchmarks/worksheet_v1/images/w_382fc4b64b305d.png" width="540" alt="Benchmark source image showing 21 visible oranges and a block hiding part of an array.">
+
+<p>The visible-object probe measures the drawn oranges: the curated target is 21, and the model returned 16. The printed worksheet asks about hidden oranges, which is a separate reasoning task. This is source data from the benchmark, with its <a href="../benchmarks/worksheet_v1/ATTRIBUTION.txt">source attribution</a> retained.</p>
+
+</details>
+
 Topic matching does not establish complete task understanding. The separate printed-number recall targets are partial PDF-text targets, not object-count accuracy. Open-ended answers, clock interpretation, diagram relationships, and teaching quality still need human scoring.
 
 ## Synthetic conditions, paired to the same questions

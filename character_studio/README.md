@@ -4,6 +4,16 @@
 
 Create an original character by drawing or combining modular parts. This standalone Python studio runs without a vision model, API key, or paid service. The [combined browser website](../web_site/README.md) includes its own character tools.
 
+<details>
+<summary><strong>Preview the standalone Character Studio</strong></summary>
+
+<p>Actual development capture of the Python studio with sample characters. It shows drawing tools, a character collection, and lesson handoff.</p>
+<img src="../docs/images/python-character-studio.png" width="640" alt="The standalone Character Studio and its development-demo character collection.">
+
+</details>
+
+The [visual tour](../docs/SHOWCASE.md#2-children-can-build-or-draw-a-character) also shows the hosted browser builder and the canvas with imported project artwork.
+
 ## Start the studio
 
 From the repository root, after installing the [local dependencies](../docs/SETUP.md):

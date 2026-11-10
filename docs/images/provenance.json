@@ -1,0 +1,117 @@
+{
+  "purpose": "Documentation showcase of implemented project features. No AI-generated mockups or private child submissions.",
+  "assets": [
+    {
+      "asset": "studio-home.jpg",
+      "kind": "live_browser_screenshot",
+      "source": "https://my-lesson-buddy-studio.leftcloak4.chatgpt.site/",
+      "captured_on": "2026-11-09",
+      "notes": "Default 1280x720 browser viewport. UI was navigated and scrolled normally. Included worksheet example has authored 5+2 data; no automatic-reading success is claimed.",
+      "sha256": "1c47e9cecca21c4ad1c4fec832c49ddb0d05952dc59ce576783c4384401a8931",
+      "bytes": 57220
+    },
+    {
+      "asset": "character-builder.jpg",
+      "kind": "live_browser_screenshot",
+      "source": "https://my-lesson-buddy-studio.leftcloak4.chatgpt.site/",
+      "captured_on": "2026-11-09",
+      "notes": "Default 1280x720 browser viewport. UI was navigated and scrolled normally. Included worksheet example has authored 5+2 data; no automatic-reading success is claimed.",
+      "sha256": "7a6eae194435278d178c56b9b12a5bf8a7e9003d58522d4b36049422ebc989dd",
+      "bytes": 63368
+    },
+    {
+      "asset": "character-drawing.jpg",
+      "kind": "live_browser_screenshot",
+      "source": "https://my-lesson-buddy-studio.leftcloak4.chatgpt.site/",
+      "captured_on": "2026-11-09",
+      "notes": "Default 1280x720 browser viewport. UI was navigated and scrolled normally. Included worksheet example has authored 5+2 data; no automatic-reading success is claimed.",
+      "sha256": "394177a0c16a7658511abd24fb9002aa4056efd340ab58f9fd7e61281b57f8ef",
+      "bytes": 46386
+    },
+    {
+      "asset": "worksheet-entry.jpg",
+      "kind": "live_browser_screenshot",
+      "source": "https://my-lesson-buddy-studio.leftcloak4.chatgpt.site/",
+      "captured_on": "2026-11-09",
+      "notes": "Default 1280x720 browser viewport. UI was navigated and scrolled normally. Included worksheet example has authored 5+2 data; no automatic-reading success is claimed.",
+      "sha256": "e2bbf9e955d890cd5e0f2c88f270c038033815860f34405af1514324f73164e3",
+      "bytes": 55210
+    },
+    {
+      "asset": "worksheet-review.jpg",
+      "kind": "live_browser_screenshot",
+      "source": "https://my-lesson-buddy-studio.leftcloak4.chatgpt.site/",
+      "captured_on": "2026-11-09",
+      "notes": "Default 1280x720 browser viewport. UI was navigated and scrolled normally. Included worksheet example has authored 5+2 data; no automatic-reading success is claimed.",
+      "sha256": "b5d47810805b36b85a4b48533916aa94e30b94fe96951c24cf82560dc1c34e53",
+      "bytes": 58026
+    },
+    {
+      "asset": "lesson-playback.jpg",
+      "kind": "live_browser_screenshot",
+      "source": "https://my-lesson-buddy-studio.leftcloak4.chatgpt.site/",
+      "captured_on": "2026-11-09",
+      "notes": "Default 1280x720 browser viewport. UI was navigated and scrolled normally. Included worksheet example has authored 5+2 data; no automatic-reading success is claimed.",
+      "sha256": "71771c7d2e3775bc778feba42f53791e8c7d75602ff1c6a1391e84720218161b",
+      "bytes": 48212
+    },
+    {
+      "asset": "four-worlds.jpg",
+      "kind": "existing_project_capture",
+      "source_project_path": "output/vivid_adventures/four_worlds.jpg",
+      "reused_on": "2026-11-09",
+      "notes": "Original capture date not asserted. Development/sample content only. Photo examples are simulated, not real phone captures.",
+      "sha256": "e06dbc07ef1743b688dbf7ce5e8965f962e6fcbb5e7cd04d3bc71dcf56dee348",
+      "bytes": 144135
+    },
+    {
+      "asset": "photo-preparation-ui.png",
+      "kind": "existing_project_capture",
+      "source_project_path": "output/photo_worksheets/public_photo_preparation.png",
+      "reused_on": "2026-11-09",
+      "notes": "Original capture date not asserted. Development/sample content only. Photo examples are simulated, not real phone captures.",
+      "sha256": "c3127a4150a15fde98a7dda78501c84dfadf2ff87b00023731e22e9d143b2adc",
+      "bytes": 49084
+    },
+    {
+      "asset": "photo-before-after.png",
+      "kind": "synthetic_fixture_comparison",
+      "source_project_path": "output/photo_worksheets/synthetic_before_after.png",
+      "reused_on": "2026-11-09",
+      "notes": "Original capture date not asserted. Development/sample content only. Photo examples are simulated, not real phone captures.",
+      "sha256": "d15a99d4f2cfc83ba2263ca0a8db737f6ea75b4b80a22fb22b8e9966d4bc4b7f",
+      "bytes": 279241
+    },
+    {
+      "asset": "python-lesson-app.png",
+      "kind": "existing_project_capture",
+      "source_project_path": "output/web_prototype/studio_home.png",
+      "reused_on": "2026-11-09",
+      "notes": "Original capture date not asserted. Development/sample content only. Photo examples are simulated, not real phone captures.",
+      "sha256": "1044bd720c50deb45c2d1460a80a38815bf69129375d6388ccfc9dfce198a49b",
+      "bytes": 63757
+    },
+    {
+      "asset": "python-character-studio.png",
+      "kind": "existing_project_capture",
+      "source_project_path": "output/character_studio/improvements/studio.png",
+      "reused_on": "2026-11-09",
+      "notes": "Original capture date not asserted. Development/sample content only. Photo examples are simulated, not real phone captures.",
+      "sha256": "8736229936c2090d049d18d55da1de1a32a1d954fa0749323ac4e16ef7782342",
+      "bytes": 112031
+    },
+    {
+      "asset": "popsicle-lesson.gif",
+      "kind": "silent_excerpt_from_recorded_browser_lesson",
+      "source_project_path": "output/natural_voice/garden_natural_narration.mp4",
+      "source_sha256": "36a57312adf4b82348dedf7ffba738943c5e679b366ec4fcbdf1eabfaafa6e40",
+      "start_seconds": 26,
+      "duration_seconds": 8,
+      "fps": 10,
+      "width": 900,
+      "notes": "Visual excerpt only; GIF contains no audio. Original worksheet popsicle artwork remains visible. Full narration is available in the live app.",
+      "sha256": "797b0302345d2f210f38bfed2d0058f8244d8eacf795768547ccb1481a9b2592",
+      "bytes": 1014889
+    }
+  ]
+}

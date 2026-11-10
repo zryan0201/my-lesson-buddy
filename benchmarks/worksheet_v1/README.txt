@@ -4,6 +4,16 @@
 
 A reproducible local evaluation toolkit for unfamiliar worksheet images. It builds a source-backed corpus, runs model probes without supplying labels, and produces per-case reports. It does not train a model or change the hosted application.
 
+<details>
+<summary><strong>Preview 20 source tasks from the corpus</strong></summary>
+
+<p>Actual source-image contact sheet, including clocks, geometry, money, missing numbers, and arithmetic. These web-source tasks are distinct from real phone photographs and retain the corpus's attribution terms.</p>
+<img src="../benchmarks/worksheet_v1/contact_5.jpg" width="760" alt="Twenty benchmark source tasks spanning different mathematics topics and visual representations.">
+
+</details>
+
+See the [visual tour](../docs/SHOWCASE.md#8-the-research-lab-evaluates-more-varied-worksheets) for context and the [evaluation guide](../docs/EVALUATION.md) for measured results.
+
 ## Start with the saved evidence
 
 No model is needed to inspect the existing results. Clone/download the repository, then open:

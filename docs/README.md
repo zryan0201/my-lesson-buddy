@@ -7,6 +7,7 @@
 | Your goal | Read in this order |
 | --- | --- |
 | Understand the idea and try it | [Project overview](../README.md) → [live demo](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site). |
+| See the implemented features | [Visual tour](SHOWCASE.md) → screenshots, recorded lesson excerpt, photo fixtures, and corpus examples. |
 | Run or develop the project | [Setup](SETUP.md) → [architecture](ARCHITECTURE.md) → the relevant module guide below. |
 | Assess what has been demonstrated | [Evaluation](EVALUATION.md) → [benchmark reproduction](../worksheet_benchmark/README.md) → saved per-case evidence. |
 | Explore provider integration | [Optional Gemini](OPTIONAL_GEMINI.md), including its disabled-by-default status and data boundary. |
