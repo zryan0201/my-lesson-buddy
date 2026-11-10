@@ -12,6 +12,8 @@ Local virtual environments, downloaded models, caches, `node_modules`, hosting i
 
 Start with the [main README](README.md). Use [setup options](docs/SETUP.md) to choose a runtime, [architecture](docs/ARCHITECTURE.md) to understand the pipeline, or [evaluation](docs/EVALUATION.md) to assess the evidence. Module guides cover the [browser website](web_site/README.md), [Character Studio](character_studio/README.md), [Python lesson generator](lesson_video/README.md), and [benchmark](worksheet_benchmark/README.md).
 
+The [project story](docs/PROJECT_STORY.md) adapts the capstone's caregiver problem and learner journey into a public product narrative. It distinguishes implemented features, team research directions, and benefits still to validate. Private presentation files and teammate artifacts are not included in the repository.
+
 The hosted demo is linked from the main README. Publishing source to GitHub does not redeploy that website. HTML research reports run after cloning/downloading the repository; GitHub displays their source.
 
 Preserve [third-party notices](THIRD_PARTY_NOTICES.md) and the worksheet corpus's attribution and use restrictions when copying or sharing material.

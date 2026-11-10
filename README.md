@@ -2,9 +2,29 @@
 
 **Turn a math question into a visual explanation starring a character a child creates.**
 
-My Lesson Buddy is a supervised K–2 learning prototype. Children draw or build a buddy, bring a worksheet or number question, and watch their character collect, carry, share, or count objects to explain the math. A grown-up checks the lesson before playback.
+My Lesson Buddy explores a familiar moment in parent-guided K–2 practice: a child has the worksheet, but needs help seeing what the mathematics means. We turn a reviewed question into a story in which a character the child creates performs the mathematical actions.
 
-[Try the live demo](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site) · [Visual tour](docs/SHOWCASE.md) · [Run locally](docs/SETUP.md) · [Technical architecture](docs/ARCHITECTURE.md) · [Evaluation results](docs/EVALUATION.md)
+[Try the live demo](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site) · [Problem and approach](docs/PROJECT_STORY.md) · [Visual tour](docs/SHOWCASE.md) · [Run locally](docs/SETUP.md) · [Technical architecture](docs/ARCHITECTURE.md) · [Evaluation results](docs/EVALUATION.md)
+
+## The problem we are exploring
+
+When a child gets stuck, the caregiver may need to interpret the page, choose an explanation, and guide another attempt. A worksheet can show five popsicles and two more without making the change involved in addition obvious to the learner.
+
+Our initial use case is **caregiver-supported practice at home**. We want to make a useful explanation easier to prepare while keeping the adult involved. How often families face this problem, how much time we could save, and whether they would pay are customer hypotheses we still need to test.
+
+## Our approach
+
+**The child's own buddy acts out a checked explanation using objects connected to the original question.**
+
+| Design choice | How it addresses the problem |
+| --- | --- |
+| Keep the worksheet recognizable | Use reviewed source-object cutouts, so a popsicle question can stay a popsicle story. |
+| Let the child create the actor | Draw or customize the buddy that carries, gives, points, and traces during the explanation. |
+| Make each mathematical change visible | Preserve the starting group and move one item at a time, with counting tied to completed actions. |
+| Check the question before the story | Compute the answer in code and require adult review of the interpretation and representation. |
+| Offer different story settings | Change the world while preserving the reviewed question and mathematical steps. |
+
+This combination is our product thesis. We have implemented the browser workflow; its effects on ownership, understanding, and repeat use remain to be tested. The [project story](docs/PROJECT_STORY.md) explains the educational rationale, the longer-term feedback loop, and what success would mean.
 
 ## See it in action
 
@@ -35,18 +55,6 @@ My Lesson Buddy is a supervised K–2 learning prototype. Children draw or build
 4. **Watch and explore.** The character performs the mathematical actions in a narrated story. Children can replay the explanation or download the video.
 
 For `4 + 3`, a buddy can carry three objects into an existing group of four, then count the seven objects together. Worksheet pictures can become the story props when they can be separated clearly. Pure number questions can use story stars to make the quantities visible.
-
-## What makes the prototype distinctive
-
-| Feature | What it adds |
-| --- | --- |
-| Characters participate in the math | The child's buddy collects, carries, gives, points, and traces during the explanation. |
-| A connection to the original worksheet | Reviewed object cutouts can preserve the same popsicles, dots, or other artwork from the question. |
-| Four story worlds | Garden Picnic, Maker Workshop, Ocean Discovery, and Moon Station provide different settings around the same mathematical steps. |
-| An explicit review step | Adults check the interpretation and representation before a lesson is prepared. |
-| Local processing in the hosted experience | Pictures, characters, optional reading, and video recording are handled in the visitor's browser. |
-
-These are implemented design features. Their effect on engagement, visual fatigue, or learning outcomes has not been measured with children.
 
 ## What works today
 
@@ -118,7 +126,8 @@ Normalization reuses the original responses; it changes allowed output formattin
 1. Improve missing-context detection and the consistency of reader outputs.
 2. Independently review labels and add genuine phone photos and handwriting.
 3. Extend teaching scenes with ten-frames, making ten, and place-value representations.
-4. Evaluate broader teaching strategies and child usability before making outcome claims.
+4. Connect the planned teaching/verification/correction branches to the reviewed worksheet and created character.
+5. Add another attempt and a new transfer problem, then evaluate understanding, adult support, and repeat use.
 
 New uploads do not automatically retrain the models. Fine-tuning and broader lesson support are separate development steps.
 

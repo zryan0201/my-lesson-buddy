@@ -1,8 +1,10 @@
 # Architecture and review boundaries
 
-[Project overview](../README.md) · [Setup](SETUP.md) · [Evaluation](EVALUATION.md)
+[Project overview](../README.md) · [Problem and approach](PROJECT_STORY.md) · [Setup](SETUP.md) · [Evaluation](EVALUATION.md)
 
 My Lesson Buddy has two application runtimes and a separate evaluation lab. Each application turns a reviewed, supported question into an authored sequence of teaching actions.
+
+The product goal is a usable explanation for caregiver-supported practice. Keeping source objects recognizable, making the character perform the operation, and freezing reviewed quantities are the technical choices behind that goal. The [project story](PROJECT_STORY.md) explains the intended value and the evidence still needed.
 
 ## The common lesson pipeline
 

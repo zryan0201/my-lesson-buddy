@@ -1,6 +1,8 @@
 # A visual tour of My Lesson Buddy
 
-[Project overview](../README.md) · [Live demo](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site) · [Setup](SETUP.md) · [Evaluation](EVALUATION.md)
+[Project overview](../README.md) · [Problem and approach](PROJECT_STORY.md) · [Live demo](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site) · [Setup](SETUP.md) · [Evaluation](EVALUATION.md)
+
+This tour follows the home-practice scenario behind our pitch: a caregiver wants to help a child understand the question already on their worksheet. Our approach connects that question to visible mathematical actions performed by a buddy the child helps create.
 
 These are actual application screens, recorded lesson frames, and project research fixtures. The fresh browser screenshots were captured on November 9, 2026. Reused development captures are identified below. Demo artwork is project sample content, not a private child's submission.
 
@@ -11,6 +13,8 @@ These are actual application screens, recorded lesson frames, and project resear
 The hosted experience starts with character creation and continues through a reviewed lesson. Visitors do not need a local Python server or API key. [Open the studio](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site).
 
 ## 2. Children can build or draw a character
+
+The child has a creative role before the explanation begins. Their drawing or parts choices determine the buddy that participates in the mathematics. Whether this creative ownership improves learning is a hypothesis for a supervised study.
 
 ### Mix original parts
 
@@ -40,7 +44,7 @@ The adult review presents the computed answer and the seven original cutouts. Th
 
 ![Actual lesson playback with Nova carrying one original worksheet popsicle while six are already in the wagon.](images/lesson-playback.jpg)
 
-The character fetches, carries, and deposits the original objects. Stable object identities and a shared scene/audio timeline support replay and video export.
+Five objects form the starting group. The character fetches and deposits two more, one at a time, and counting follows each delivery. The picture, change in quantity, and equation stay connected. Stable object identities and a shared scene/audio timeline support replay and video export.
 
 ![Animated excerpt showing two popsicles being transferred into the starting group of five.](images/popsicle-lesson.gif)
 
@@ -90,4 +94,8 @@ The local app connects a Streamlit screen to the Python lesson service. Picture 
 
 </details>
 
-[Character Studio guide](../character_studio/README.md) · [Media source notes](images/README.md)
+## 10. The next learning step
+
+The pitch's intended journey continues with help that responds to the learner's answer, another attempt, and a new question. A separate team prototype explored teaching, verification, and correction branches; these are not integrated into the hosted browser flow yet. The learning goal is for the child to explain what changed in 5+2 and use the idea on a new problem such as 4+2.
+
+[Read the product thesis and learning hypotheses](PROJECT_STORY.md) · [Character Studio guide](../character_studio/README.md) · [Media source notes](images/README.md)

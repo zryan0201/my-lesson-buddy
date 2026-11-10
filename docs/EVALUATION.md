@@ -4,6 +4,8 @@
 
 Evaluation covers different questions: whether the software preserves a lesson, whether a model reads a worksheet, and whether the product helps children learn. Results in one category do not establish the others.
 
+The [product hypotheses](PROJECT_STORY.md#what-success-would-mean) concern caregiver preparation effort, a child's explanation and transfer, creative ownership, and repeat use. The current engineering and reading results below do not establish those benefits.
+
 ## Automated software checks
 
 At the initial public repository publication, the browser suite passed **131 tests**. The Python suite ran **250 tests**, completed successfully, and skipped four. The browser build also verified 317 narration assets. These counts describe that run; use the commands below for the current checkout.

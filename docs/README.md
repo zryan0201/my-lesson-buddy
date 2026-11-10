@@ -7,6 +7,7 @@
 | Your goal | Read in this order |
 | --- | --- |
 | Understand the idea and try it | [Project overview](../README.md) → [live demo](https://my-lesson-buddy-studio.leftcloak4.chatgpt.site). |
+| Understand the problem and product thesis | [Problem and approach](PROJECT_STORY.md) → caregiver use case, design rationale, future learning loop, and hypotheses to test. |
 | See the implemented features | [Visual tour](SHOWCASE.md) → screenshots, recorded lesson excerpt, photo fixtures, and corpus examples. |
 | Run or develop the project | [Setup](SETUP.md) → [architecture](ARCHITECTURE.md) → the relevant module guide below. |
 | Assess what has been demonstrated | [Evaluation](EVALUATION.md) → [benchmark reproduction](../worksheet_benchmark/README.md) → saved per-case evidence. |
