@@ -1,5 +1,7 @@
 # Synthetic camera-condition fixtures
 
+[Browser guide](../../../README.md) · [Evaluation summary](../../../../docs/EVALUATION.md)
+
 These are deterministic simulations built from the project's original popsicle
 worksheet and yellow-dot worksheet. They are **not real phone photographs** and
 do not establish classroom or device accuracy.
@@ -19,5 +21,4 @@ The clean originals stay byte-for-byte unchanged through lighting correction.
 
 Run `node scripts/check_photo_fixtures.mjs` from the `web_site` directory to write
 the measured corner, lighting and extraction report under
-`../output/photo_worksheets/`. The local generation recipe and visual comparison
-are saved there as `make_photo_fixtures.py` and `synthetic_before_after.png`.
+`../output/photo_worksheets/`. The checked-in JSONs can be verified without a generation step. The earlier generation recipe and visual comparison were local research artifacts and are not included in the public repository.

@@ -1,94 +1,134 @@
 # Worksheet Reading Lab
 
-This is a local evaluation module. It does not change, train, or publish the child-facing Lesson Buddy app.
+[Project overview](../README.md) · [Results and limitations](../docs/EVALUATION.md) · [Application architecture](../docs/ARCHITECTURE.md)
 
-## What is included
+A reproducible local evaluation toolkit for unfamiliar worksheet images. It builds a source-backed corpus, runs model probes without supplying labels, and produces per-case reports. It does not train a model or change the hosted application.
 
-- **100 unique source task images**, selected from 23 PDFs: 80 England KS1 assessment items and 20 US Kindergarten/Grade 1/Grade 2 Illustrative Mathematics tasks. Native curriculum grades remain separate. They are not 100 photographs or 100 independent documents.
-- **22 curator-assigned content topics**: arithmetic and missing numbers, comparison, counting, place value, fractions, measurement, time, money, data, patterns, sorting, odd/even, arrays, equal sharing, number lines, geometry, word problems, and missing-context controls.
-- Equations, grayscale cartoons, colored drawings, button photographs, base-ten diagrams, clocks, coins, bar charts, tally tables, pictograms, shaded shapes, activity instructions, and multi-part questions.
-- **30 extra synthetic stress images**, paired to 10 development arithmetic items: perspective, shadow/blur, and rendered handwriting imitation. No real child handwriting or phone-photo generalization is established.
-- Source URLs, archive members, source file hashes, original PDF pages/crops, native grades, licenses, answer references and annotation limitations.
+## Start with the saved evidence
 
-The whole-source-PDF split is **67 development / 33 test**. Do not tune prompts on the test labels. This first baseline evaluates both splits; it is a baseline, not an untouched final certification set. Public tasks may have appeared in pretraining. A second teacher has not independently verified the annotations.
+No model is needed to inspect the existing results. Clone/download the repository, then open:
 
-## Open the review pages
+| Local file | Contents |
+| --- | --- |
+| `output/worksheet_benchmark/index.html` | Results overview and links to every baseline. |
+| `benchmarks/worksheet_v1/index.html` | Filterable source images, annotations, and answer references. |
+| `output/worksheet_benchmark/qwen_reading_v1/report.html` | Strict broad-reading outputs and mismatches. |
+| `output/worksheet_benchmark/qwen_reading_v1_normalized/report.html` | Separate format-normalization diagnostic. |
 
-Open `benchmarks/worksheet_v1/index.html` directly in a browser. It works offline, lets an adult filter topics/grades/splits, and shows source images alongside labels and official answer references. It deliberately contains labels; **never send this page to a model**.
+GitHub shows HTML source rather than running these pages. The [evaluation guide](../docs/EVALUATION.md) presents the key results directly on GitHub. The label catalogue is for human review; never pass it to a model.
 
-After an evaluation, open `output/worksheet_benchmark/qwen_reading_v1/report.html` to inspect outputs and mismatches. Results are not a claim about the web app's SmolVLM reader. The experimental local broad-reading probe uses the locally cached Qwen3-VL 4B model.
+## Dataset and evaluation scope
 
-## Rebuild and test in VS Code
+| Set | Images | Independent source questions | Scope |
+| --- | --- | --- | --- |
+| Primary corpus | 100 | 100 curated task items from 23 PDFs | 22 content topics; 67 development / 33 test. |
+| Synthetic stress set | 30 | Reuses 10 development questions | Perspective, shadow/blur, and simulated handwriting font. |
+| Visible-count audit | Reuses 8 primary images | Reuses those same 8 items | Nine partially labeled object categories. |
 
-Open this project folder, then use **Terminal → New Terminal**. On this Mac:
+The primary sources are 80 England KS1 test/practice items and 20 US K/1/2 Illustrative Mathematics tasks. Native curriculum grades remain separate. Images include equations, illustrations, button photographs, coins, clocks, shapes, number lines, charts, tables, and activity instructions.
 
-```bash
+The corpus has **zero real phone photographs** and no real child handwriting. Source PDFs stay in one split, including any derived variants. The first baseline inspected both splits; use a fresh held-out set after development informed by these results. Public tasks may have appeared in pretraining, and annotations are not independently double-reviewed by teachers.
+
+## 1. Prepare the data/scoring environment
+
+Run commands from the **repository root**. On the tested Mac setup:
+
+```sh
+python3.12 -m venv .venv-benchmark
+.venv-benchmark/bin/python -m pip install -r requirements-benchmark.txt
+.venv-benchmark/bin/python -m worksheet_benchmark validate
+.venv-benchmark/bin/python -m unittest tests.test_worksheet_benchmark -v
+```
+
+This environment needs Pillow, NumPy, and PyMuPDF. It does not run the vision model. Building contact sheets uses Arial when available; handwriting imitation uses the Mac Marker Felt font and drawn math symbols. Font files are not distributed.
+
+## 2. Rebuild data when needed
+
+The checked-in corpus is ready to inspect. To reconstruct it from the curated public sources:
+
+```sh
 .venv-benchmark/bin/python -m worksheet_benchmark download
 .venv-benchmark/bin/python -m worksheet_benchmark build
 .venv-benchmark/bin/python -m worksheet_benchmark.variants
 .venv-benchmark/bin/python -m worksheet_benchmark.object_counts build
 .venv-benchmark/bin/python -m worksheet_benchmark validate
-.venv-benchmark/bin/python -m unittest tests.test_worksheet_benchmark -v
 ```
 
-The download command fetches only the curated sources in `sources.json`, rather than crawling sites. Rebuilding data uses `requirements-benchmark.txt` (Pillow, NumPy, PyMuPDF). On a fresh Mac create an environment with Python 3.12, then install that file. The contact sheets use Arial when available; the handwriting imitation uses the Mac Marker Felt font and drawn mathematical symbols. Font files are not redistributed.
+Downloading uses the enumerated URLs in `sources.json`, not a site crawler. Source URLs, archive members, PDF hashes/pages/crops, licenses, native grades, and answer references are recorded. Teacher solutions/commentary are omitted from model images; student-facing worked examples may remain.
 
-Run the already installed local model using the original MLX environment:
+## 3. Run a new local reading evaluation
 
-```bash
-.venv/bin/python -m worksheet_benchmark.run --inputs benchmarks/worksheet_v1/inputs.json --out output/worksheet_benchmark/qwen_reading_v1
-.venv-benchmark/bin/python -m worksheet_benchmark score
+Install the [Mac vision environment](../docs/SETUP.md#python-lesson-app-on-an-apple-silicon-mac) and explicitly download its model once. Use `.venv` for inference and `.venv-benchmark` for scoring. Choose a **new output directory** to preserve the published baselines:
+
+```sh
+.venv/bin/python -m worksheet_benchmark.run --inputs benchmarks/worksheet_v1/inputs.json --out output/worksheet_benchmark/my_reading_run
+.venv-benchmark/bin/python -m worksheet_benchmark score --predictions output/worksheet_benchmark/my_reading_run/predictions.jsonl --out output/worksheet_benchmark/my_reading_run
 ```
 
-Use `--limit 3` for a small smoke run; running the same command again without a limit resumes. A model/prompt/input-hash change requires a new output folder. Missing/invalid/runtime-error results remain in the denominator. The local model requires a compatible Apple Silicon GPU and the already downloaded weights; the runner does not call a paid API or download a model.
+Add `--limit 3` for a smoke run. Repeating the same command without a limit resumes. A changed model, prompt, or input hash requires another output directory. Missing results, malformed output, and runtime errors stay in the denominator. Inference needs the local Apple Silicon GPU and cached weights; it does not use a paid API or download a model.
 
-Evaluate the separate stress set:
+The optional formatting diagnostic reuses the saved outputs:
 
-```bash
-.venv/bin/python -m worksheet_benchmark.run --inputs benchmarks/worksheet_v1/stress/inputs.json --out output/worksheet_benchmark/qwen_stress_v1
-.venv-benchmark/bin/python -m worksheet_benchmark score --manifest benchmarks/worksheet_v1/stress/manifest.json --predictions output/worksheet_benchmark/qwen_stress_v1/predictions.jsonl --out output/worksheet_benchmark/qwen_stress_v1
+```sh
+.venv-benchmark/bin/python -m worksheet_benchmark.normalize --source output/worksheet_benchmark/my_reading_run --out output/worksheet_benchmark/my_reading_run_normalized
+.venv-benchmark/bin/python -m worksheet_benchmark score --predictions output/worksheet_benchmark/my_reading_run_normalized/predictions.jsonl --out output/worksheet_benchmark/my_reading_run_normalized
 ```
 
-## What the scores mean
+It only normalizes number-string and known operator-glyph formatting. It does not repair malformed JSON, supply labels, change meanings, or run inference again. Keep it separate from strict results.
 
-1. **Topic label match**: agreement with a curator's single main topic. Some multi-step tasks legitimately span topics; inspect mismatches rather than assuming the model is wrong.
-2. **Literal equation transcription**, on 26 manually transcribed equation items: operands, operator and unknown position must be preserved. Solving a blank does not earn transcription credit. Reversing `?=37+51` to `37+51=?` is allowed; moving an unknown operand is not.
-3. **Printed operator set**, on the same equation subset. A fraction bar is not counted as a printed division sign.
-4. **Partial printed-number token recall**: non-equation labels come from selectable PDF text. Diagram-only numbers may be absent from the targets. Additional valid diagram numbers are not false positives. This does **not** measure object counts, exhaustive OCR, or arithmetic reasoning accuracy.
-5. **Context detection**, including an intentionally incomplete aural-question illustration. Runtime errors and malformed JSON are not correct refusals.
+## 4. Evaluate the additional probes
 
-Open-ended answers, task summaries, object counts, diagram relationships and complete task understanding need human review. The current video renderer's narrow supported range is a separate label. Reading a multiplication or money task does not make the renderer able to teach it.
+### Synthetic conditions
 
-The strict baseline retains valid JSON that violates the response schema as a format failure. This deliberately exposes interface reliability as well as perception. Raw outputs are saved so future normalization or prompt changes can be evaluated transparently, without silently rewriting the baseline.
-
-An explicitly separate engineering diagnostic can normalize JSON number values into strings and known mathematical operator glyphs into ASCII. It uses only original output, never labels, and does not repair malformed JSON:
-
-```bash
-.venv-benchmark/bin/python -m worksheet_benchmark.normalize
-.venv-benchmark/bin/python -m worksheet_benchmark score --predictions output/worksheet_benchmark/qwen_reading_v1_normalized/predictions.jsonl --out output/worksheet_benchmark/qwen_reading_v1_normalized
+```sh
+.venv/bin/python -m worksheet_benchmark.run --inputs benchmarks/worksheet_v1/stress/inputs.json --out output/worksheet_benchmark/my_stress_run
+.venv-benchmark/bin/python -m worksheet_benchmark score --manifest benchmarks/worksheet_v1/stress/manifest.json --predictions output/worksheet_benchmark/my_stress_run/predictions.jsonl --out output/worksheet_benchmark/my_stress_run
 ```
 
-## Visible-object-count subset
+Compare transformed views with the **same 10 originals**, not with the 100-image overall rate. Variants retain their base IDs and development split. See the saved paired comparison in `output/worksheet_benchmark/paired_robustness.csv`.
 
-Eight of the same 100 source pictures have nine curator-counted target categories (bears, pencils, toy cars, visible oranges, cat stickers, smiley/star stickers, purses and clocks). This is a small partial target-category audit, not exhaustive object labels for all 100 pictures. A different fixed, generic prompt asks the model to count visible objects, without receiving the target names or counts. Label aliases are used only after inference. The orange target is 21 visible oranges; the original task's hidden-oranges answer is a different question.
+### Visible-object counts
 
-```bash
-.venv/bin/python -m worksheet_benchmark.object_counts run
-.venv-benchmark/bin/python -m worksheet_benchmark.object_counts score
-.venv-benchmark/bin/python -m worksheet_benchmark.object_counts normalize
-.venv-benchmark/bin/python -m worksheet_benchmark.object_counts score --out output/worksheet_benchmark/qwen_object_counts_v1_normalized
+```sh
+.venv/bin/python -m worksheet_benchmark.object_counts run --out output/worksheet_benchmark/my_count_run
+.venv-benchmark/bin/python -m worksheet_benchmark.object_counts score --out output/worksheet_benchmark/my_count_run
+.venv-benchmark/bin/python -m worksheet_benchmark.object_counts normalize --source output/worksheet_benchmark/my_count_run --out output/worksheet_benchmark/my_count_run_normalized
+.venv-benchmark/bin/python -m worksheet_benchmark.object_counts score --out output/worksheet_benchmark/my_count_run_normalized
 ```
 
-Count normalization only wraps a singleton object record into a list; it is separately reported and does not invent omitted categories or change counts. Strict results and raw outputs are preserved. Current strict category/count target matches are 2/9; the singleton-format diagnostic matches 7/9. The model returned 16 for 21 visible oranges and omitted the star sticker target. These source labels and synonym choices still need independent review.
+This probe receives a generic visible-count prompt without target names or counts. The nine annotated categories cover bears, pencils, toy cars, oranges, cat stickers, smiley/star stickers, purses, and clocks. Evaluation aliases are applied only after inference. Extra unlabelled categories are not false positives.
 
-The shared [results overview](../output/worksheet_benchmark/index.html) links the strict, normalized and synthetic-condition reports. Rebuild it after completing all runs using `python -m worksheet_benchmark.summary`.
+The orange target is **21 visible oranges**, distinct from the source task's hidden-oranges answer. Object normalization only wraps a singleton group into a list; it cannot invent an omitted category or change a count. These partial labels and synonyms still need independent review.
 
-## Labels and model separation
+## How scoring works
 
-`inputs*.json` contains only opaque ID, image path and pixel SHA256. The reader receives **only image bytes plus one generic frozen prompt**. Curation files, labels, solutions, original filenames, grades and answer references never reach inference. The model output is parsed as data and never executed. Tests check path escapes, changed pixels, duplicate IDs, source-group leakage, unknown positions, and error denominators.
+| Measure | Boundary |
+| --- | --- |
+| Main-topic match | One curator-assigned label; multi-topic disagreements need review. |
+| Complete equation transcription | 26 exact labels; preserve operands, operator, and unknown position. An invented answer does not earn credit. |
+| Printed operator set | Same equation subset; a fraction bar is not counted as a printed division sign. |
+| Printed-number recall | Partial selectable-PDF-text targets; not exhaustive OCR or object counts. Extra diagram numbers are not penalized. |
+| Context detection | An incomplete aural-question control; an error is not a correct refusal. |
+| Visible category/count match | Nine partial targets across eight reused images; not full question-answer accuracy. |
 
-## Source/use boundary
+Open-ended answers, task summaries, clock readings, diagram relationships, and complete understanding need human scoring. Current video support is a separate label; reading money or multiplication does not make the renderer able to teach it.
 
-The 20 Illustrative Mathematics tasks are CC BY-NC-SA 4.0; STA material is recorded with its OGL attribution and copyright references. Student task crops omit teacher solution/commentary sections, while retaining student-facing worked examples where present. The corpus is for local **noncommercial academic evaluation**. It has not been deployed to the public child-facing website. Keep `ATTRIBUTION.txt`, per-case provenance and source notices with copies and adaptations.
+## Files and isolation
 
-Next data work: independent teacher review, exhaustive diagram/object-count labels on a smaller task subset, more publishers, genuine consented phone captures, and a fresh held-out set before fine-tuning. Collecting these examples does not make a pretrained model learn automatically.
+| Files | Role |
+| --- | --- |
+| `inputs*.json` | Opaque IDs, image paths, and pixel hashes only. |
+| `manifest.json`, `labels.csv`, `object_counts.json` | Human/evaluation annotations, provenance, and answer references. |
+| `reading.py`, `run.py` | Frozen broad-reading prompt, strict parsing, hash-bound inference/resume. |
+| `scoring.py`, `normalize.py`, `object_counts.py` | Separate scoring and explicit diagnostic transformations. |
+| `summary.py`, `report.py`, `review.py` | Results overview, per-case reports, and label-review UI. |
+
+The model receives only image pixels and one fixed generic prompt. Source filenames, grades, labels, and answers stay outside its context. Model output is treated as data. Tests check path escapes, tampered pixels, duplicate IDs, source-split leakage, unknown positions, and error denominators.
+
+The delivered overview is tied to the named published baseline folders. Rebuild it with `python -m worksheet_benchmark.summary` only after those runs are complete; custom runs have their own per-case reports. `python -m worksheet_benchmark.package` packages data/results without weights or environments.
+
+## Source terms and next steps
+
+Preserve `benchmarks/worksheet_v1/ATTRIBUTION.txt` and all per-case provenance. Illustrative Mathematics tasks and adaptations retain CC BY-NC-SA 4.0 terms; STA material retains its OGL attribution. The mixed corpus is for **noncommercial academic evaluation**, separate from the child-facing website.
+
+Next: independently review annotations, add more complete object/diagram labels and consented phone captures, and create a new holdout before tuning. Collecting worksheets does not automatically retrain a pretrained model.

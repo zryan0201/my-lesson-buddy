@@ -1,5 +1,7 @@
 # Experimental browser worksheet reader
 
+[Project overview](../README.md) · [Browser guide](README.md) · [Evaluation summary](../docs/EVALUATION.md)
+
 The unified Site can make a real, optional pretrained-model request entirely in the visitor's browser. This is a different, substantially smaller model than the Mac prototype's Qwen3-VL 4B. No comparable worksheet accuracy is claimed.
 
 ## Pinned sources
