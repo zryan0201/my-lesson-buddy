@@ -7,10 +7,12 @@ import {suggestWorksheetObjects,cropWorksheetObject,normalizeWorksheetObjects,pr
 import {processWorksheetPhoto} from './modules/photo.js';
 import {validateCorners} from './modules/photo-geometry.js';
 import {ADVENTURES,suggestAdventure} from './modules/adventures.js';
+import {buddyAIStatus,generateBuddy,disposeBuddyAI} from './modules/buddy-ai.js';
+import {validateBuddyIdea,describeDesign} from './modules/buddy-design.js';
 
 const $=id=>document.getElementById(id);
 const clone=value=>structuredClone(value);
-const state={step:'character',mode:'build',design:clone(PRESETS[0]?.design||DEFAULT_DESIGN),name:'Nova',drawing:null,live:null,motion:'idle',library:[],selected:null,picture:null,pictureOrigin:null,pictureLoading:false,pictureVersion:0,readerSupported:false,reading:null,review:null,player:null,preparing:null,exporting:null,savedVideoURL:null,aiLoaded:false,previewVersion:0};
+const state={step:'character',mode:'build',creationTab:'build',describing:null,describeVersion:0,describeProposal:null,buddyAISupported:false,buddyAILoaded:false,design:clone(PRESETS[0]?.design||DEFAULT_DESIGN),name:'Nova',drawing:null,live:null,motion:'idle',library:[],selected:null,picture:null,pictureOrigin:null,pictureLoading:false,pictureVersion:0,readerSupported:false,reading:null,review:null,player:null,preparing:null,exporting:null,savedVideoURL:null,aiLoaded:false,previewVersion:0};
 let pad,draftTimer,noticeTimer,cropView=null,photoView=null;
 const EXAMPLES={addition:{image:'popsicles.png',spec:{type:'addition',a:5,b:2},label:'Popsicle math · included example'},subtraction:{image:'stars.svg',spec:{type:'subtraction',a:8,b:3},label:'Stars to share · included example'},counting:{image:'counting.svg',spec:{type:'counting',count:6},label:'Count with me · included example'},shape:{image:'triangle.svg',spec:{type:'shape',shape:'triangle',shape_task:'sides'},label:'Shape explorer · included example'},photo:{image:'worksheet-photo-demo.jpg',spec:{type:'addition',a:5,b:2},label:'Simulated worksheet photo · included example',photo:true}};
 let adventureChoice='auto',gentleMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -32,7 +34,41 @@ async function updatePreview(){
   if(!character.image&&character.source==='drawing'){state.live=null;return;}
   try{await prepareCharacter(character);if(version===state.previewVersion)state.live=character;}catch(error){if(version===state.previewVersion){state.live=null;notice(error.message,true);}}
 }
-function setMode(mode){state.mode=mode;for(const option of ['draw','build']){$(`mode-${option}`).setAttribute('aria-selected',String(option===mode));$(`${option}-panel`).hidden=option!==mode;}void updatePreview();rememberDraft();}
+function setMode(mode){
+  if(!['build','draw','describe'].includes(mode))return;
+  if(mode!=='describe')cancelBuddyDescription();
+  state.creationTab=mode;if(mode!=='describe')state.mode=mode;
+  for(const option of ['draw','build','describe']){const selected=option===mode;$(`mode-${option}`).setAttribute('aria-selected',String(selected));$(`mode-${option}`).tabIndex=selected?0:-1;$(`${option}-panel`).hidden=!selected;}
+  void updatePreview();rememberDraft();
+}
+function updateDescribeControls(){
+  const busy=Boolean(state.describing);$('describe-generate').disabled=busy||!state.buddyAISupported;$('describe-cancel').hidden=!busy;$('buddy-idea').disabled=busy;
+  for(const button of document.querySelectorAll('[data-buddy-idea]'))button.disabled=busy;
+  $('describe-generate').textContent=busy?'Imagining your buddy…':state.buddyAILoaded?'Imagine my buddy':'Download AI & imagine my buddy';
+}
+function cancelBuddyDescription(message){
+  ++state.describeVersion;state.describing?.abort();state.describing=null;
+  $('describe-progress-wrap').hidden=true;updateDescribeControls();
+  if(message)$('describe-status').textContent=message;
+}
+function changedBuddyIdea(){
+  cancelBuddyDescription();state.describeProposal=null;$('describe-result').hidden=true;$('describe-status').textContent='';$('buddy-idea-count').textContent=`${[...$('buddy-idea').value].length} / 320`;
+}
+async function imagineBuddy(){
+  let idea;try{idea=validateBuddyIdea($('buddy-idea').value);}catch(error){$('describe-status').textContent=error.message;$('buddy-idea').focus();return;}
+  if(state.describing)return;
+  const controller=new AbortController(),version=++state.describeVersion;state.describing=controller;state.describeProposal=null;
+  const current=()=>state.describeVersion===version&&state.describing===controller&&state.creationTab==='describe'&&state.step==='character';
+  $('describe-result').hidden=true;$('describe-status').textContent='Getting local AI ready…';$('describe-progress-wrap').hidden=false;$('describe-progress').removeAttribute('value');updateDescribeControls();
+  try{
+    const proposed=await generateBuddy(idea,{signal:controller.signal,onProgress:event=>{if(!current())return;$('describe-status').textContent=event.message;if(event.stage==='generating'){state.buddyAILoaded=true;$('describe-progress-wrap').hidden=true;}else if(Number.isFinite(event.progress))$('describe-progress').value=event.progress;}});
+    const design=normalizeDesign({...proposed,skin_color:state.design.skin_color});
+    const preview=await characterPreview({source:'builder',name:'My buddy',design},{width:240,height:320});
+    if(!current())return;
+    state.describeProposal=design;$('describe-preview').src=preview;$('describe-summary').textContent=describeDesign(design);$('describe-result').hidden=false;$('describe-status').textContent='Your editable proposal is ready. Check how it matches your idea.';
+  }catch(error){if(current())$('describe-status').textContent=error.name==='AbortError'?'Cancelled. Your earlier buddy is safe.':error.message;}
+  finally{if(current()){state.describing=null;$('describe-progress-wrap').hidden=true;updateDescribeControls();}}
+}
 function syncDesignControls(){for(const [field] of Object.entries(OPTIONS))$(`part-${field}`).value=state.design[field];for(const field of ['primary_color','secondary_color','accent_color','skin_color'])$(`color-${field}`).value=state.design[field];$('buddy-name').value=state.name;void updatePreview();}
 function populateBuilder(){
   for(const [field,choices] of Object.entries(OPTIONS)){
@@ -76,6 +112,7 @@ function go(step){
   if(['review','watch'].includes(step)&&!state.review){notice('Check the worksheet question first.');step='worksheet';}
   if(step==='watch'&&!state.player&&!state.preparing){notice('A grown-up needs to check the lesson before making the video.');step='review';}
   if(step!=='worksheet'){state.reading?.abort();disposeWorksheetReader();}
+  if(step!=='character'){cancelBuddyDescription();disposeBuddyAI();state.buddyAILoaded=false;updateDescribeControls();}
   if(step!=='watch'&&state.player?.playing)state.player.pause();
   state.step=step;document.querySelectorAll('[data-screen]').forEach(section=>section.hidden=section.dataset.screen!==step);
   const order=['character','worksheet','review','watch'];for(const button of document.querySelectorAll('[data-go]')){button.classList.toggle('active',button.dataset.go===step);button.classList.toggle('done',order.indexOf(button.dataset.go)<order.indexOf(step));if(button.dataset.go===step)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');}
@@ -389,7 +426,10 @@ function setupEvents(){
   cropCanvas.addEventListener('pointerup',event=>{if(!cropView?.drag||cropView.drag.pointerId!==event.pointerId)return;if(cropView.rect.width<.01||cropView.rect.height<.01)cropView.rect=cropView.drag.previous;cropView.drag=null;if(cropCanvas.hasPointerCapture(event.pointerId))cropCanvas.releasePointerCapture(event.pointerId);paintObjectCrop();});
   cropCanvas.addEventListener('pointercancel',event=>{if(cropView?.drag?.pointerId===event.pointerId){cropView.rect=cropView.drag.previous;cropView.drag=null;paintObjectCrop();}});
   for(const key of ['x','y','width','height'])$(`crop-${key}`).addEventListener('input',()=>{if(!cropView||state.review?.objectsLoading)return;const text=$(`crop-${key}`).value.trim();if(text==='')return;const r={...cropView.rect},value=Number(text)/100;if(!Number.isFinite(value))return;r[key]=Math.max(key==='x'||key==='y'?0:.01,Math.min(key==='x'||key==='y'?.99:1,value));r.width=Math.min(r.width,1-r.x);r.height=Math.min(r.height,1-r.y);cropView.rect=r;paintObjectCrop();});
-  for(const mode of ['draw','build'])$(`mode-${mode}`).addEventListener('click',()=>setMode(mode));
+  const modes=['build','draw','describe'];for(const mode of modes){const tab=$(`mode-${mode}`);tab.addEventListener('click',()=>setMode(mode));tab.addEventListener('keydown',event=>{let index=modes.indexOf(mode);if(event.key==='ArrowRight')index=(index+1)%modes.length;else if(event.key==='ArrowLeft')index=(index+modes.length-1)%modes.length;else if(event.key==='Home')index=0;else if(event.key==='End')index=modes.length-1;else return;event.preventDefault();setMode(modes[index]);$(`mode-${modes[index]}`).focus();});}
+  $('buddy-idea').addEventListener('input',changedBuddyIdea);$('describe-generate').addEventListener('click',()=>void imagineBuddy());$('describe-cancel').addEventListener('click',()=>cancelBuddyDescription('Cancelled. Your earlier buddy is safe.'));
+  for(const button of document.querySelectorAll('[data-buddy-idea]'))button.addEventListener('click',()=>{$('buddy-idea').value=button.dataset.buddyIdea;changedBuddyIdea();$('buddy-idea').focus();});
+  $('describe-apply').addEventListener('click',()=>{if(!state.describeProposal)return;state.design=normalizeDesign({...state.describeProposal,name:safePreviewName()});syncDesignControls();setMode('build');state.describeProposal=null;$('describe-result').hidden=true;rememberDraft();notice('Your idea is ready to edit. Change any parts or colors, then save your buddy.');$('part-body_type').focus();});
   document.querySelectorAll('[data-go]').forEach(button=>button.addEventListener('click',()=>go(button.dataset.go)));
   $('buddy-name').addEventListener('input',event=>{state.name=event.target.value;void updatePreview();rememberDraft();});
   document.querySelectorAll('[data-motion]').forEach(button=>button.addEventListener('click',()=>{state.motion=button.dataset.motion;document.querySelectorAll('[data-motion]').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-pressed',String(b===button));});}));
@@ -436,7 +476,7 @@ function setupEvents(){
   $('play-video').addEventListener('click',()=>state.player?.play().catch(error=>notice(error.message,true)));$('pause-video').addEventListener('click',()=>state.player?.pause());$('restart-video').addEventListener('click',()=>{state.player?.stop();state.player?.play().catch(error=>notice(error.message,true));});$('lesson-seek').addEventListener('input',()=>state.player?.seek(state.player.plan.duration*Number($('lesson-seek').value)/100));
   $('export-video').addEventListener('click',exportLesson);$('cancel-export').addEventListener('click',()=>state.exporting?.abort());$('new-lesson').addEventListener('click',()=>{state.player?.stop();invalidateReview();go('worksheet');notice('Choose another example or add a new picture.');});
   $('about-open').addEventListener('click',()=>$('about-dialog').showModal());for(const id of ['about-close','about-done'])$(id).addEventListener('click',()=>$('about-dialog').close());
-  window.addEventListener('pagehide',()=>{pictureLoader.cancel();state.reading?.abort();disposeWorksheetReader();state.exporting?.abort();void state.player?.dispose();});
+  window.addEventListener('pagehide',()=>{pictureLoader.cancel();state.reading?.abort();disposeWorksheetReader();state.describing?.abort();disposeBuddyAI();state.exporting?.abort();void state.player?.dispose();});
 }
 async function init(){
   // Keep the requested shape operation explicit, rather than changing a name task into a sides task.
@@ -444,6 +484,7 @@ async function init(){
   populateBuilder();pad=new DrawingPad($('drawing-canvas'),{onChange:updateDrawingControls});
   try{const draft=JSON.parse(localStorage.getItem('lesson-buddy-draft-v1')||'null');if(draft){state.design=normalizeDesign(draft.design);state.name=typeof draft.name==='string'?draft.name.slice(0,32):state.design.name;if(draft.drawing)await pad.load(draft.drawing);state.mode=['draw','build'].includes(draft.mode)?draft.mode:'build';}}catch{/* A missing/older draft never prevents a new adventure. */}
   syncDesignControls();setMode(state.mode);setupEvents();updateDrawingControls();await refreshLibrary();
+  void buddyAIStatus().then(status=>{state.buddyAISupported=status.supported;$('buddy-ai-support').textContent=status.reason;updateDescribeControls();});
   updatePictureControls();const status=await browserReaderStatus();$('reader-support').textContent=status.reason;state.readerSupported=status.supported;updatePictureControls();
   let frame=0;const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const hero={source:'builder',name:'Nova',design:clone(PRESETS[0]?.design||DEFAULT_DESIGN)};
   function animate(stamp){

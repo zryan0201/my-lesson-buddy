@@ -26,7 +26,7 @@ Open **http://127.0.0.1:8610/**. Keep the terminal open for local preview. The h
 
 ## Walk through a lesson
 
-1. **Create a buddy.** Draw, customize parts, or import a saved character package.
+1. **Create a buddy.** Draw, customize parts, import a saved character package, or choose **Describe it**. The optional local AI proposes editable parts and colors; review the preview, choose **Use these parts**, change anything, and save it for a lesson.
 2. **Bring a question.** Choose an example, upload/take a picture, or enter the numbers manually.
 3. **Prepare the photo.** Compare original/prepared images and adjust paper corners or shadow reduction if needed.
 4. **Check together.** Confirm the question, quantities, answer, character, object cutouts or story representation, and storyboard preview.
@@ -35,6 +35,14 @@ Open **http://127.0.0.1:8610/**. Keep the terminal open for local preview. The h
 Automatic reading is optional and experimental. Included examples have authored question data; selecting one does not prove that AI recognized it. A reader result can be corrected before review. See [supported lessons](../README.md#what-works-today) for the current 0–10 range and basic shapes.
 
 ## What the character does
+
+### Describe my buddy
+
+**Describe it** runs Qwen3-0.6B locally in a dedicated WebGPU worker. It downloads about **580 MB** of model/tokenizer files, plus the runtime, on first use. No API key or paid inference service is involved. A compatible secure browser with WebGPU and `shader-f16` is required; Build it and Draw it remain available on other devices.
+
+Try “A purple robot with yellow boots, wings and an antenna.” The model chooses from the studio's existing parts and named colors. It does not create new artwork or improve a drawing. Its proposal stays separate from the current buddy until accepted; the name and manually selected face color are retained. All accepted parts remain editable and use the same character package, animation rig, and lesson pipeline as manually built characters.
+
+See [local character AI notes](BUDDY_AI_NOTES.md) for model pinning, constrained decoding, privacy, tests, and limitations.
 
 | Lesson | Character action |
 | --- | --- |
@@ -76,7 +84,8 @@ Capture one complete question, with visible paper corners against a distinguisha
 | Concern | Behavior |
 | --- | --- |
 | Worksheet/character pixels | Processed in the visitor's browser; not uploaded to the site server or a vision API. |
-| Optional model | SmolVLM-256M through WebGPU; approximately 264 MB of weights plus runtime files downloaded on first use. |
+| Optional worksheet model | SmolVLM-256M through WebGPU; approximately 264 MB of weights plus runtime files downloaded on first use. |
+| Optional character model | Qwen3-0.6B through WebGPU; approximately 580 MB of model/tokenizer files plus runtime. Descriptions are processed locally. |
 | Drafts and saved characters | Browser-local; export a `.character.zip` to keep or transfer an editable character. |
 | Narration | Prerecorded Kokoro-82M `af_heart` clips, decoded into playback and recorded video. |
 | Video file | MP4 when supported by the browser; otherwise WebM. Downloaded rather than permanently hosted. |

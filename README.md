@@ -49,7 +49,7 @@ This combination is our product thesis. We have implemented the browser workflow
 
 **Create a buddy → Bring a question → Check together → Watch the explanation**
 
-1. **Create.** Draw an original character, or customize a character using modular parts, colors, clothes, and accessories.
+1. **Create.** Draw an original character, customize modular parts, or use **Describe it** to turn a short idea into an editable proposal with optional on-device AI.
 2. **Bring a question.** Upload or photograph one worksheet exercise, choose an example, or enter the numbers manually. Automatic reading is optional and experimental.
 3. **Check together.** An adult confirms the operation, quantities, answer, character, and visual representation.
 4. **Watch and explore.** The character performs the mathematical actions in a narrated story. Children can replay the explanation or download the video.

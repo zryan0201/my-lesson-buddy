@@ -28,6 +28,7 @@ This diagram describes the interactive applications. The command-line generator 
 | --- | --- | --- |
 | Entry point | `web_site/dist/index.html` | `python -m lesson_video.web`; `python -m character_studio` |
 | Picture reader | Experimental SmolVLM-256M, Transformers.js, WebGPU | Cached Qwen3-VL 4B, MLX-VLM |
+| Text-to-character | Optional Qwen3-0.6B, constrained JSON, WebGPU | Manual drawing and parts builder |
 | Calculation | Validated JavaScript lesson plan | Validated Python lesson plan |
 | Rendering | Canvas scene state and character anchors | Python image renderer and FFmpeg |
 | Narration | Build-time Kokoro clips and a measured audio timeline | Installed macOS `say` voice in the default lesson pipeline |
@@ -49,6 +50,8 @@ The two readers have different sizes and operating environments. The current eva
 Browser story state partitions stable object IDs into home, source, moving, and delivered sets. Speech offsets place count words after the corresponding action. The same frozen timing plan drives playback, seeking, and recording.
 
 Parts characters have defined joints and hand anchors. Drawn characters move intact with an anchor beside their visible artwork. Automatic drawing rigs and sound-by-sound lip sync are future work.
+
+**Describe it** adds a bounded text-to-parts path: idea validation → local Qwen3 worker → token-constrained JSON → independent schema validation → separate proposal preview → child accepts and edits → existing character package. The model can select eight existing parts and three named palette colors. It cannot supply scripts, URLs, arbitrary artwork, names, or skin colors. The current name and face color survive acceptance. The worker is cancelled when leaving the creation step, releasing its model before worksheet inference. This is an editable design suggestion, not a guarantee that every requested feature was understood. [Character AI notes](../web_site/BUDDY_AI_NOTES.md) describe the exact contract and remaining content-safety limits.
 
 ## Connecting worksheet pictures to the story
 
@@ -77,6 +80,7 @@ These controls do not establish comprehensive semantic content moderation, class
 | Browser math and story state | `web_site/dist/modules/lesson.js`, `story.js`, `adventures.js` |
 | Browser character and picture tools | `web_site/dist/modules/character.js`, `picture.js`, `objects.js`, `photo.js` |
 | Browser inference contract | `web_site/dist/modules/reader.js`, `vision-worker.js`; [reader notes](../web_site/READER_NOTES.md) |
+| Browser text-to-character | `buddy-ai.js`, `buddy-worker.js`, `buddy-design.js`, `buddy-grammar.js`; [character AI notes](../web_site/BUDDY_AI_NOTES.md) |
 | Python planning and rendering | `lesson_video/planner.py`, `generate.py`, `visuals.py`, `characters.py` |
 | Local frontend/backend | `streamlit_app.py`, `lesson_video/web_api.py`, `web_pipeline.py`, `job_store.py` |
 | Character library and animation | `character_studio/assets.py`, `parts.py`, `motion.py`, `static/` |

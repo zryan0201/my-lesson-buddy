@@ -12,6 +12,13 @@ The optional model is HuggingFaceTB/SmolVLM-256M-Instruct, revision
 Model weights are downloaded from Hugging Face by the visitor, not bundled here.
 https://huggingface.co/HuggingFaceTB/SmolVLM-256M-Instruct
 
+The optional character-description model is Qwen/Qwen3-0.6B — Alibaba Qwen —
+Apache License 2.0, using the onnx-community/Qwen3-0.6B-ONNX conversion,
+revision 79346d370dfae34801d26993fda9ae2372900fd0, q4f16 weights.
+The visitor downloads the weights and tokenizer; they are not bundled here.
+https://huggingface.co/Qwen/Qwen3-0.6B
+https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX
+
 Character parts and lesson illustrations are original project artwork.
 Narration assets were generated locally for this project; no paid speech API is used.
 
