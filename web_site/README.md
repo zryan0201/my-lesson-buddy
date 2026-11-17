@@ -44,6 +44,12 @@ Try “A purple robot with yellow boots, wings and an antenna.” The model choo
 
 See [local character AI notes](BUDDY_AI_NOTES.md) for model pinning, constrained decoding, privacy, tests, and limitations.
 
+### AI drawing polish
+
+In **Draw it**, draw or import a picture and choose **Download AI & polish my drawing**. Optional local Swin2SR restoration creates a 2× detail preview. Compare it with the untouched original, adjust the enhancement strength, choose **Use enhanced drawing** or **Keep my original**, then **Save & use this buddy**. The selected drawing participates in lessons using the existing whole-drawing movement and prop anchor.
+
+The model downloads about **8 MB**, plus runtime, and runs locally with optional WebGPU acceleration and a WebAssembly CPU fallback. A CPU job may take several minutes. No API key, inference fee, or image upload is involved. Changes are deliberately gentle: this refines image detail, rather than generating new costume parts, redrawing anatomy, or building a limb rig. The original remains on the canvas and can be downloaded. New marks invalidate the old comparison. Draft restoration retains both versions when browser storage has room; save a character or download the original for a durable copy. [Drawing polish technical notes](DRAWING_POLISH_NOTES.md).
+
 | Lesson | Character action |
 | --- | --- |
 | Addition | Fetch, carry, and deposit new objects in the starting group. |

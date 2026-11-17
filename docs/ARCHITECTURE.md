@@ -29,6 +29,7 @@ This diagram describes the interactive applications. The command-line generator 
 | Entry point | `web_site/dist/index.html` | `python -m lesson_video.web`; `python -m character_studio` |
 | Picture reader | Experimental SmolVLM-256M, Transformers.js, WebGPU | Cached Qwen3-VL 4B, MLX-VLM |
 | Text-to-character | Optional Qwen3-0.6B, constrained JSON, WebGPU | Manual drawing and parts builder |
+| Drawing restoration | Optional Swin2SR 2×, tiled WebGPU/WebAssembly, bounded pixel residual | Original drawing preserved; optional Gemini makeover requires separate configuration |
 | Calculation | Validated JavaScript lesson plan | Validated Python lesson plan |
 | Rendering | Canvas scene state and character anchors | Python image renderer and FFmpeg |
 | Narration | Build-time Kokoro clips and a measured audio timeline | Installed macOS `say` voice in the default lesson pipeline |
@@ -52,6 +53,8 @@ Browser story state partitions stable object IDs into home, source, moving, and 
 Parts characters have defined joints and hand anchors. Drawn characters move intact with an anchor beside their visible artwork. Automatic drawing rigs and sound-by-sound lip sync are future work.
 
 **Describe it** adds a bounded text-to-parts path: idea validation → local Qwen3 worker → token-constrained JSON → independent schema validation → separate proposal preview → child accepts and edits → existing character package. The model can select eight existing parts and three named palette colors. It cannot supply scripts, URLs, arbitrary artwork, names, or skin colors. The current name and face color survive acceptance. The worker is cancelled when leaving the creation step, releasing its model before worksheet inference. This is an editable design suggestion, not a guarantee that every requested feature was understood. [Character AI notes](../web_site/BUDDY_AI_NOTES.md) describe the exact contract and remaining content-safety limits.
+
+**AI drawing polish** is a separate image-restoration path: original canvas snapshot → tiled Swin2SR worker → validated 2× pixel buffer → bounded residual blend with the original → child compares and selects → normal drawing character. The original stays unchanged, white paper and alpha are preserved, and detail changes are capped per channel. It retains the existing drawn-character prop anchor rather than inventing joints. [Drawing polish notes](../web_site/DRAWING_POLISH_NOTES.md) explain device fallbacks, original retention, and limits.
 
 ## Connecting worksheet pictures to the story
 
@@ -81,6 +84,7 @@ These controls do not establish comprehensive semantic content moderation, class
 | Browser character and picture tools | `web_site/dist/modules/character.js`, `picture.js`, `objects.js`, `photo.js` |
 | Browser inference contract | `web_site/dist/modules/reader.js`, `vision-worker.js`; [reader notes](../web_site/READER_NOTES.md) |
 | Browser text-to-character | `buddy-ai.js`, `buddy-worker.js`, `buddy-design.js`, `buddy-grammar.js`; [character AI notes](../web_site/BUDDY_AI_NOTES.md) |
+| Browser drawing restoration | `drawing-polish.js`, `drawing-polish-worker.js`, `drawing-polish-core.js`; [polish notes](../web_site/DRAWING_POLISH_NOTES.md) |
 | Python planning and rendering | `lesson_video/planner.py`, `generate.py`, `visuals.py`, `characters.py` |
 | Local frontend/backend | `streamlit_app.py`, `lesson_video/web_api.py`, `web_pipeline.py`, `job_store.py` |
 | Character library and animation | `character_studio/assets.py`, `parts.py`, `motion.py`, `static/` |

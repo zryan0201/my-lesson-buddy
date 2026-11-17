@@ -19,6 +19,14 @@ The visitor downloads the weights and tokenizer; they are not bundled here.
 https://huggingface.co/Qwen/Qwen3-0.6B
 https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX
 
+Optional drawing restoration: Swin2SR lightweight 2x — Conde et al. / mv-lab,
+Apache License 2.0. Uses Xenova/swin2SR-lightweight-x2-64 ONNX conversion,
+revision 92a21aca5713f20faf9a87590cdfbdce2e34112c, fp32 weights.
+Weights are downloaded by the visitor, not bundled in the website.
+https://huggingface.co/caidas/swin2SR-lightweight-x2-64
+https://huggingface.co/Xenova/swin2SR-lightweight-x2-64
+https://github.com/mv-lab/swin2sr
+
 Character parts and lesson illustrations are original project artwork.
 Narration assets were generated locally for this project; no paid speech API is used.
 
