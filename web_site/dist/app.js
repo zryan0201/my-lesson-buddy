@@ -10,12 +10,14 @@ import {ADVENTURES,suggestAdventure} from './modules/adventures.js';
 import {buddyAIStatus,generateBuddy,disposeBuddyAI} from './modules/buddy-ai.js';
 import {validateBuddyIdea,describeDesign} from './modules/buddy-design.js';
 import {polishStatus,enhanceDrawingPixels,disposeDrawingPolish,prepareDrawingPolish,composePolish,polishPNG,readPolishPNG} from './modules/drawing-polish.js';
+import {cartoonStatus,redrawDrawing,cartoonOptions} from './modules/cartoon.js';
 
 const $=id=>document.getElementById(id);
 const clone=value=>structuredClone(value);
 const state={step:'character',mode:'build',creationTab:'build',describing:null,describeVersion:0,describeProposal:null,buddyAISupported:false,buddyAILoaded:false,design:clone(PRESETS[0]?.design||DEFAULT_DESIGN),name:'Nova',drawing:null,live:null,motion:'idle',library:[],selected:null,picture:null,pictureOrigin:null,pictureLoading:false,pictureVersion:0,readerSupported:false,reading:null,review:null,player:null,preparing:null,exporting:null,savedVideoURL:null,aiLoaded:false,previewVersion:0};
 let pad,draftTimer,noticeTimer,cropView=null,photoView=null;
-let polishing=null,polishVersion=0,drawingPolish=null,polishChoice='original';
+let polishing=null,polishVersion=0,drawingPolish=null,drawingChoice='original';
+let cartooning=null,cartoonVersion=0,drawingCartoon=null,cartoonReady=false,cartoonSeed=24;
 const EXAMPLES={addition:{image:'popsicles.png',spec:{type:'addition',a:5,b:2},label:'Popsicle math · included example'},subtraction:{image:'stars.svg',spec:{type:'subtraction',a:8,b:3},label:'Stars to share · included example'},counting:{image:'counting.svg',spec:{type:'counting',count:6},label:'Count with me · included example'},shape:{image:'triangle.svg',spec:{type:'shape',shape:'triangle',shape_task:'sides'},label:'Shape explorer · included example'},photo:{image:'worksheet-photo-demo.jpg',spec:{type:'addition',a:5,b:2},label:'Simulated worksheet photo · included example',photo:true}};
 let adventureChoice='auto',gentleMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function previousAdventure(){try{return localStorage.getItem('lesson-buddy-last-adventure-v1');}catch{return null;}}
@@ -23,16 +25,29 @@ function lessonPresentation(spec){return{theme:adventureChoice==='auto'?suggestA
 
 function notice(message,error=false){clearTimeout(noticeTimer);$('notice').textContent=message;$('notice').classList.toggle('error',error);$('notice').hidden=false;noticeTimer=setTimeout(()=>$('notice').hidden=true,error?18000:9000);}
 function safePreviewName(){try{return normalizeName(state.name);}catch{return 'My buddy';}}
-function currentDraft(){return state.mode==='build'?{id:'draft-builder',name:safePreviewName(),source:'builder',design:{...state.design,name:safePreviewName()}}:{id:'draft-drawing',name:safePreviewName(),source:'drawing',image:polishChoice==='enhanced'&&drawingPolish?.source===state.drawing?drawingPolish.image:state.drawing};}
+function currentDraft(){return state.mode==='build'?{id:'draft-builder',name:safePreviewName(),source:'builder',design:{...state.design,name:safePreviewName()}}:{id:'draft-drawing',name:safePreviewName(),source:'drawing',image:drawingChoice==='cartoon'&&drawingCartoon?.source===state.drawing?drawingCartoon.image:drawingChoice==='enhanced'&&drawingPolish?.source===state.drawing?drawingPolish.image:state.drawing};}
 function setBusy(button,busy,label){if(!button.dataset.normal)button.dataset.normal=button.textContent;button.disabled=busy;button.textContent=busy?label:button.dataset.normal;}
 function invalidateReview(){state.review=null;state.preparing=null;cropView=null;$('object-crop-panel').hidden=true;$('adult-confirm').checked=false;$('make-lesson').disabled=true;if(state.player){void state.player.dispose?.();state.player=null;}if(state.savedVideoURL){URL.revokeObjectURL(state.savedVideoURL);state.savedVideoURL=null;}$('export-status').replaceChildren();$('export-status').hidden=true;}
 function watchControls(disabled){for(const id of ['play-video','pause-video','restart-video','lesson-seek','export-video','new-lesson'])$(id).disabled=disabled;}
-function rememberDraft(){clearTimeout(draftTimer);draftTimer=setTimeout(()=>{const draft={mode:state.mode,design:state.design,name:state.name,drawing:state.drawing};try{if(drawingPolish?.source===state.drawing)draft.polish={source:drawingPolish.source,fullImage:drawingPolish.fullImage,strength:Number($('polish-strength').value),choice:polishChoice};localStorage.setItem('lesson-buddy-draft-v1',JSON.stringify(draft));$('draft-note').textContent='Draft saved on this browser';}catch{delete draft.polish;try{localStorage.setItem('lesson-buddy-draft-v1',JSON.stringify(draft));$('draft-note').textContent='Original saved. Save your buddy to keep the AI version.';}catch{$('draft-note').textContent='Save or download your work before closing.';}}},350);}
+function rememberDraft(){
+  clearTimeout(draftTimer);draftTimer=setTimeout(()=>{
+    const draft={mode:state.mode,design:state.design,name:state.name,drawing:state.drawing,choice:drawingChoice,cartoonSettings:{idea:$('cartoon-idea').value,style:$('cartoon-style').value,strength:$('cartoon-change').value}};
+    try{
+      if(drawingPolish?.source===state.drawing)draft.polish={source:drawingPolish.source,fullImage:drawingPolish.fullImage,strength:Number($('polish-strength').value),choice:drawingChoice};
+      if(drawingCartoon?.source===state.drawing)draft.cartoon={image:drawingCartoon.image};
+      localStorage.setItem('lesson-buddy-draft-v1',JSON.stringify(draft));$('draft-note').textContent='Draft saved on this browser';
+    }catch{
+      delete draft.polish;delete draft.cartoon;draft.choice='original';
+      try{localStorage.setItem('lesson-buddy-draft-v1',JSON.stringify(draft));$('draft-note').textContent='Original saved. Save your buddy to keep the AI version.';}
+      catch{$('draft-note').textContent='Save or download your work before closing.';}
+    }
+  },350);
+}
 async function updatePreview(){
   const version=++state.previewVersion;const character=currentDraft();
   $('preview-name').textContent=state.name.trim()||'my friend';$('name-count').textContent=`${[...state.name].length} / 32`;
-  $('save-use').disabled=Boolean(polishing)||state.mode==='draw'&&!state.drawing;
-  $('motion-note').textContent=state.mode==='draw'?(polishChoice==='enhanced'?'Your enhanced drawing is selected. It moves and carries props in the story.':'Your original drawing moves into the story and carries props. Its lines stay yours.'):'Your buddy becomes the hero: moving, carrying, sharing, and exploring.';
+  $('save-use').disabled=Boolean(polishing||cartooning)||state.mode==='draw'&&!state.drawing;
+  $('motion-note').textContent=state.mode==='draw'?(drawingChoice==='cartoon'?'Your cartoon version is selected. It moves and carries props in the story.':drawingChoice==='enhanced'?'Your enhanced drawing is selected. It moves and carries props in the story.':'Your original drawing moves into the story and carries props. Its lines stay yours.'):'Your buddy becomes the hero: moving, carrying, sharing, and exploring.';
   if(!character.image&&character.source==='drawing'){state.live=null;return;}
   try{await prepareCharacter(character);if(version===state.previewVersion)state.live=character;}catch(error){if(version===state.previewVersion){state.live=null;notice(error.message,true);}}
 }
@@ -40,6 +55,7 @@ function setMode(mode){
   if(!['build','draw','describe'].includes(mode))return;
   if(mode!=='describe')cancelBuddyDescription();
   if(mode!=='draw')cancelDrawingEnhancement();
+  if(mode!=='draw')cancelCartoon();
   state.creationTab=mode;if(mode!=='describe')state.mode=mode;
   for(const option of ['draw','build','describe']){const selected=option===mode;$(`mode-${option}`).setAttribute('aria-selected',String(selected));$(`mode-${option}`).tabIndex=selected?0:-1;$(`${option}-panel`).hidden=!selected;}
   void updatePreview();rememberDraft();
@@ -60,6 +76,7 @@ function changedBuddyIdea(){
 async function imagineBuddy(){
   let idea;try{idea=validateBuddyIdea($('buddy-idea').value);}catch(error){$('describe-status').textContent=error.message;$('buddy-idea').focus();return;}
   if(state.describing)return;
+  cancelCartoon();
   disposeDrawingPolish();
   const controller=new AbortController(),version=++state.describeVersion;state.describing=controller;state.describeProposal=null;
   const current=()=>state.describeVersion===version&&state.describing===controller&&state.creationTab==='describe'&&state.step==='character';
@@ -94,12 +111,13 @@ function populateBuilder(){
 function updateDrawingControls(){
   $('undo').disabled=!pad.canUndo();$('redo').disabled=!pad.canRedo();$('draw-hint').hidden=pad.hasDrawing();
   const next=pad.hasDrawing()?pad.getPNG():null;
-  if(next!==state.drawing){cancelDrawingEnhancement();drawingPolish=null;polishChoice='original';$('polish-result').hidden=true;$('polish-status').textContent='';}
-  state.drawing=next;updatePolishControls();void updatePreview();rememberDraft();
+  if(next!==state.drawing){cancelDrawingEnhancement();cancelCartoon();drawingPolish=null;drawingCartoon=null;drawingChoice='original';$('polish-result').hidden=true;$('cartoon-result').hidden=true;$('polish-status').textContent='';$('cartoon-status').textContent='';}
+  state.drawing=next;updatePolishControls();updateCartoonControls();void updatePreview();rememberDraft();
 }
 function updatePolishControls(){
-  const busy=Boolean(polishing);$('polish-generate').disabled=busy||!state.drawing||!polishStatus().supported;$('polish-generate').textContent=busy?'Refining your drawing…':'Download AI & polish my drawing';$('polish-cancel').hidden=!busy;
-  for(const id of ['polish-use','polish-original','polish-strength'])$(id).disabled=busy;
+  const busy=Boolean(polishing);$('polish-generate').disabled=busy||Boolean(cartooning)||!state.drawing||!polishStatus().supported;$('polish-generate').textContent=busy?'Refining your drawing…':'Download AI & polish my drawing';$('polish-cancel').hidden=!busy;
+  for(const id of ['polish-use','polish-original','polish-strength'])$(id).disabled=busy||Boolean(cartooning);
+  updateCartoonControls();
 }
 function cancelDrawingEnhancement(message){
   ++polishVersion;polishing?.abort();polishing=null;$('polish-progress-wrap').hidden=true;updatePolishControls();
@@ -111,12 +129,14 @@ function renderPolishComparison(){
   const strength=Number($('polish-strength').value)/100;
   drawingPolish.image=polishPNG(composePolish(drawingPolish.baseline,drawingPolish.learned,strength));
   $('polish-before').src=drawingPolish.source;$('polish-after').src=drawingPolish.image;$('polish-result').hidden=false;$('polish-strength-value').value=`${Math.round(strength*100)}%`;
-  $('polish-use').setAttribute('aria-pressed',String(polishChoice==='enhanced'));$('polish-original').setAttribute('aria-pressed',String(polishChoice==='original'));
-  $('polish-choice').textContent=polishChoice==='enhanced'?'The enhanced version is selected. Save & use this buddy to put it in a lesson.':'Your original is selected for the lesson.';
+  $('polish-use').setAttribute('aria-pressed',String(drawingChoice==='enhanced'));$('polish-original').setAttribute('aria-pressed',String(drawingChoice==='original'));
+  $('polish-choice').textContent=drawingChoice==='enhanced'?'The enhanced version is selected. Save & use this buddy to put it in a lesson.':'Your original is selected for the lesson.';
+  if(drawingChoice==='cartoon')$('polish-choice').textContent='Your cartoon version is selected for the lesson.';
+  renderCartoonSelection();
   void updatePreview();rememberDraft();
 }
 async function polishDrawing(){
-  if(polishing||!state.drawing)return;
+  if(polishing||cartooning||!state.drawing)return;
   cancelBuddyDescription();disposeBuddyAI();state.buddyAILoaded=false;updateDescribeControls();
   const source=state.drawing,controller=new AbortController(),version=++polishVersion;polishing=controller;
   const current=()=>polishVersion===version&&polishing===controller&&state.drawing===source&&state.creationTab==='draw'&&state.step==='character';
@@ -125,9 +145,35 @@ async function polishDrawing(){
     const prepared=await prepareDrawingPolish(source);if(!current())return;
     const learned=await enhanceDrawingPixels(prepared.image,{signal:controller.signal,onProgress:event=>{if(!current())return;$('polish-status').textContent=event.stage==='enhancing'?'Refining small sections of your drawing…':'Downloading or preparing local AI…';if(Number.isFinite(event.progress))$('polish-progress').value=event.progress;}});
     if(!current())return;
-    drawingPolish={source,baseline:prepared.baseline,learned,fullImage:polishPNG(composePolish(prepared.baseline,learned,1))};polishChoice='original';renderPolishComparison();$('polish-status').textContent='Compare both versions. Your original is still selected.';
+    drawingPolish={source,baseline:prepared.baseline,learned,fullImage:polishPNG(composePolish(prepared.baseline,learned,1))};drawingChoice='original';renderPolishComparison();$('polish-status').textContent='Compare both versions. Your original is still selected.';
   }catch(error){if(current())$('polish-status').textContent=error.name==='AbortError'?'Cancelled. Your original drawing is safe.':error.message;}
   finally{if(current()){polishing=null;$('polish-progress-wrap').hidden=true;updatePolishControls();void updatePreview();}}
+}
+function updateCartoonControls(){
+  const busy=Boolean(cartooning);$('cartoon-generate').disabled=busy||Boolean(polishing)||!state.drawing||!cartoonReady;$('cartoon-cancel').hidden=!busy;
+  for(const id of ['cartoon-use','cartoon-original','cartoon-style','cartoon-change','cartoon-idea','cartoon-continue'])$(id).disabled=busy||Boolean(polishing);
+}
+function cancelCartoon(message){
+  ++cartoonVersion;cartooning?.abort();cartooning=null;$('cartoon-progress-wrap').hidden=true;updateCartoonControls();updatePolishControls();if(message)$('cartoon-status').textContent=message;void updatePreview();
+}
+function renderCartoonSelection(){
+  if(!drawingCartoon||drawingCartoon.source!==state.drawing)return;
+  $('cartoon-before').src=drawingCartoon.source;$('cartoon-after').src=drawingCartoon.image;$('cartoon-result').hidden=false;
+  $('cartoon-use').setAttribute('aria-pressed',String(drawingChoice==='cartoon'));$('cartoon-original').setAttribute('aria-pressed',String(drawingChoice==='original'));
+  $('cartoon-choice').textContent=drawingChoice==='cartoon'?'Your cartoon is selected. Your original sketch stays safe.':drawingChoice==='enhanced'?'The gently enhanced drawing is selected.':'Your original sketch is selected.';
+}
+async function cartoonDrawing(){
+  if(cartooning||polishing||!state.drawing||!cartoonReady)return;
+  cancelBuddyDescription();disposeBuddyAI();state.buddyAILoaded=false;disposeDrawingPolish();
+  const source=state.drawing,controller=new AbortController(),version=++cartoonVersion;cartooning=controller;
+  const current=()=>cartoonVersion===version&&cartooning===controller&&source===state.drawing&&state.creationTab==='draw'&&state.step==='character';
+  $('cartoon-progress-wrap').hidden=false;$('cartoon-progress').value=0;$('cartoon-status').textContent='Preparing the local cartoon model…';updateCartoonControls();updatePolishControls();void updatePreview();
+  try{
+    const result=await redrawDrawing(source,{idea:$('cartoon-idea').value,style:$('cartoon-style').value,strength:$('cartoon-change').value,seed:cartoonSeed},{signal:controller.signal,onProgress:event=>{if(!current())return;$('cartoon-progress').value=event.progress;$('cartoon-status').textContent=event.stage==='checking'?'Checking the colors and drawing match…':event.stage==='generating'?'Creating your cartoon on this computer…':'Loading the local cartoon model…';}});
+    await readPolishPNG(result.image);if(!current())return;
+    drawingCartoon={source,image:result.image,evidence:result.evidence};drawingChoice='original';cartoonSeed=(cartoonSeed+1)%2**31;renderCartoonSelection();if(drawingPolish)renderPolishComparison();$('cartoon-status').textContent='Your cartoon proposal is ready. Compare it with your original together.';rememberDraft();void updatePreview();
+  }catch(error){if(current())$('cartoon-status').textContent=error.name==='AbortError'?'Cancelled. Your original sketch is safe.':error.message;}
+  finally{if(current()){cartooning=null;$('cartoon-progress-wrap').hidden=true;updateCartoonControls();updatePolishControls();void updatePreview();}}
 }
 function confirmAction(message,title='Start a fresh drawing?'){
   return new Promise(resolve=>{const dialog=$('confirm-dialog'),previous=document.activeElement;$('confirm-title').textContent=title;$('confirm-message').textContent=message;
@@ -150,7 +196,7 @@ function go(step){
   if(['review','watch'].includes(step)&&!state.review){notice('Check the worksheet question first.');step='worksheet';}
   if(step==='watch'&&!state.player&&!state.preparing){notice('A grown-up needs to check the lesson before making the video.');step='review';}
   if(step!=='worksheet'){state.reading?.abort();disposeWorksheetReader();}
-  if(step!=='character'){cancelBuddyDescription();disposeBuddyAI();state.buddyAILoaded=false;updateDescribeControls();cancelDrawingEnhancement();disposeDrawingPolish();}
+  if(step!=='character'){cancelBuddyDescription();disposeBuddyAI();state.buddyAILoaded=false;updateDescribeControls();cancelDrawingEnhancement();disposeDrawingPolish();cancelCartoon();}
   if(step!=='watch'&&state.player?.playing)state.player.pause();
   state.step=step;document.querySelectorAll('[data-screen]').forEach(section=>section.hidden=section.dataset.screen!==step);
   const order=['character','worksheet','review','watch'];for(const button of document.querySelectorAll('[data-go]')){button.classList.toggle('active',button.dataset.go===step);button.classList.toggle('done',order.indexOf(button.dataset.go)<order.indexOf(step));if(button.dataset.go===step)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');}
@@ -477,8 +523,13 @@ function setupEvents(){
   $('clear-drawing').addEventListener('click',async()=>{if(!pad.hasDrawing()||await confirmAction('You can still use Undo to bring this drawing back.'))pad.clear();});
   $('polish-generate').addEventListener('click',()=>void polishDrawing());$('polish-cancel').addEventListener('click',()=>{cancelDrawingEnhancement('Cancelled. Your original drawing is safe.');void updatePreview();});
   $('polish-strength').addEventListener('input',renderPolishComparison);
-  $('polish-use').addEventListener('click',()=>{if(!drawingPolish)return;polishChoice='enhanced';renderPolishComparison();$('polish-status').textContent='Enhanced drawing selected. Your original is still safe.';});$('polish-original').addEventListener('click',()=>{polishChoice='original';renderPolishComparison();$('polish-status').textContent='Your original drawing is selected.';});
+  $('polish-use').addEventListener('click',()=>{if(!drawingPolish)return;drawingChoice='enhanced';renderPolishComparison();$('polish-status').textContent='Enhanced drawing selected. Your original is still safe.';});$('polish-original').addEventListener('click',()=>{drawingChoice='original';renderPolishComparison();$('polish-status').textContent='Your original drawing is selected.';});
   $('polish-download-original').addEventListener('click',async()=>{if(drawingPolish)downloadBlob(await(await fetch(drawingPolish.source)).blob(),'my-original-drawing.png');});
+  for(const id of ['cartoon-idea','cartoon-style','cartoon-change'])$(id).addEventListener('input',rememberDraft);
+  $('cartoon-generate').addEventListener('click',()=>void cartoonDrawing());$('cartoon-cancel').addEventListener('click',()=>cancelCartoon('Cancelled. Your original sketch is safe.'));
+  $('cartoon-use').addEventListener('click',()=>{if(!drawingCartoon)return;drawingChoice='cartoon';renderCartoonSelection();if(drawingPolish)renderPolishComparison();$('cartoon-status').textContent='Your cartoon is selected for the lesson.';void updatePreview();rememberDraft();});
+  $('cartoon-original').addEventListener('click',()=>{drawingChoice='original';renderCartoonSelection();if(drawingPolish)renderPolishComparison();$('cartoon-status').textContent='Your original sketch is selected.';void updatePreview();rememberDraft();});
+  $('cartoon-continue').addEventListener('click',()=>{if(!$('save-use').disabled)$('save-use').click();});
   document.addEventListener('keydown',event=>{if(event.defaultPrevented||state.mode!=='draw'||state.step!=='character'||$('confirm-dialog').open||$('about-dialog').open||!(event.ctrlKey||event.metaKey)||event.altKey||event.target.closest('input,textarea,select,[contenteditable=true]'))return;if(event.key.toLowerCase()==='z'){event.preventDefault();event.shiftKey?pad.redo():pad.undo();}else if(event.key.toLowerCase()==='y'){event.preventDefault();pad.redo();}});
   $('drawing-upload').addEventListener('change',async event=>{const file=event.target.files[0];try{if(!file)return;if(pad.hasDrawing()&&!await confirmAction('Replace this draft with a drawing file? Undo can bring the current drawing back.','Bring a drawing?'))return;const image=await imageFileToDataURL(file);await pad.load(image);setMode('draw');}catch(error){notice(error.message,true);}finally{event.target.value='';}});
   $('save-use').addEventListener('click',async()=>{try{setBusy($('save-use'),true,'Saving your buddy…');const draft=currentDraft();draft.name=normalizeName(state.name);if(draft.design)draft.design.name=draft.name;const saved=await saveCharacter(draft);await refreshLibrary();await selectBuddy(saved);}catch(error){notice(error.message,true);}finally{setBusy($('save-use'),false);}});
@@ -518,14 +569,25 @@ function setupEvents(){
   $('play-video').addEventListener('click',()=>state.player?.play().catch(error=>notice(error.message,true)));$('pause-video').addEventListener('click',()=>state.player?.pause());$('restart-video').addEventListener('click',()=>{state.player?.stop();state.player?.play().catch(error=>notice(error.message,true));});$('lesson-seek').addEventListener('input',()=>state.player?.seek(state.player.plan.duration*Number($('lesson-seek').value)/100));
   $('export-video').addEventListener('click',exportLesson);$('cancel-export').addEventListener('click',()=>state.exporting?.abort());$('new-lesson').addEventListener('click',()=>{state.player?.stop();invalidateReview();go('worksheet');notice('Choose another example or add a new picture.');});
   $('about-open').addEventListener('click',()=>$('about-dialog').showModal());for(const id of ['about-close','about-done'])$(id).addEventListener('click',()=>$('about-dialog').close());
-  window.addEventListener('pagehide',()=>{pictureLoader.cancel();state.reading?.abort();disposeWorksheetReader();state.describing?.abort();disposeBuddyAI();polishing?.abort();disposeDrawingPolish();state.exporting?.abort();void state.player?.dispose();});
+  window.addEventListener('pagehide',()=>{pictureLoader.cancel();state.reading?.abort();disposeWorksheetReader();state.describing?.abort();disposeBuddyAI();polishing?.abort();disposeDrawingPolish();cartooning?.abort();state.exporting?.abort();void state.player?.dispose();});
 }
 async function init(){
   // Keep the requested shape operation explicit, rather than changing a name task into a sides task.
   const label=document.createElement('label');label.id='shape-task-wrap';label.className='field-label';label.hidden=true;label.textContent='What does the worksheet ask?';const select=document.createElement('select');select.id='shape-task';for(const [value,text] of [['sides','Count the straight sides'],['name','Name the shape']]){const option=document.createElement('option');option.value=value;option.textContent=text;select.append(option);}label.append(select);$('shape-wrap').after(label);
   populateBuilder();pad=new DrawingPad($('drawing-canvas'),{onChange:updateDrawingControls});
-  try{const draft=JSON.parse(localStorage.getItem('lesson-buddy-draft-v1')||'null');if(draft){state.design=normalizeDesign(draft.design);state.name=typeof draft.name==='string'?draft.name.slice(0,32):state.design.name;if(draft.drawing)await pad.load(draft.drawing);state.mode=['draw','build'].includes(draft.mode)?draft.mode:'build';if(draft.polish?.source===state.drawing){try{const prepared=await prepareDrawingPolish(state.drawing),learned=await readPolishPNG(draft.polish.fullImage);if(learned.width!==prepared.baseline.width||learned.height!==prepared.baseline.height)throw new Error();drawingPolish={source:state.drawing,baseline:prepared.baseline,learned,fullImage:draft.polish.fullImage};polishChoice=draft.polish.choice==='enhanced'?'enhanced':'original';$('polish-strength').value=Number.isFinite(draft.polish.strength)?Math.max(0,Math.min(100,draft.polish.strength)):60;renderPolishComparison();}catch{drawingPolish=null;polishChoice='original';}}}}catch{/* A missing/older draft never prevents a new adventure. */}
+  try{const draft=JSON.parse(localStorage.getItem('lesson-buddy-draft-v1')||'null');if(draft){state.design=normalizeDesign(draft.design);state.name=typeof draft.name==='string'?draft.name.slice(0,32):state.design.name;if(draft.drawing)await pad.load(draft.drawing);state.mode=['draw','build'].includes(draft.mode)?draft.mode:'build';if(draft.polish?.source===state.drawing){try{const prepared=await prepareDrawingPolish(state.drawing),learned=await readPolishPNG(draft.polish.fullImage);if(learned.width!==prepared.baseline.width||learned.height!==prepared.baseline.height)throw new Error();drawingPolish={source:state.drawing,baseline:prepared.baseline,learned,fullImage:draft.polish.fullImage};drawingChoice=draft.polish.choice==='enhanced'?'enhanced':'original';$('polish-strength').value=Number.isFinite(draft.polish.strength)?Math.max(0,Math.min(100,draft.polish.strength)):60;renderPolishComparison();}catch{drawingPolish=null;drawingChoice='original';}}}}catch{/* A missing/older draft never prevents a new adventure. */}
+  try{
+    const draft=JSON.parse(localStorage.getItem('lesson-buddy-draft-v1')||'null');
+    if(draft?.cartoonSettings){const settings=cartoonOptions(draft.cartoonSettings);$('cartoon-idea').value=settings.idea;$('cartoon-style').value=settings.style;$('cartoon-change').value=settings.strength;}
+    if(draft?.cartoon&&draft.drawing===state.drawing){
+      const image=await readPolishPNG(draft.cartoon.image);
+      if(image.width!==600||image.height!==800)throw new Error('Unsupported cartoon frame');
+      drawingCartoon={source:state.drawing,image:draft.cartoon.image};
+      if(draft.choice==='cartoon')drawingChoice='cartoon';renderCartoonSelection();
+    }
+  }catch{/* Keep the original if a stored cartoon cannot be restored. */}
   $('polish-support').textContent=polishStatus().reason;updatePolishControls();
+  const localCartoon=await cartoonStatus();cartoonReady=localCartoon.ready;$('cartoon-support').textContent=localCartoon.message;updateCartoonControls();
   syncDesignControls();setMode(state.mode);setupEvents();updateDrawingControls();await refreshLibrary();
   void buddyAIStatus().then(status=>{state.buddyAISupported=status.supported;$('buddy-ai-support').textContent=status.reason;updateDescribeControls();});
   updatePictureControls();const status=await browserReaderStatus();$('reader-support').textContent=status.reason;state.readerSupported=status.supported;updatePictureControls();

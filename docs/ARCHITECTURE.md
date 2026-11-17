@@ -30,6 +30,7 @@ This diagram describes the interactive applications. The command-line generator 
 | Picture reader | Experimental SmolVLM-256M, Transformers.js, WebGPU | Cached Qwen3-VL 4B, MLX-VLM |
 | Text-to-character | Optional Qwen3-0.6B, constrained JSON, WebGPU | Manual drawing and parts builder |
 | Drawing restoration | Optional Swin2SR 2×, tiled WebGPU/WebAssembly, bounded pixel residual | Original drawing preserved; optional Gemini makeover requires separate configuration |
+| Cartoon redraw | Shared site imports exported characters; optional loopback studio serves the same frontend with local diffusion | DreamShaper 8 + ControlNet, source RGB/edge guidance, palette alignment, safety/fidelity checks, child selection |
 | Calculation | Validated JavaScript lesson plan | Validated Python lesson plan |
 | Rendering | Canvas scene state and character anchors | Python image renderer and FFmpeg |
 | Narration | Build-time Kokoro clips and a measured audio timeline | Installed macOS `say` voice in the default lesson pipeline |
@@ -55,6 +56,8 @@ Parts characters have defined joints and hand anchors. Drawn characters move int
 **Describe it** adds a bounded text-to-parts path: idea validation → local Qwen3 worker → token-constrained JSON → independent schema validation → separate proposal preview → child accepts and edits → existing character package. The model can select eight existing parts and three named palette colors. It cannot supply scripts, URLs, arbitrary artwork, names, or skin colors. The current name and face color survive acceptance. The worker is cancelled when leaving the creation step, releasing its model before worksheet inference. This is an editable design suggestion, not a guarantee that every requested feature was understood. [Character AI notes](../web_site/BUDDY_AI_NOTES.md) describe the exact contract and remaining content-safety limits.
 
 **AI drawing polish** is a separate image-restoration path: original canvas snapshot → tiled Swin2SR worker → validated 2× pixel buffer → bounded residual blend with the original → child compares and selects → normal drawing character. The original stays unchanged, white paper and alpha are preserved, and detail changes are capped per channel. It retains the existing drawn-character prop anchor rather than inventing joints. [Drawing polish notes](../web_site/DRAWING_POLISH_NOTES.md) explain device fallbacks, original retention, and limits.
+
+**Local cartoon redraw** adds a generative path through the same frontend. `cartoon_web.py` serves the static studio on loopback and accepts same-origin jobs. Each job binds the original image hash, validated settings, and a random access token. `cartoon_makeover.py` combines RGB img2img conditioning with ControlNet edges, aligns generated chroma to source colors, and applies a pretrained safety checker and heuristic drift checks. The unchanged source and proposal stay separate until selected; the chosen PNG enters the ordinary drawing-character pipeline. Public hosting never probes localhost or uploads images to that service. [Local cartoon notes](LOCAL_CARTOON.md) cover model pins and limitations.
 
 ## Connecting worksheet pictures to the story
 

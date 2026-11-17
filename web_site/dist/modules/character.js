@@ -357,6 +357,16 @@ function paperToAlpha(canvas) {
   return drawingInkBounds(image);
 }
 
+/** Sample inside the fitted source, not in the transparent fitting margin. */
+export function sourceHasTransparency(image,rect){
+  drawingInkBounds(image);
+  const {left,top,width,height}=rect;
+  if(![left,top,width,height].every(Number.isFinite)||width<=0||height<=0)throw new Error('Choose a valid source image frame.');
+  const xs=[left+Math.min(2,width/4),left+width-Math.min(2,width/4)],ys=[top+Math.min(2,height/4),top+height-Math.min(2,height/4)];
+  let transparent=0;for(const y of ys)for(const x of xs){const sx=Math.max(0,Math.min(image.width-1,Math.floor(x))),sy=Math.max(0,Math.min(image.height-1,Math.floor(y)));if(image.data[(sy*image.width+sx)*4+3]<8)transparent++;}
+  return transparent>=2;
+}
+
 export async function prepareCharacter(character) {
   if (!character || !['builder', 'drawing'].includes(character.source)) throw new Error('Choose a saved character.');
   if (character.source === 'builder') { normalizeDesign(character.design); return; }
@@ -364,8 +374,10 @@ export async function prepareCharacter(character) {
   if (drawingCache.has(key)) { const cached = drawingCache.get(key); drawingCache.delete(key); drawingCache.set(key, cached); return; }
   const image = await decodeImage(key), canvas = newCanvas(600, 800), ctx = canvas.getContext('2d');
   const fit = Math.min(560 / image.naturalWidth, 760 / image.naturalHeight);
-  ctx.drawImage(image, (600 - image.naturalWidth * fit) / 2, (800 - image.naturalHeight * fit) / 2, image.naturalWidth * fit, image.naturalHeight * fit);
-  const bounds=paperToAlpha(canvas);
+  const sourceFrame={left:(600-image.naturalWidth*fit)/2,top:(800-image.naturalHeight*fit)/2,width:image.naturalWidth*fit,height:image.naturalHeight*fit};
+  ctx.drawImage(image,sourceFrame.left,sourceFrame.top,sourceFrame.width,sourceFrame.height);
+  const pixels=ctx.getImageData(0,0,600,800);
+  const bounds=sourceHasTransparency(pixels,sourceFrame)?drawingInkBounds(pixels):paperToAlpha(canvas);
   if (!bounds) throw new Error('Add some colored lines before saving your drawing as a character.');
   drawingCache.set(key, canvas);
   drawingBoundsCache.set(key,bounds);

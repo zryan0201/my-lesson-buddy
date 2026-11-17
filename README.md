@@ -49,7 +49,7 @@ This combination is our product thesis. We have implemented the browser workflow
 
 **Create a buddy → Bring a question → Check together → Watch the explanation**
 
-1. **Create.** Draw an original character, optionally refine its details with local **AI polish**, customize modular parts, or use **Describe it** to turn a short idea into an editable proposal with on-device AI. Children compare and choose their preferred drawing version.
+1. **Create.** Draw an original character, optionally refine its details with browser **AI polish**, customize modular parts, or use **Describe it** to turn a short idea into editable parts. The optional [local cartoon studio](docs/LOCAL_CARTOON.md) can redraw a sketch in a cartoon style using shape and palette guidance. Children compare and choose their preferred version.
 2. **Bring a question.** Upload or photograph one worksheet exercise, choose an example, or enter the numbers manually. Automatic reading is optional and experimental.
 3. **Check together.** An adult confirms the operation, quantities, answer, character, and visual representation.
 4. **Watch and explore.** The character performs the mathematical actions in a narrated story. Children can replay the explanation or download the video.

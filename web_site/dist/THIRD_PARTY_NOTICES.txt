@@ -27,6 +27,16 @@ https://huggingface.co/caidas/swin2SR-lightweight-x2-64
 https://huggingface.co/Xenova/swin2SR-lightweight-x2-64
 https://github.com/mv-lab/swin2sr
 
+Optional local companion (weights not distributed with the website):
+DreamShaper 8 — Lykon — CreativeML Open RAIL-M, revision
+a7e52b98680b1ba8ff7bce97c7f9f2e2e5337917. Includes its pretrained safety checker.
+https://huggingface.co/Lykon/dreamshaper-8
+ControlNet v1.1 Canny — lllyasviel — OpenRAIL, revision
+115a470d547982438f70198e353a921996e2e819.
+https://huggingface.co/lllyasviel/control_v11p_sd15_canny
+Diffusers — Hugging Face — Apache License 2.0.
+https://github.com/huggingface/diffusers
+
 Character parts and lesson illustrations are original project artwork.
 Narration assets were generated locally for this project; no paid speech API is used.
 

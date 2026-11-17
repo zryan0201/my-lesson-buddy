@@ -46,6 +46,8 @@ See [local character AI notes](BUDDY_AI_NOTES.md) for model pinning, constrained
 
 ### AI drawing polish
 
+For a stronger learned redraw, see the [local cartoon studio](../docs/LOCAL_CARTOON.md). It serves this same combined website at `http://127.0.0.1:8613/` with a local diffusion worker, style/change controls, a separate before/after preview, child selection, and the existing lesson-video flow. It requires an approximately 3.5 GB setup. The public website accepts its exported characters and does not send visitors' pictures to localhost.
+
 In **Draw it**, draw or import a picture and choose **Download AI & polish my drawing**. Optional local Swin2SR restoration creates a 2× detail preview. Compare it with the untouched original, adjust the enhancement strength, choose **Use enhanced drawing** or **Keep my original**, then **Save & use this buddy**. The selected drawing participates in lessons using the existing whole-drawing movement and prop anchor.
 
 The model downloads about **8 MB**, plus runtime, and runs locally with optional WebGPU acceleration and a WebAssembly CPU fallback. A CPU job may take several minutes. No API key, inference fee, or image upload is involved. Changes are deliberately gentle: this refines image detail, rather than generating new costume parts, redrawing anatomy, or building a limb rig. The original remains on the canvas and can be downloaded. New marks invalidate the old comparison. Draft restoration retains both versions when browser storage has room; save a character or download the original for a durable copy. [Drawing polish technical notes](DRAWING_POLISH_NOTES.md).
